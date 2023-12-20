@@ -3,7 +3,7 @@ name: DigitecToolWeb Pipeline
 on:
   push:
     branches:
-      - main
+      - master
     paths:
       - 'digitectoolweb.client/**'
       - '.github/workflows/WebUi.yml'
