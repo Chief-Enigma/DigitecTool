@@ -6,7 +6,7 @@ on:
       - main
     paths:
       - 'digitectoolweb.client/**'
-      - '.github/workflows/ChatUi.yml'
+      - '.github/workflows/WebUi.yml'
 
 jobs:
   build:
