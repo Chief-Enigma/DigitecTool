@@ -9,7 +9,7 @@ RUN npm install
 COPY digitectoolweb.client ./
 RUN npm run build
 
-# Stage 2: Serve the React app with Nginx
+# Stage 2: Serve the React app with Nginxx
 FROM nginx:latest
 
 COPY digitectoolweb.client/src/nginx.conf /etc/nginx/conf.d/default.conf
