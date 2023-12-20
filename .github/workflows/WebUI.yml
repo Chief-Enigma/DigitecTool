@@ -1,0 +1,45 @@
+name: DigitecToolWeb Pipeline
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'digitectoolweb.client/**'
+      - '.github/workflows/ChatUi.yml'
+
+jobs:
+  build:
+    runs-on: self-hosted
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Build Docker container
+        run: docker build -f digitectoolweb.client/Dockerfile -t digitecwebbuild:$(git rev-parse --short "$GITHUB_SHA") .
+
+      - name: Save Docker image to tarball
+        run: docker save digitecwebbuild:$(git rev-parse --short "$GITHUB_SHA") -o /tmp/digitecwebbuild.tar
+
+  deploy:
+    runs-on: self-hosted
+    needs: build
+
+    steps:
+      - name: Load Docker image from tarball
+        run: docker load -i /tmp/digitecwebbuild.tar
+
+      - name: Remove old docker container
+        run: |
+          CONTAINER_NAME=DigitecToolWeb
+          RUNNING=$(docker ps -q --filter name=$CONTAINER_NAME)
+          if [ -n "$RUNNING" ]; then
+            docker stop $CONTAINER_NAME
+            docker rm $CONTAINER_NAME
+          fi
+
+      - name: Deploy new container
+        run: |
+          CONTAINER_NAME=DigitecToolWeb
+          docker run -d -p 295:80 --name $CONTAINER_NAME digitecwebbuild:$(git rev-parse --short "$GITHUB_SHA")
