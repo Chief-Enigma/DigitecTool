@@ -42,7 +42,7 @@ jobs:
       - name: Deploy new container
         run: |
           CONTAINER_NAME=DigitecToolUi
-          docker run -d -p 295:80 --name $CONTAINER_NAME digitecshiftplan:$(git rev-parse --short "$GITHUB_SHA")
+          docker run -d -p 295:80 --name $CONTAINER_NAME digitectoolui:$(git rev-parse --short "$GITHUB_SHA")
 
           
 
