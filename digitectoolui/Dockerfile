@@ -3,7 +3,7 @@ FROM node:16 as builder
 
 WORKDIR /app
 
-COPY digitectoolui/package.json client/package-lock.json ./
+COPY digitectoolui/package.json digitectoolui/package-lock.json ./
 RUN npm install
 
 COPY digitectoolui ./
