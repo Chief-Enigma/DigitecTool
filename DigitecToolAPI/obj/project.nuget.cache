@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "14J9YqqyJ0QUEgJ9QECrvtcoMx5Ki+gSD1/XUGiRZ31+fPfwLDocZB69dlhZPNPskDA+W5z4yRoif56Nc921pA==",
+  "dgSpecHash": "KzGheZq4rzT5tNhmDO3X9spDhoT8o2vuKHmviYucd2IHG8wEzEavr66BE2vm8NS28az3enScsfHHjJerQ/fqvg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\julia\\OneDrive\\Desktop\\DigitecTool\\DigitecToolAPI\\DigitecToolAPI.csproj",
+  "projectFilePath": "C:\\Users\\julia\\OneDrive\\Desktop\\DigitecTool\\DigitecToolWeb\\DigitecToolAPI\\DigitecToolAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\julia\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
     "C:\\Users\\julia\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",

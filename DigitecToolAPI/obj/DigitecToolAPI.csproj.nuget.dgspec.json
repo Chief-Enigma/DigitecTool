@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\julia\\OneDrive\\Desktop\\DigitecTool\\DigitecToolAPI\\DigitecToolAPI.csproj": {}
+    "C:\\Users\\julia\\OneDrive\\Desktop\\DigitecTool\\DigitecToolWeb\\DigitecToolAPI\\DigitecToolAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\julia\\OneDrive\\Desktop\\DigitecTool\\DigitecToolAPI\\DigitecToolAPI.csproj": {
+    "C:\\Users\\julia\\OneDrive\\Desktop\\DigitecTool\\DigitecToolWeb\\DigitecToolAPI\\DigitecToolAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\julia\\OneDrive\\Desktop\\DigitecTool\\DigitecToolAPI\\DigitecToolAPI.csproj",
+        "projectUniqueName": "C:\\Users\\julia\\OneDrive\\Desktop\\DigitecTool\\DigitecToolWeb\\DigitecToolAPI\\DigitecToolAPI.csproj",
         "projectName": "DigitecToolAPI",
-        "projectPath": "C:\\Users\\julia\\OneDrive\\Desktop\\DigitecTool\\DigitecToolAPI\\DigitecToolAPI.csproj",
+        "projectPath": "C:\\Users\\julia\\OneDrive\\Desktop\\DigitecTool\\DigitecToolWeb\\DigitecToolAPI\\DigitecToolAPI.csproj",
         "packagesPath": "C:\\Users\\julia\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\julia\\OneDrive\\Desktop\\DigitecTool\\DigitecToolAPI\\obj\\",
+        "outputPath": "C:\\Users\\julia\\OneDrive\\Desktop\\DigitecTool\\DigitecToolWeb\\DigitecToolAPI\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
