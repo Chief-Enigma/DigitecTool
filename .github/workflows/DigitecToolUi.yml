@@ -1,0 +1,48 @@
+name: DigitecToolUi Pipeline
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - 'digitectoolui/**'
+      - '.github/workflows/DigitecToolUi.yml'
+
+jobs:
+  build:
+    runs-on: self-hosted
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Build Docker container
+        run: docker build -f digitectoolui/Dockerfile -t digitectoolui:$(git rev-parse --short "$GITHUB_SHA") .
+
+      - name: Save Docker image to tarball
+        run: docker save digitectoolui:$(git rev-parse --short "$GITHUB_SHA") -o /tmp/digitectoolui.tar
+
+  deploy:
+    runs-on: self-hosted
+    needs: build
+
+    steps:
+      - name: Load Docker image from tarball
+        run: docker load -i /tmp/digitectoolui.tar
+
+      - name: Remove old docker container
+        run: |
+          CONTAINER_NAME=DigitecToolUi
+          RUNNING=$(docker ps -q --filter name=$CONTAINER_NAME)
+          if [ -n "$RUNNING" ]; then
+            docker stop $CONTAINER_NAME
+            docker rm $CONTAINER_NAME
+          fi
+
+      - name: Deploy new container
+        run: |
+          CONTAINER_NAME=DigitecToolUi
+          docker run -d -p 295:80 --name $CONTAINER_NAME digitecshiftplan:$(git rev-parse --short "$GITHUB_SHA")
+
+          
+
