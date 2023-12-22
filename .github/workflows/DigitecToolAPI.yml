@@ -49,4 +49,4 @@ jobs:
       - name: Deploy new container
         run: |
           CONTAINER_NAME=DigitecToolAPI
-          docker run -d -p 310:80 -p 311:443 --name $CONTAINER_NAME digitecapibuild:$(git rev-parse --short "$GITHUB_SHA")
+          docker run -d -p 310:8080 -p 311:8081 --name $CONTAINER_NAME digitecapibuild:$(git rev-parse --short "$GITHUB_SHA")
