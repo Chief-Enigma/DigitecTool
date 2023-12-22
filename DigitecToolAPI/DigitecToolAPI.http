@@ -1,6 +1,0 @@
-@DigitecToolAPI_HostAddress = http://localhost:5147
-
-GET {{DigitecToolAPI_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###
