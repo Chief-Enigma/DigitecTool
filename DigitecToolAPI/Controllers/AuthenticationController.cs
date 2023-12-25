@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+using DigitecToolAPI.Packages;
 
 namespace DigitecToolAPI.Controllers
 {
@@ -8,36 +7,33 @@ namespace DigitecToolAPI.Controllers
     [ApiController]
     public class AuthenticationController : ControllerBase
     {
-        // GET: api/<AuthenticationController>
-        [HttpGet]
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
-
-        // GET api/<AuthenticationController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
-
-        // POST api/<AuthenticationController>
+        // POST LoginRequest
         [HttpPost]
-        public void Post([FromBody] string value)
+        public IActionResult Post([FromBody] LoginRequest loginRequest)
         {
-        }
+            if (loginRequest.LoginEmail != null && loginRequest.LoginPassword != null)
+            {
+                var (Approved, ReturnCredentials, ExMessage) = Authentication.ApproveLoginRequest(loginRequest.LoginEmail, loginRequest.LoginPassword);
+                var Response = new AuthenticationResult();
 
-        // PUT api/<AuthenticationController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
+                if (Approved)
+                {
+                    Response.StatusCode = 200;
+                    Response.ReturnCredentials = ReturnCredentials;
+                    Response.ExMessage = string.Empty;
 
-        // DELETE api/<AuthenticationController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
+                    return Ok(Response);
+                }
+                else
+                {
+                    Response.StatusCode = 401;
+                    Response.ReturnCredentials = null;
+                    Response.ExMessage = ExMessage;
+
+                    return Unauthorized(Response);
+                }
+            }
+            return NotFound();
         }
     }
 }

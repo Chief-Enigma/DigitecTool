@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "xOnanev8pBXVVUE/Z9waCaXvckFyva1wBedyMTiBljgNC5BiAASVwajBdmcmmcT5sEx/seZsMuL1yRZP0M+zgQ==",
+  "dgSpecHash": "JzuHDZxCd0zYBgcLZeG4kSTv1Gn2PJkT1B2E47DeT34+mWNxv5r73buNhbUEYx70oyUUZBdLG2Kh31HbKQ82DA==",
   "success": true,
   "projectFilePath": "C:\\Users\\julia\\OneDrive\\Desktop\\DigitecTool\\DigitecToolWeb\\DigitecToolAPI\\DigitecToolAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\julia\\.nuget\\packages\\awssdk.core\\3.7.100.14\\awssdk.core.3.7.100.14.nupkg.sha512",
     "C:\\Users\\julia\\.nuget\\packages\\awssdk.securitytoken\\3.7.100.14\\awssdk.securitytoken.3.7.100.14.nupkg.sha512",
+    "C:\\Users\\julia\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
     "C:\\Users\\julia\\.nuget\\packages\\dnsclient\\1.6.1\\dnsclient.1.6.1.nupkg.sha512",
     "C:\\Users\\julia\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
     "C:\\Users\\julia\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\2.0.0\\microsoft.extensions.logging.abstractions.2.0.0.nupkg.sha512",

@@ -44,3 +44,4 @@ C:\Users\julia\OneDrive\Desktop\DigitecTool\DigitecToolWeb\DigitecToolAPI\obj\De
 C:\Users\julia\OneDrive\Desktop\DigitecTool\DigitecToolWeb\DigitecToolAPI\obj\Debug\net8.0\DigitecToolAPI.pdb
 C:\Users\julia\OneDrive\Desktop\DigitecTool\DigitecToolWeb\DigitecToolAPI\obj\Debug\net8.0\DigitecToolAPI.genruntimeconfig.cache
 C:\Users\julia\OneDrive\Desktop\DigitecTool\DigitecToolWeb\DigitecToolAPI\obj\Debug\net8.0\ref\DigitecToolAPI.dll
+C:\Users\julia\OneDrive\Desktop\DigitecTool\DigitecToolWeb\DigitecToolAPI\bin\Debug\net8.0\BCrypt.Net-Next.dll
