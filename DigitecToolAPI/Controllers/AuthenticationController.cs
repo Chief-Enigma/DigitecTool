@@ -7,7 +7,7 @@ namespace DigitecToolAPI.Controllers
     [ApiController]
     public class AuthenticationController : ControllerBase
     {
-        // POST LoginRequest
+        // POST - LoginRequest
         [HttpPost]
         public IActionResult Post([FromBody] LoginRequest loginRequest)
         {

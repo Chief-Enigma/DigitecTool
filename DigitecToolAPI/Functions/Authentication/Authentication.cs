@@ -1,5 +1,4 @@
 using DigitecToolAPI.Packages;
-using BCrypt;
 
 namespace DigitecToolAPI
 {

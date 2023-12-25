@@ -1,6 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
-
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+﻿using DigitecToolAPI.Packages;
+using Microsoft.AspNetCore.Mvc;
 
 namespace DigitecToolAPI.Controllers
 {
@@ -8,36 +7,56 @@ namespace DigitecToolAPI.Controllers
     [ApiController]
     public class LoginController : ControllerBase
     {
-        // GET: api/<LoginController>
-        [HttpGet]
-        public IEnumerable<string> Get()
+        // GET - Check if Login for User allready exists
+        [HttpGet("{PersonalNumber}")]
+        public bool Get(int PersonalNumber)
         {
-            return new string[] { "value1", "value2" };
+            return GetLoginCredentials.CheckLoginExists(PersonalNumber);
         }
 
-        // GET api/<LoginController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
-
-        // POST api/<LoginController>
+        // POST - Add new Userlogin
         [HttpPost]
-        public void Post([FromBody] string value)
+        public IActionResult Post([FromBody] LoginCredentials newloginCredentials)
         {
+            // var Success = SetLoginCredentials.AddLoginCredentials(newloginCredentials);
+            // Console.WriteLine("Return: " + Success);
+
+            if (SetLoginCredentials.AddLoginCredentials(newloginCredentials))
+            {
+                Console.WriteLine("hehehehe");
+                return Ok();
+            }
+
+            return NotFound();
+
         }
 
-        // PUT api/<LoginController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        // PUT - Edit LoginCredentials Ex. Email or Password
+        [HttpPut("{PersonalNumber}")]
+        public IActionResult Put(int PersonalNumber, [FromBody] ChangeCredentials updateloginCredentials)
         {
+            if (SetLoginCredentials.EditLoginCredentials(PersonalNumber, updateloginCredentials) && updateloginCredentials.Payload != "")
+            {
+                return Ok();
+            }
+            else
+            {
+                return NotFound();
+            }
         }
 
-        // DELETE api/<LoginController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        // DELETE - Remove UserLogin
+        [HttpDelete("{PersonalNumber}")]
+        public IActionResult Delete(int PersonalNumber)
         {
+            if (SetLoginCredentials.DeletLoginCredentials(PersonalNumber))
+            {
+                return Ok();
+            }
+            else
+            {
+                return NotFound();
+            }
         }
     }
 }
