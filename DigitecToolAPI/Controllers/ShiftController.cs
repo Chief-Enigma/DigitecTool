@@ -16,16 +16,14 @@ namespace DigitecToolAPI.Controllers
         }
 
         // GET api/<ShiftController>/5
-        [HttpGet("{shiftDate}")]
-        public string Get(string shiftDate)
+        [HttpGet("{id}")]
+        public string Get(int id)
         {
-            return ("ShiftDate: " + shiftDate);
+            return "value";
         }
 
         // POST api/<ShiftController>
-        // Generate a new month with empty shifts
         [HttpPost]
-        [Route("newshiftmonth")]
         public void Post([FromBody] string value)
         {
         }

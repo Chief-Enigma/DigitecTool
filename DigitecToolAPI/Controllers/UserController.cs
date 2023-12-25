@@ -1,6 +1,4 @@
-﻿using DigitecToolAPI.DataBase;
-using DigitecToolAPI.Packages;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -10,58 +8,36 @@ namespace DigitecToolAPI.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        [HttpGet("all")]
-        public List<User> Get()
+        // GET: api/<UserController>
+        [HttpGet]
+        public IEnumerable<string> Get()
         {
-            return UserDataBase.GetAllUsers();
+            return new string[] { "value1", "value2" };
         }
 
-
-        [HttpGet("{Personalnumber}")]
-        public User Get(int Personalnumber)
+        // GET api/<UserController>/5
+        [HttpGet("{id}")]
+        public string Get(int id)
         {
-            return UserDataBase.GetSpecificUser(Personalnumber);
+            return "value";
         }
 
-
+        // POST api/<UserController>
         [HttpPost]
-        [Route("adduser")]
-        public ActionResult<User> Post([FromBody] User newUser)
+        public void Post([FromBody] string value)
         {
-            var (success, addedUser, exmessage) = UserDataBase.AddUser(newUser);
-
-            if (success)
-            {
-                return StatusCode(200, addedUser);
-            }
-            else
-            {
-                return StatusCode(500, exmessage);
-            }
-
         }
 
-
-        [HttpPut("edituser/{Personalnumber}")]
-        public User? Put(int Personalnumber, [FromBody] User existingUser)
+        // PUT api/<UserController>/5
+        [HttpPut("{id}")]
+        public void Put(int id, [FromBody] string value)
         {
-            return UserDataBase.EditUser(existingUser, Personalnumber);
         }
 
-
-        [HttpDelete("deleteuser/{Personalnumber}")]
-        public IActionResult Delete(int Personalnumber)
+        // DELETE api/<UserController>/5
+        [HttpDelete("{id}")]
+        public void Delete(int id)
         {
-            bool deletionResult = UserDataBase.DeleteUser(Personalnumber);
-
-            if (deletionResult)
-            {
-                return NoContent(); // 204 No Content
-            }
-            else
-            {
-                return NotFound(); // 404 Not Found
-            }
         }
     }
 }

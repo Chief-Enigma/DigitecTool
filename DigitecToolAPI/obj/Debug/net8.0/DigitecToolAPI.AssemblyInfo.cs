@@ -11,11 +11,11 @@
 using System;
 using System.Reflection;
 
-[assembly: Microsoft.Extensions.Configuration.UserSecrets.UserSecretsIdAttribute("7e2e94e9-7654-4915-b19b-669f0caed75b")]
+[assembly: Microsoft.Extensions.Configuration.UserSecrets.UserSecretsIdAttribute("6c35ec75-fee8-41f0-b0a3-60f549e086ac")]
 [assembly: System.Reflection.AssemblyCompanyAttribute("DigitecToolAPI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6b7fe312fcd2ffe40ecf295e47fa658c7df6839f")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
 [assembly: System.Reflection.AssemblyProductAttribute("DigitecToolAPI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DigitecToolAPI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
