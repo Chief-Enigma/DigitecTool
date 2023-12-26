@@ -27,9 +27,15 @@ export const NavBar = (props) => {
           </Link>
         </li>
         <li style={{ float: "right" }}>
-          <Link to="Account">
-            <a>Account</a>
-          </Link>
+          {props.loggedIn ? (
+            <Link to="Account">
+              <a>Account</a>
+            </Link>
+          ) : (
+            <Link to="LogIn">
+              <a>LogIn</a>
+            </Link>
+          )}
         </li>
       </ul>
     </nav>

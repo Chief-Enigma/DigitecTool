@@ -19,7 +19,7 @@ namespace DigitecToolAPI
                     }
                     else
                     {
-                        return (false, null, "Sorry, wrong Password");
+                        return (false, null, "E401");
                     }
                 }
                 else

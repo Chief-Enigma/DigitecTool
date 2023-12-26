@@ -1,6 +1,8 @@
-nav {
+nav{
+  
   background-color: #00559d;
 }
+
 
 ul {
   list-style-type: none;
@@ -23,7 +25,7 @@ li a {
   font-weight: bold;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 600px){
   li a {
     font-size: 14px;
     padding: 7px 7px;
@@ -34,6 +36,6 @@ li a:hover {
   background-color: #054b88;
 }
 
-li.Login {
+li.Login{
   float: right;
 }

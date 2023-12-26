@@ -20,7 +20,7 @@ namespace DigitecToolAPI
             catch
             {
                 Console.WriteLine("Nix in Db gefunden");
-                return (false, null, $"Account {AccountEmail} not found");
+                return (false, null, "E404");
             }
         }
 

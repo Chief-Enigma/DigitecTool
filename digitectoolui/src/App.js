@@ -18,7 +18,6 @@ function App() {
   const [userrole, setUserRole] = useState("");
   // Userdata
   const [personalnumber, setPersonalNumber] = useState("");
-  const [email, setEmail] = useState("");
 
   useEffect(() => {
     // Fetch the user email and token from local storage
@@ -30,13 +29,11 @@ function App() {
     }
 
     setLoggedIn(true);
-    setPersonalNumber(user.personalnumber || "");
-    setEmail(user.email || "");
-    setUserRole(user.userrole || "");
-
-    if ((userrole = "Admin")) {
+    if (userrole === "Admin") {
       setAdminLoggedIn(true);
     }
+    console.log(userrole);
+    console.log(personalnumber);
   });
 
   return (
@@ -85,7 +82,16 @@ function App() {
               <Account loggedIn={loggedIn} personalnumber={personalnumber} />
             }
           />
-          <Route path="LogIn" element={<LogIn />} />
+          <Route
+            path="LogIn"
+            element={
+              <LogIn
+                setLoggedIn={setLoggedIn}
+                setPersonalNumber={setPersonalNumber}
+                setUserRole={setUserRole}
+              />
+            }
+          />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
