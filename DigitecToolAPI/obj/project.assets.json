@@ -1332,23 +1332,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\julia\\.nuget\\packages\\": {},
+    "C:\\Users\\Julian.Bambauer\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\julia\\OneDrive\\Desktop\\DigitecTool\\DigitecToolWeb\\DigitecToolAPI\\DigitecToolAPI.csproj",
+      "projectUniqueName": "C:\\Users\\Julian.Bambauer\\Desktop\\DigitecTool\\DigitecTool\\DigitecToolAPI\\DigitecToolAPI.csproj",
       "projectName": "DigitecToolAPI",
-      "projectPath": "C:\\Users\\julia\\OneDrive\\Desktop\\DigitecTool\\DigitecToolWeb\\DigitecToolAPI\\DigitecToolAPI.csproj",
-      "packagesPath": "C:\\Users\\julia\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\julia\\OneDrive\\Desktop\\DigitecTool\\DigitecToolWeb\\DigitecToolAPI\\obj\\",
+      "projectPath": "C:\\Users\\Julian.Bambauer\\Desktop\\DigitecTool\\DigitecTool\\DigitecToolAPI\\DigitecToolAPI.csproj",
+      "packagesPath": "C:\\Users\\Julian.Bambauer\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Julian.Bambauer\\Desktop\\DigitecTool\\DigitecTool\\DigitecToolAPI\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\julia\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Julian.Bambauer\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -1357,6 +1357,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
