@@ -27,8 +27,10 @@ namespace DigitecToolAPI
         public static bool CheckLoginExists(int PersonalNumber)
         {
             var filter = Builders<LoginCredentials>.Filter.Eq(lc => lc.PersonalNumber, PersonalNumber);
-            var FoundLoginCredentials = LoginCredentials_DB.Find(filter).Any();
-            return FoundLoginCredentials;
+            try{
+                return LoginCredentials_DB.Find(filter).Any();
+            }
+            
         }
     }
 }
