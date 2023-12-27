@@ -29,6 +29,8 @@ namespace DigitecToolAPI
             var filter = Builders<LoginCredentials>.Filter.Eq(lc => lc.PersonalNumber, PersonalNumber);
             try{
                 return LoginCredentials_DB.Find(filter).Any();
+            }catch{
+                return false;
             }
             
         }
