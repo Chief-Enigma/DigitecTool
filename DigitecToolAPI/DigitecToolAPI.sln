@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DigitecToolAPI", "DigitecToolAPI.csproj", "{8DE6DD2C-4B3D-4C54-A59F-9E30D573493E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DigitecToolAPI", "DigitecToolAPI.csproj", "{D6D28A27-D4AE-43F4-B236-E2DCAB1DA9C0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{8DE6DD2C-4B3D-4C54-A59F-9E30D573493E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8DE6DD2C-4B3D-4C54-A59F-9E30D573493E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8DE6DD2C-4B3D-4C54-A59F-9E30D573493E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8DE6DD2C-4B3D-4C54-A59F-9E30D573493E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D6D28A27-D4AE-43F4-B236-E2DCAB1DA9C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D6D28A27-D4AE-43F4-B236-E2DCAB1DA9C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D6D28A27-D4AE-43F4-B236-E2DCAB1DA9C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D6D28A27-D4AE-43F4-B236-E2DCAB1DA9C0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {035D40BF-B026-420F-BB4B-EA51F2390ACC}
+		SolutionGuid = {4386A460-AB41-44BF-B7D9-D7EC5A8F55FB}
 	EndGlobalSection
 EndGlobal

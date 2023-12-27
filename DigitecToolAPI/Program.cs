@@ -7,6 +7,7 @@ namespace DigitecToolAPI
         {
             var builder = WebApplication.CreateBuilder(args);
 
+
             // Add services to the container.
 
             builder.Services.AddControllers();
@@ -17,12 +18,14 @@ namespace DigitecToolAPI
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
+            // Swagger link     http://localhost:5089/swagger/index.html
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
 
+            app.UseCors(x => x.AllowAnyMethod().AllowAnyHeader().SetIsOriginAllowed(origin => true).AllowCredentials());
             app.UseHttpsRedirection();
 
             app.UseAuthorization();
