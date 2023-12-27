@@ -29,12 +29,16 @@ function App() {
     }
 
     setLoggedIn(true);
-    if (userrole === "Admin") {
+    setUserRole(user.userrole || "");
+    setPersonalNumber(user.personalnumber || "");
+
+    if (user.userrole === "Admin") {
       setAdminLoggedIn(true);
     }
+
     console.log(userrole);
     console.log(personalnumber);
-  });
+  }, []);
 
   return (
     <BrowserRouter>

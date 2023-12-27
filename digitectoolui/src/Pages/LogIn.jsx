@@ -35,9 +35,13 @@ export const LogIn = (props) => {
       FIX THE ERROR THAT LOGGEDIN IS SAVED BUT NOT THE PERSONAL NUMBER AND THE USER ROLE!!!
       */
       setPersonalNumber(AuthenticationResult.returnCredentials.personalNumber);
+      setUserRole(AuthenticationResult.returnCredentials.userRole);
       localStorage.setItem(
         "user",
-        JSON.stringify({ personalnumber, userrole })
+        JSON.stringify({
+          personalnumber: AuthenticationResult.returnCredentials.personalNumber,
+          userrole: AuthenticationResult.returnCredentials.userRole,
+        })
       );
 
       props.setPersonalNumber(
