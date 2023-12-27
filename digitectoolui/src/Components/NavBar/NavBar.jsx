@@ -4,7 +4,7 @@ import "./NavBar.css";
 
 export const NavBar = (props) => {
   return (
-    <nav>
+    <nav className="MainNavBar">
       <ul>
         <li>
           <Link to="/">
@@ -32,7 +32,7 @@ export const NavBar = (props) => {
               <a>Account</a>
             </Link>
           ) : (
-            <Link to="LogIn">
+            <Link to="Login">
               <a>LogIn</a>
             </Link>
           )}

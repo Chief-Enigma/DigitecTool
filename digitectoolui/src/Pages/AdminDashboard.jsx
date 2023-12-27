@@ -3,7 +3,7 @@ import { Navigate } from "react-router-dom";
 
 export const AdminDashboard = (props) => {
   if (!props.adminloggedIn) {
-    return <Navigate replace to="/Dashboard" />;
+    return <Navigate replace to="/Login" />;
   }
 
 
