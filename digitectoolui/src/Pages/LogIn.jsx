@@ -99,7 +99,7 @@ export const LogIn = (props) => {
         </div>
         <br />
         <button className="LoginButton" onClick={handleLogin}>
-          Log In
+          Log In!
         </button>
       </div>
     </div>
