@@ -2,6 +2,8 @@ import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Layout } from "./Components/LayOut";
+import { DashboardLayout } from "./Components/DashboardLayout";
+
 import { Home } from "./Pages/Home";
 import { Schichtplan } from "./Pages/Schichtplan";
 import { PersonalPlan } from "./Pages/PersonalPlan";
@@ -66,16 +68,13 @@ function App() {
             path="PersonalPlan/:personalnumber"
             element={<PersonalPlan />}
           />
-          <Route
-            path="Dashboard"
-            element={
-              <Dashboard
-                loggedIn={loggedIn}
-                personalnumber={personalnumber}
-                userrole={userrole}
-              />
-            }
-          />
+
+          <Route path="Dashboard" element={<DashboardLayout loggedIn={loggedIn}
+            personalnumber={personalnumber}
+            userrole={userrole} />} >
+            <Route path="main" element={<Dashboard />} />
+          </Route>
+
           <Route
             path="AdminDashboard"
             element={<AdminDashboard userrole={userrole} />}
@@ -87,7 +86,7 @@ function App() {
             }
           />
           <Route
-            path="LogIn"
+            path="Login"
             element={
               <LogIn
                 setLoggedIn={setLoggedIn}

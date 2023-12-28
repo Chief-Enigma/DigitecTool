@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DigitecToolAPI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+855c23e5b05cda5c9d95b65ba19ee287aaddda59")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d94acb4746cf7245eaf084aa32b9130e6216f573")]
 [assembly: System.Reflection.AssemblyProductAttribute("DigitecToolAPI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DigitecToolAPI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

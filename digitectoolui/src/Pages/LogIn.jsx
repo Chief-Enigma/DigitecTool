@@ -2,8 +2,11 @@ import React, { useState } from "react";
 import "./LogIn/LogIn.css";
 import ClientApi from "../Api/Api";
 import { useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 export const LogIn = (props) => {
+
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [personalnumber, setPersonalNumber] = useState("");
@@ -59,6 +62,10 @@ export const LogIn = (props) => {
       console.log("Something went horrible wrong!!!");
     }
   };
+
+  if (!props.loggedIn) {
+    return <Navigate replace to="/Account" />;
+  }
 
   return (
     <div className="middlediv">

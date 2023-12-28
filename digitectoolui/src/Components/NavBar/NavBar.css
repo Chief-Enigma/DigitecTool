@@ -1,21 +1,21 @@
-nav{
+nav.MainNavBar{
   
   background-color: #00559d;
 }
 
 
-ul {
+.MainNavBar ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
   overflow: hidden;
 }
 
-li {
+.MainNavBar li {
   float: left;
 }
 
-li a {
+.MainNavBar li a {
   display: block;
   color: white;
   text-align: center;
@@ -26,16 +26,16 @@ li a {
 }
 
 @media only screen and (max-width: 600px){
-  li a {
+  .MainNavBar li a {
     font-size: 14px;
     padding: 7px 7px;
   }
 }
 
-li a:hover {
+.MainNavBar li a:hover {
   background-color: #054b88;
 }
 
-li.Login{
+.MainNavBar li.Login{
   float: right;
 }
