@@ -1,7 +1,7 @@
 class ClientApi {
   constructor() {
-    //this.baseURL = "https://technik.hackster.ch/api/";
-    this.baseURL = "http://localhost:5089/api/";
+    this.baseURL = "https://technik.hackster.ch/api/";
+    //this.baseURL = "http://localhost:5089/api/";
 
   }
 
