@@ -9,13 +9,15 @@ namespace DigitecToolAPI.Controllers
     {
         // POST - LoginRequest
         [HttpPost]
-        public IActionResult Post([FromBody] LoginRequest loginRequest)
+        public async Task<IActionResult> PostAsync([FromBody] LoginRequest loginRequest)
         {
             Console.WriteLine("Got Post request");
+
             if (loginRequest.LoginEmail != null && loginRequest.LoginPassword != null)
             {
                 Console.WriteLine("Login isnt null");
-                var (Approved, ReturnCredentials, ExMessage) = Authentication.ApproveLoginRequest(loginRequest.LoginEmail, loginRequest.LoginPassword);
+
+                var (Approved, ReturnCredentials, ExMessage) = await Authentication.ApproveLoginRequestAsync(loginRequest.LoginEmail, loginRequest.LoginPassword);
                 var Response = new AuthenticationResult();
 
                 if (Approved)
@@ -37,7 +39,9 @@ namespace DigitecToolAPI.Controllers
                     return Unauthorized(Response);
                 }
             }
+
             return NotFound();
         }
+
     }
 }
