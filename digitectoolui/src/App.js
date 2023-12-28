@@ -93,6 +93,7 @@ function App() {
                 setLoggedIn={setLoggedIn}
                 setPersonalNumber={setPersonalNumber}
                 setUserRole={setUserRole}
+                loggedIn={loggedIn}
               />
             }
           />

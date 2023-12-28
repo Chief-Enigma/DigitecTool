@@ -65,6 +65,10 @@ export const LogIn = (props) => {
     }
   };
 
+  if(props.loggedIn){
+    return <Navigate replace to="/Account" />;
+  }
+
 
 
   return (
