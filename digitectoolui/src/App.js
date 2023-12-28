@@ -1,6 +1,7 @@
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useEffect, useState } from "react";
+
 import { Layout } from "./Components/LayOut";
 import { DashboardLayout } from "./Components/DashboardLayout";
 
@@ -34,9 +35,9 @@ function App() {
     setUserRole(user.userrole || "");
     setPersonalNumber(user.personalnumber || "");
 
-    if (user.userrole === "Admin") {
-      setAdminLoggedIn(true);
-    }
+    // if (user.userrole === "Admin") {
+    //   setAdminLoggedIn(true);
+    // }
 
     console.log(userrole);
     console.log(personalnumber);
@@ -47,7 +48,7 @@ function App() {
       <Routes>
         <Route
           path="/"
-          element={<Layout loggedIn={loggedIn} adminloggedIn={adminloggedIn} />}
+          element={<Layout loggedIn={loggedIn} adminloggedIn={adminloggedIn} userrole={userrole}/>}
         >
           <Route
             index
@@ -77,12 +78,12 @@ function App() {
 
           <Route
             path="AdminDashboard"
-            element={<AdminDashboard adminloggedIn={adminloggedIn} />}
+            element={<AdminDashboard loggedIn={loggedIn} userrole={userrole} />}
           />
           <Route
             path="Account"
             element={
-              <Account loggedIn={loggedIn} personalnumber={personalnumber} />
+              <Account setLoggedIn={setLoggedIn} loggedIn={loggedIn} setUserRole={setUserRole} personalnumber={personalnumber} />
             }
           />
           <Route

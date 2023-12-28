@@ -6,7 +6,14 @@ export const Account = (props) => {
         return <Navigate replace to="/LogIn" />;
     }
 
+    const onButtonClick = () => {
+          localStorage.removeItem("user")
+          props.setLoggedIn(false);
+          props.setUserRole("");
+      }
+
+
     return(
-        <p>Account</p>
+        <button onClick={onButtonClick} >Logout</button>
     );
 };

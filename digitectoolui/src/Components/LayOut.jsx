@@ -5,7 +5,7 @@ import {NavBar} from "./NavBar/NavBar"
 export const Layout = (props) => {
     return (
         <>
-            <NavBar loggedIn={props.loggedIn} adminloggedIn={props.adminloggedIn}/>
+            <NavBar loggedIn={props.loggedIn} userrole={props.userrole}/>
             <Outlet />
         </>
     );
