@@ -19,11 +19,11 @@ namespace DigitecToolAPI
 
             // Configure the HTTP request pipeline.
             // Swagger link     http://localhost:5089/swagger/index.html
-            if (app.Environment.IsDevelopment())
-            {
-                app.UseSwagger();
-                app.UseSwaggerUI();
-            }
+            // if (app.Environment.IsDevelopment())
+            // {
+            app.UseSwagger();
+            app.UseSwaggerUI();
+            // }
 
             app.UseCors(x => x.AllowAnyMethod().AllowAnyHeader().SetIsOriginAllowed(origin => true).AllowCredentials());
             app.UseHttpsRedirection();
