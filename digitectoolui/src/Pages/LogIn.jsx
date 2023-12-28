@@ -29,43 +29,46 @@ export const LogIn = (props) => {
       LoginEmail: email,
       LoginPassword: password,
     });
-    if (AuthenticationResult.statusCode === 200) {
-      console.log(AuthenticationResult);
-      console.log("logged in!!!");
+    try {
+      if (AuthenticationResult.statusCode === 200) {
+        console.log(AuthenticationResult);
+        console.log("logged in!!!");
 
-      /* 
-      FIX THE ERROR THAT LOGGEDIN IS SAVED BUT NOT THE PERSONAL NUMBER AND THE USER ROLE!!!
-      */
-      // setPersonalNumber(AuthenticationResult.returnCredentials.personalNumber);
-      // setUserRole(AuthenticationResult.returnCredentials.userRole);
+        /* 
+        FIX THE ERROR THAT LOGGEDIN IS SAVED BUT NOT THE PERSONAL NUMBER AND THE USER ROLE!!!
+        */
+        // setPersonalNumber(AuthenticationResult.returnCredentials.personalNumber);
+        // setUserRole(AuthenticationResult.returnCredentials.userRole);
 
-      localStorage.setItem(
-        "user",
-        JSON.stringify({
-          personalnumber: AuthenticationResult.returnCredentials.personalNumber,
-          userrole: AuthenticationResult.returnCredentials.userRole,
-        })
-      );
+        localStorage.setItem(
+          "user",
+          JSON.stringify({
+            personalnumber: AuthenticationResult.returnCredentials.personalNumber,
+            userrole: AuthenticationResult.returnCredentials.userRole,
+          })
+        );
 
-      props.setPersonalNumber(
-        AuthenticationResult.returnCredentials.personalNumber
-      );
+        props.setPersonalNumber(
+          AuthenticationResult.returnCredentials.personalNumber
+        );
 
-      props.setUserRole(AuthenticationResult.returnCredentials.userRole);
-      console.log(AuthenticationResult.returnCredentials.userRole);
+        props.setUserRole(AuthenticationResult.returnCredentials.userRole);
+        console.log(AuthenticationResult.returnCredentials.userRole);
 
-      props.setLoggedIn(true);
+        props.setLoggedIn(true);
 
-      navigate("/");
+        navigate("/");
 
-    } else if (AuthenticationResult.statusCode === 401) {
-      console.log("Nope " + AuthenticationResult.exMessage);
-    } else {
-      console.log("Something went horrible wrong!!!");
+      } else if (AuthenticationResult.statusCode === 401) {
+        console.log("Nope " + AuthenticationResult.exMessage);
+      }
+    }
+    catch (error) {
+      console.log("Something went horrible wrong!!!" + error);
     }
   };
 
-  if(props.loggedIn){
+  if (props.loggedIn) {
     return <Navigate replace to="/Account" />;
   }
 
