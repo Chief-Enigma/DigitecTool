@@ -7,13 +7,13 @@ namespace DigitecToolAPI
     {
         public static IMongoCollection<LoginCredentials> LoginCredentials_DB = Mongo.db.GetCollection<LoginCredentials>("LoginCredentials");
 
-        public static (bool Success, LoginCredentials? loginCredentials, string ExMessage) GetLoginCredentialsByEmail(string AccountEmail)
+        public static async Task<(bool Success, LoginCredentials? loginCredentials, string ExMessage)> GetLoginCredentialsByEmailAsync(string AccountEmail)
         {
             var filter = Builders<LoginCredentials>.Filter.Eq(lc => lc.Email, AccountEmail);
 
             try
             {
-                var loginCredentials = LoginCredentials_DB.Find(filter).First();
+                var loginCredentials = await LoginCredentials_DB.Find(filter).FirstOrDefaultAsync();
 
                 return (true, loginCredentials, "");
             }
@@ -24,18 +24,18 @@ namespace DigitecToolAPI
             }
         }
 
-        public static bool CheckLoginExists(int PersonalNumber)
+        public static async Task<bool> CheckLoginExistsAsync(int PersonalNumber)
         {
             var filter = Builders<LoginCredentials>.Filter.Eq(lc => lc.PersonalNumber, PersonalNumber);
+
             try
             {
-                return LoginCredentials_DB.Find(filter).Any();
+                return await LoginCredentials_DB.Find(filter).AnyAsync();
             }
             catch
             {
                 return false;
             }
-
         }
     }
 }

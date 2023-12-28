@@ -4,9 +4,9 @@ namespace DigitecToolAPI
 {
     public class Authentication
     {
-        public static (bool Approved, LoginCredentials? LoginCreds, string? ExMessage) ApproveLoginRequest(string loginEmail, string loginPassword)
+        public static async Task<(bool Approved, LoginCredentials? LoginCreds, string? ExMessage)> ApproveLoginRequestAsync(string loginEmail, string loginPassword)
         {
-            var (Success, loginCredentials, ExMessage) = GetLoginCredentials.GetLoginCredentialsByEmail(loginEmail);
+            var (Success, loginCredentials, ExMessage) = await GetLoginCredentials.GetLoginCredentialsByEmailAsync(loginEmail);
 
             try
             {
@@ -32,5 +32,6 @@ namespace DigitecToolAPI
                 return (false, null, ex.Message);
             }
         }
+
     }
 }
