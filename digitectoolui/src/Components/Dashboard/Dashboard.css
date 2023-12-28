@@ -1,0 +1,10 @@
+.dashboard-container {
+    display: flex;
+  }
+  .nav-container{
+
+  }
+  
+  .main-content {
+    flex-grow: 1;
+  }
