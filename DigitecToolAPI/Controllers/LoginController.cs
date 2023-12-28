@@ -9,33 +9,29 @@ namespace DigitecToolAPI.Controllers
     {
         // GET - Check if Login for User allready exists
         [HttpGet("{PersonalNumber}")]
-        public bool Get(int PersonalNumber)
+        public async Task<bool> GetAsync(int PersonalNumber)
         {
-            return GetLoginCredentials.CheckLoginExists(PersonalNumber);
+            return await GetLoginCredentials.CheckLoginExistsAsync(PersonalNumber);
         }
 
         // POST - Add new Userlogin
         [HttpPost]
-        public IActionResult Post([FromBody] LoginCredentials newloginCredentials)
+        public async Task<IActionResult> PostAsync([FromBody] LoginCredentials newloginCredentials)
         {
-            // var Success = SetLoginCredentials.AddLoginCredentials(newloginCredentials);
-            // Console.WriteLine("Return: " + Success);
-
-            if (SetLoginCredentials.AddLoginCredentials(newloginCredentials))
+            if (await SetLoginCredentials.AddLoginCredentialsAsync(newloginCredentials))
             {
                 Console.WriteLine("hehehehe");
                 return Ok();
             }
 
             return NotFound();
-
         }
 
         // PUT - Edit LoginCredentials Ex. Email or Password
         [HttpPut("{PersonalNumber}")]
-        public IActionResult Put(int PersonalNumber, [FromBody] ChangeCredentials updateloginCredentials)
+        public async Task<IActionResult> PutAsync(int PersonalNumber, [FromBody] ChangeCredentials updateloginCredentials)
         {
-            if (SetLoginCredentials.EditLoginCredentials(PersonalNumber, updateloginCredentials) && updateloginCredentials.Payload != "")
+            if (await SetLoginCredentials.EditLoginCredentialsAsync(PersonalNumber, updateloginCredentials) && updateloginCredentials.Payload != "")
             {
                 return Ok();
             }
@@ -47,9 +43,9 @@ namespace DigitecToolAPI.Controllers
 
         // DELETE - Remove UserLogin
         [HttpDelete("{PersonalNumber}")]
-        public IActionResult Delete(int PersonalNumber)
+        public async Task<IActionResult> DeleteAsync(int PersonalNumber)
         {
-            if (SetLoginCredentials.DeletLoginCredentials(PersonalNumber))
+            if (await SetLoginCredentials.DeletLoginCredentialsAsync(PersonalNumber))
             {
                 return Ok();
             }
@@ -58,5 +54,6 @@ namespace DigitecToolAPI.Controllers
                 return NotFound();
             }
         }
+
     }
 }
