@@ -6,7 +6,6 @@ import { Navigate } from "react-router-dom";
 
 export const LogIn = (props) => {
 
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [personalnumber, setPersonalNumber] = useState("");
@@ -37,8 +36,9 @@ export const LogIn = (props) => {
       /* 
       FIX THE ERROR THAT LOGGEDIN IS SAVED BUT NOT THE PERSONAL NUMBER AND THE USER ROLE!!!
       */
-      setPersonalNumber(AuthenticationResult.returnCredentials.personalNumber);
-      setUserRole(AuthenticationResult.returnCredentials.userRole);
+      // setPersonalNumber(AuthenticationResult.returnCredentials.personalNumber);
+      // setUserRole(AuthenticationResult.returnCredentials.userRole);
+
       localStorage.setItem(
         "user",
         JSON.stringify({
@@ -50,12 +50,14 @@ export const LogIn = (props) => {
       props.setPersonalNumber(
         AuthenticationResult.returnCredentials.personalNumber
       );
+
       props.setUserRole(AuthenticationResult.returnCredentials.userRole);
       console.log(AuthenticationResult.returnCredentials.userRole);
 
       props.setLoggedIn(true);
 
       navigate("/");
+
     } else if (AuthenticationResult.statusCode === 401) {
       console.log("Nope " + AuthenticationResult.exMessage);
     } else {
@@ -63,9 +65,7 @@ export const LogIn = (props) => {
     }
   };
 
-  if (!props.loggedIn) {
-    return <Navigate replace to="/Account" />;
-  }
+
 
   return (
     <div className="middlediv">
