@@ -45,7 +45,7 @@ function App() {
       <Routes>
         <Route
           path="/"
-          element={<Layout loggedIn={loggedIn} adminloggedIn={adminloggedIn} />}
+          element={<Layout loggedIn={loggedIn} userrole={userrole} adminloggedIn={adminloggedIn} />}
         >
           <Route
             index
@@ -78,7 +78,7 @@ function App() {
           />
           <Route
             path="AdminDashboard"
-            element={<AdminDashboard adminloggedIn={adminloggedIn} />}
+            element={<AdminDashboard userrole={userrole} />}
           />
           <Route
             path="Account"

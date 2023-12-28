@@ -1,6 +1,6 @@
 class ClientApi {
   constructor() {
-    this.baseURL = "https://digitec.hackster.ch/api/";
+    this.baseURL = "http://localhost:5089/api/";
   }
 
   request = async (url, method, data) => {

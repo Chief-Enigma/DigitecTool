@@ -72,7 +72,7 @@ export const LogIn = (props) => {
             value={email}
             onChange={handleEmailChange}
           />
-          <label className="label" htmlForfor="email">
+          <label className="label" htmlFor="email">
             E-Mail Adresse
           </label>
         </div>
@@ -86,7 +86,7 @@ export const LogIn = (props) => {
             value={password}
             onChange={handlePasswordChange}
           />
-          <label className="label" htmlForfor="password">
+          <label className="label" htmlFor="password">
             Passwort
           </label>
         </div>
