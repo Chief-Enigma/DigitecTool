@@ -7,22 +7,22 @@ namespace DigitecToolAPI
     {
         public static IMongoCollection<LoginCredentials> LoginCredentials_DB = Mongo.db.GetCollection<LoginCredentials>("LoginCredentials");
 
-        public static bool AddLoginCredentials(LoginCredentials newloginCredentials)
+        public static async Task<bool> AddLoginCredentialsAsync(LoginCredentials newloginCredentials)
         {
             var filter = Builders<LoginCredentials>.Filter.Eq(lc => lc.PersonalNumber, newloginCredentials.PersonalNumber);
             try
             {
-                if (LoginCredentials_DB.Find(filter).Any())
+                if (await LoginCredentials_DB.Find(filter).AnyAsync())
                 {
                     Console.WriteLine("Found existing login");
                     return false;
                 }
 
                 newloginCredentials.PasswordHash = BCrypt.Net.BCrypt.EnhancedHashPassword(newloginCredentials.PersonalNumber.ToString(), 13);
-                LoginCredentials_DB.InsertOne(newloginCredentials);
+                await LoginCredentials_DB.InsertOneAsync(newloginCredentials);
                 Console.WriteLine("Inserted passed");
 
-                if (LoginCredentials_DB.Find(filter).Any())
+                if (await LoginCredentials_DB.Find(filter).AnyAsync())
                 {
                     Console.WriteLine("Found after insert");
                     return true;
@@ -40,13 +40,13 @@ namespace DigitecToolAPI
             }
         }
 
-        public static bool EditLoginCredentials(int PersonalNumber, ChangeCredentials updateloginCredentials)
+        public static async Task<bool> EditLoginCredentialsAsync(int PersonalNumber, ChangeCredentials updateloginCredentials)
         {
             var filter = Builders<LoginCredentials>.Filter.Eq(lc => lc.PersonalNumber, PersonalNumber);
             UpdateDefinition<LoginCredentials> update;
             try
             {
-                if (LoginCredentials_DB.Find(filter).Any())
+                if (await LoginCredentials_DB.Find(filter).AnyAsync())
                 {
 
                     if (updateloginCredentials.Type == "Password")
@@ -69,7 +69,7 @@ namespace DigitecToolAPI
                         return false;
                     }
 
-                    var result = LoginCredentials_DB.UpdateOne(filter, update);
+                    var result = await LoginCredentials_DB.UpdateOneAsync(filter, update);
 
                     if (result.ModifiedCount == 0)
                     {
@@ -90,13 +90,13 @@ namespace DigitecToolAPI
             }
         }
 
-        public static bool DeletLoginCredentials(int PersonalNumber)
+        public static async Task<bool> DeletLoginCredentialsAsync(int PersonalNumber)
         {
             var filter = Builders<LoginCredentials>.Filter.Eq(lc => lc.PersonalNumber, PersonalNumber);
             try
             {
-                LoginCredentials_DB.DeleteOne(filter);
-                if (!LoginCredentials_DB.Find(filter).Any())
+                await LoginCredentials_DB.DeleteOneAsync(filter);
+                if (!await LoginCredentials_DB.Find(filter).AnyAsync())
                 {
                     return true;
                 }
@@ -105,8 +105,8 @@ namespace DigitecToolAPI
             catch
             {
                 return false;
-
             }
         }
+
     }
 }
