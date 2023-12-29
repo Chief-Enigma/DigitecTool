@@ -34,12 +34,6 @@ export const LogIn = (props) => {
         console.log(AuthenticationResult);
         console.log("logged in!!!");
 
-        /* 
-        FIX THE ERROR THAT LOGGEDIN IS SAVED BUT NOT THE PERSONAL NUMBER AND THE USER ROLE!!!
-        */
-        // setPersonalNumber(AuthenticationResult.returnCredentials.personalNumber);
-        // setUserRole(AuthenticationResult.returnCredentials.userRole);
-
         localStorage.setItem(
           "user",
           JSON.stringify({

@@ -17,7 +17,6 @@ import { NotFound } from "./Pages/NotFound";
 function App() {
   // Permissions
   const [loggedIn, setLoggedIn] = useState(false);
-  const [adminloggedIn, setAdminLoggedIn] = useState(false);
   const [userrole, setUserRole] = useState("");
   // Userdata
   const [personalnumber, setPersonalNumber] = useState("");
@@ -35,10 +34,6 @@ function App() {
     setUserRole(user.userrole || "");
     setPersonalNumber(user.personalnumber || "");
 
-    // if (user.userrole === "Admin") {
-    //   setAdminLoggedIn(true);
-    // }
-
     console.log(userrole);
     console.log(personalnumber);
   }, []);
@@ -48,7 +43,7 @@ function App() {
       <Routes>
         <Route
           path="/"
-          element={<Layout loggedIn={loggedIn} adminloggedIn={adminloggedIn} userrole={userrole}/>}
+          element={<Layout loggedIn={loggedIn} userrole={userrole}/>}
         >
           <Route
             index
