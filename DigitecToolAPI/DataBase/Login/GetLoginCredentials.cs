@@ -15,11 +15,16 @@ namespace DigitecToolAPI
             {
                 var loginCredentials = await LoginCredentials_DB.Find(filter).FirstOrDefaultAsync();
 
-                return (true, loginCredentials, "");
+                if (loginCredentials != null)
+                {
+                    return (true, loginCredentials, "");
+                }
+                Console.WriteLine("Nix in Db gefunden");
+                return (false, null, "E404");
             }
             catch
             {
-                Console.WriteLine("Nix in Db gefunden");
+                Console.WriteLine("Uuuups");
                 return (false, null, "E404");
             }
         }

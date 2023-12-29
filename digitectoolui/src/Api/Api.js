@@ -1,6 +1,6 @@
 class ClientApi {
   constructor() {
-    this.baseURL = "http://boss-cave.internet-box.ch:4243/api/";
+    this.baseURL = "https://api.hackster.ch/api/";
     //this.baseURL = "http://localhost:5089/api/";
 
   }
