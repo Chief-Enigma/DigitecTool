@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 import { Navigate } from "react-router-dom";
 
 export const LogIn = (props) => {
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [personalnumber, setPersonalNumber] = useState("");
@@ -25,6 +24,29 @@ export const LogIn = (props) => {
   };
 
   const handleLogin = async () => {
+    setEmailError("");
+    setPasswordError("");
+
+    if ("" === email) {
+      setEmailError("Please enter your email");
+      return;
+    }
+
+    if (!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email)) {
+      setEmailError("Please enter a valid email");
+      return;
+    }
+
+    if ("" === password) {
+      setPasswordError("Please enter a password");
+      return;
+    }
+
+    if (password.length < 3) {
+      setPasswordError("The password must be 8 characters or longer");
+      return;
+    }
+
     const AuthenticationResult = await ClientApi.login({
       LoginEmail: email,
       LoginPassword: password,
@@ -37,7 +59,8 @@ export const LogIn = (props) => {
         localStorage.setItem(
           "user",
           JSON.stringify({
-            personalnumber: AuthenticationResult.returnCredentials.personalNumber,
+            personalnumber:
+              AuthenticationResult.returnCredentials.personalNumber,
             userrole: AuthenticationResult.returnCredentials.userRole,
           })
         );
@@ -52,12 +75,10 @@ export const LogIn = (props) => {
         props.setLoggedIn(true);
 
         navigate("/");
-
       } else if (AuthenticationResult.statusCode === 401) {
         console.log("Nope " + AuthenticationResult.exMessage);
       }
-    }
-    catch (error) {
+    } catch (error) {
       console.log("Something went horrible wrong!!!" + error);
     }
   };
@@ -65,8 +86,6 @@ export const LogIn = (props) => {
   if (props.loggedIn) {
     return <Navigate replace to="/Account" />;
   }
-
-
 
   return (
     <div className="middlediv">
@@ -83,6 +102,7 @@ export const LogIn = (props) => {
           <label className="label" htmlFor="email">
             E-Mail Adresse
           </label>
+          <label className="errorLabel">{emailError}</label>
         </div>
         <br />
         <div className="InputContainer">
@@ -97,6 +117,7 @@ export const LogIn = (props) => {
           <label className="label" htmlFor="password">
             Passwort
           </label>
+          <label className="errorLabel">{passwordError}</label>
         </div>
         <br />
         <button className="LoginButton" onClick={handleLogin}>
