@@ -13,22 +13,22 @@ export const DashboardNavBar = (props) => {
                 </li>
                 <li>
                     <Link to="main">
-                        <a>Main2</a>
+                        <a>Schichtplan bearbeiten</a>
                     </Link>
                 </li>
                 <li>
                     <Link to="main">
-                        <a>Main3</a>
+                        <a>Mitarbeiter</a>
                     </Link>
                 </li>
                 <li>
                     <Link to="main">
-                        <a>Main4</a>
+                        <a>Tickets</a>
                     </Link>
                 </li>
                 <li>
                     <Link to="main">
-                        <a>Main5</a>
+                        <a>Einstellungen</a>
                     </Link>
                 </li>
             </ul>

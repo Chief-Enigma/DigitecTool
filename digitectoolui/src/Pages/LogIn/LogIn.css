@@ -52,11 +52,10 @@
   border: 1px solid var(--secondary);
 }
 
-.input:is(:focus) ~ label {
+.input:is(:focus, :not(:empty)) ~ label {
   transform: translateY(-120%) scale(0.7);
   background-color: #1a1a1a;
   padding-inline: 0.3rem;
-  color: var(--primary);
 }
 
 .input:is(:valid) ~ label {
@@ -66,7 +65,7 @@
   color: var(--secondary);
 }
 
-.input:is(:invalid:not(:empty)) ~ label {
+.input:is(:not(:empty)) ~ label {
   transform: translateY(-120%) scale(0.7);
   background-color: #1a1a1a;
   padding-inline: 0.3rem;
@@ -92,4 +91,8 @@
   transition: 150ms;
   color: #fefefe;
   background-color: #1a1a1a;
+}
+ .errorLabel {
+  color: red;
+  font-size: 12px;
 }

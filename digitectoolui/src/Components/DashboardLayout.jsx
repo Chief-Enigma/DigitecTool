@@ -7,7 +7,9 @@ import { Navigate } from "react-router-dom";
 import "./Dashboard/Dashboard.css"
 
 export const DashboardLayout = (props) => {
-    if (!props.loggedIn) {
+
+    const {loggedIn, personalnumber, userrole} = props
+    if (!loggedIn) {
         return <Navigate replace to="/LogIn" />;
     }
     return (
