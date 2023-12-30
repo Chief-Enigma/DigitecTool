@@ -2,7 +2,7 @@
 
 nav.DashboardNavBar {
     background-color: #00559d;
-    height: 100vh; /* Set height to 100% of the viewport height */
+    height: 100%; /* Set height to 100% of the viewport height */
   }
   
   .DashboardNavBar ul {
@@ -16,6 +16,10 @@ nav.DashboardNavBar {
     /* Remove float to stack items vertically */
     /* float: left; */
     display: block; /* Display items as block elements */
+  }
+
+  .DashboardNavElement{
+    display:inline-flex;
   }
   
   .DashboardNavBar li a {
@@ -37,4 +41,9 @@ nav.DashboardNavBar {
   
   .DashboardNavBar li a:hover {
     background-color: #054b88;
+  }
+
+  .DashboardNavElement {
+    font-size: 20px;
+    text-align: center;
   }
