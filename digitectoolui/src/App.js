@@ -2,9 +2,11 @@ import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useEffect, useState } from "react";
 
+// Importing Layouts
 import { Layout } from "./Components/LayOut";
 import { DashboardLayout } from "./Components/DashboardLayout";
 
+// Importing Pages
 import { Home } from "./Pages/Home";
 import { Schichtplan } from "./Pages/Schichtplan";
 import { PersonalPlan } from "./Pages/PersonalPlan";
@@ -13,6 +15,13 @@ import { AdminDashboard } from "./Pages/AdminDashboard";
 import { Account } from "./Pages/Account";
 import { LogIn } from "./Pages/LogIn";
 import { NotFound } from "./Pages/NotFound";
+
+// Importing Dashboard Pages
+import { Today } from "./Pages/Dashboard/Today";
+import { EditPlan } from "./Pages/Dashboard/EditPlan";
+import { Employees } from "./Pages/Dashboard/Employees";
+import { Tickets } from "./Pages/Dashboard/Tickets";
+import { Settings } from "./Pages/Dashboard/Settings";
 
 function App() {
   // Permissions
@@ -65,10 +74,21 @@ function App() {
             element={<PersonalPlan />}
           />
 
-          <Route path="Dashboard" element={<DashboardLayout loggedIn={loggedIn}
-            personalnumber={personalnumber}
-            userrole={userrole} />} >
-            <Route path="main" element={<Dashboard />} />
+          <Route
+            path="Dashboard"
+            element={
+              <DashboardLayout
+                loggedIn={loggedIn}
+                personalnumber={personalnumber}
+                userrole={userrole}
+              />
+            }
+          >
+            <Route path="today" element={<Today />} />
+            <Route path="editplan" element={<EditPlan />} />
+            <Route path="employees" element={<Employees />} />
+            <Route path="tickets" element={<Tickets />} />
+            <Route path="settings" element={<Settings />} />
           </Route>
 
           <Route
@@ -78,7 +98,12 @@ function App() {
           <Route
             path="Account"
             element={
-              <Account setLoggedIn={setLoggedIn} loggedIn={loggedIn} setUserRole={setUserRole} personalnumber={personalnumber} />
+              <Account
+                setLoggedIn={setLoggedIn}
+                loggedIn={loggedIn}
+                setUserRole={setUserRole}
+                personalnumber={personalnumber}
+              />
             }
           />
           <Route
