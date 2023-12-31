@@ -1,8 +1,6 @@
-nav.MainNavBar{
-  
+nav.MainNavBar {
   background-color: #00559d;
 }
-
 
 .MainNavBar ul {
   list-style-type: none;
@@ -25,7 +23,7 @@ nav.MainNavBar{
   font-weight: bold;
 }
 
-@media only screen and (max-width: 600px){
+@media only screen and (max-width: 600px) {
   .MainNavBar li a {
     font-size: 14px;
     padding: 7px 7px;
@@ -36,6 +34,6 @@ nav.MainNavBar{
   background-color: #054b88;
 }
 
-.MainNavBar li.Login{
+.MainNavBar li.Login {
   float: right;
 }
