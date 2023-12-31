@@ -1,40 +1,41 @@
-/* Updated styles for vertical navbar with full-height background */
-
 nav.DashboardNavBar {
-    background-color: #00559d;
-    height: 100vh; /* Set height to 100% of the viewport height */
-  }
-  
-  .DashboardNavBar ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-  }
-  
-  .DashboardNavBar li {
-    /* Remove float to stack items vertically */
-    /* float: left; */
-    display: block; /* Display items as block elements */
-  }
-  
-  .DashboardNavBar li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 10px 15px;
-    text-decoration: none;
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: bold;
-  }
-  
-  @media only screen and (max-width: 600px) {
-    .DashboardNavBar li a {
-      font-size: 14px;
-      padding: 7px 7px;
-    }
-  }
-  
-  .DashboardNavBar li a:hover {
-    background-color: #054b88;
-  }
+  margin: 10px;
+  /* padding: 15px; */
+  /* border: 2px solid #ddd;
+  border-radius: 10px; */
+}
+
+.DashboardNavBar ul{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.DashboardNavBar li a{
+  text-decoration: none;
+}
+
+.DashboardNavElement {
+  list-style-type: none;
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px; /* Adjust as needed */
+  padding: 10px;
+  text-decoration: none;
+  border: 2px solid #ddd; /* Light gray border */
+  border-radius: 10px;
+}
+
+.DashboardNavElement {
+  text-decoration: none;
+  color: white;
+}
+
+.material-symbols-outlined {
+  margin-right: 10px; 
+}
+
+.DashboardNavElement:hover {
+  border-color: #333; /* Dark gray border on hover */
+}
