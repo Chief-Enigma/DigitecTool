@@ -3,15 +3,14 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 // Importing Layouts
-import { Layout } from "./Components/LayOut";
-import { DashboardLayout } from "./Components/DashboardLayout";
+import { Layout } from "./Components/LayOuts/LayOut";
+import { DashboardLayout } from "./Components/LayOuts/DashboardLayout";
+import { AdminDashboardLayout } from "./Components/LayOuts/AdminDashboardLayout";
 
 // Importing Pages
 import { Home } from "./Pages/Home";
 import { Schichtplan } from "./Pages/Schichtplan";
 import { PersonalPlan } from "./Pages/PersonalPlan";
-import { Dashboard } from "./Pages/Dashboard";
-import { AdminDashboard } from "./Pages/AdminDashboard";
 import { Account } from "./Pages/Account";
 import { LogIn } from "./Pages/LogIn";
 import { NotFound } from "./Pages/NotFound";
@@ -22,6 +21,10 @@ import { EditPlan } from "./Pages/Dashboard/EditPlan";
 import { Employees } from "./Pages/Dashboard/Employees";
 import { Tickets } from "./Pages/Dashboard/Tickets";
 import { Settings } from "./Pages/Dashboard/Settings";
+
+// Importing AdminDashboard Pages
+import { Users } from "./Pages/AdminDashboard/Users";
+import {AdminSettings} from "./Pages/AdminDashboard/AdminSettings";
 
 function App() {
   // Permissions
@@ -36,6 +39,8 @@ function App() {
 
     if (!user) {
       setLoggedIn(false);
+      setUserRole("");
+      setPersonalNumber("");
       return;
     }
 
@@ -52,12 +57,22 @@ function App() {
       <Routes>
         <Route
           path="/"
-          element={<Layout loggedIn={loggedIn} userrole={userrole} />}
+          element={
+            <Layout
+              loggedIn={loggedIn}
+              personalnumber={personalnumber}
+              userrole={userrole}
+            />
+          }
         >
           <Route
             index
             element={
-              <Home loggedIn={loggedIn} personalnumber={personalnumber} />
+              <Home
+                loggedIn={loggedIn}
+                personalnumber={personalnumber}
+                userrole={userrole}
+              />
             }
           />
           <Route
@@ -66,12 +81,19 @@ function App() {
               <Schichtplan
                 loggedIn={loggedIn}
                 personalnumber={personalnumber}
+                userrole={userrole}
               />
             }
           />
           <Route
             path="PersonalPlan/:personalnumber"
-            element={<PersonalPlan />}
+            element={
+              <PersonalPlan
+                loggedIn={loggedIn}
+                personalnumber={personalnumber}
+                userrole={userrole}
+              />
+            }
           />
 
           <Route
@@ -84,25 +106,77 @@ function App() {
               />
             }
           >
-            <Route path="today" element={<Today />} />
-            <Route path="editplan" element={<EditPlan />} />
-            <Route path="employees" element={<Employees />} />
-            <Route path="tickets" element={<Tickets />} />
-            <Route path="settings" element={<Settings />} />
+            <Route
+              path="today"
+              element={
+                <Today personalnumber={personalnumber} userrole={userrole} />
+              }
+            />
+            <Route
+              path="editplan"
+              element={
+                <EditPlan personalnumber={personalnumber} userrole={userrole} />
+              }
+            />
+            <Route
+              path="employees"
+              element={
+                <Employees
+                  personalnumber={personalnumber}
+                  userrole={userrole}
+                />
+              }
+            />
+            <Route
+              path="tickets"
+              element={
+                <Tickets personalnumber={personalnumber} userrole={userrole} />
+              }
+            />
+            <Route
+              path="settings"
+              element={
+                <Settings personalnumber={personalnumber} userrole={userrole} />
+              }
+            />
           </Route>
 
           <Route
             path="AdminDashboard"
-            element={<AdminDashboard loggedIn={loggedIn} userrole={userrole} />}
-          />
+            element={
+              <AdminDashboardLayout
+                userrole={userrole}
+              />
+            }
+          >
+            <Route
+              path="today"
+              element={<Today personalnumber={personalnumber} />}
+            />
+            <Route
+              path="employees"
+              element={<Employees personalnumber={personalnumber} />}
+            />
+            <Route
+              path="users"
+              element={<Users personalnumber={personalnumber} />}
+            />
+            <Route
+              path="settings"
+              element={<AdminSettings personalnumber={personalnumber} />}
+            />
+          </Route>
+
           <Route
             path="Account"
             element={
               <Account
                 setLoggedIn={setLoggedIn}
-                loggedIn={loggedIn}
+                setPersonalNumber={setPersonalNumber}
                 setUserRole={setUserRole}
+                loggedIn={loggedIn}
                 personalnumber={personalnumber}
+                userrole={userrole}
               />
             }
           />

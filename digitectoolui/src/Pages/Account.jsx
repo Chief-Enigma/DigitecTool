@@ -10,6 +10,7 @@ export const Account = (props) => {
           localStorage.removeItem("user")
           props.setLoggedIn(false);
           props.setUserRole("");
+          props.setPersonalNumber("");
       }
 
 

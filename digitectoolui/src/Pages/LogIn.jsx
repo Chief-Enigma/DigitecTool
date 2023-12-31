@@ -48,9 +48,10 @@ export const LogIn = (props) => {
     }
 
     const AuthenticationResult = await ClientApi.login({
-      LoginEmail: email,
+      LoginEmail: email.toLowerCase(),
       LoginPassword: password,
     });
+
     try {
       if (AuthenticationResult.statusCode === 200) {
         console.log(AuthenticationResult);
@@ -113,6 +114,11 @@ export const LogIn = (props) => {
             required
             value={password}
             onChange={handlePasswordChange}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                handleLogin();
+              }
+            }}
           />
           <label className="label" htmlFor="password">
             Passwort
