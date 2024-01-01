@@ -20,22 +20,21 @@ namespace DigitecToolAPI
 
                 newloginCredentials.PasswordHash = BCrypt.Net.BCrypt.EnhancedHashPassword(newloginCredentials.PersonalNumber.ToString(), 13);
                 await LoginCredentials_DB.InsertOneAsync(newloginCredentials);
-                Console.WriteLine("Inserted passed");
 
                 if (await LoginCredentials_DB.Find(filter).AnyAsync())
                 {
-                    Console.WriteLine("Found after insert");
+                    Console.WriteLine("Found Login after insert");
                     return true;
                 }
                 else
                 {
-                    Console.WriteLine("Didnt found after insert");
+                    Console.WriteLine("Didnt found Login after insert");
                     return false;
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Nope not at all...." + ex.Message);
+                Console.WriteLine("Error at AddLoginCredentialsAsync: " + ex.Message);
                 return false;
             }
         }
@@ -84,8 +83,7 @@ namespace DigitecToolAPI
             }
             catch (Exception ex)
             {
-                Console.WriteLine("FUUUUUUUUUUUUCK");
-                Console.WriteLine(ex.Message);
+                Console.WriteLine("Error at EditLoginCredentialsAsync: " + ex.Message);
                 return false;
             }
         }
@@ -102,8 +100,9 @@ namespace DigitecToolAPI
                 }
                 return false;
             }
-            catch
+            catch (Exception ex)
             {
+                Console.WriteLine("Error at DeletLoginCredentialsAsync: " + ex.Message);
                 return false;
             }
         }

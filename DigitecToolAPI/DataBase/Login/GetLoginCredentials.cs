@@ -22,9 +22,9 @@ namespace DigitecToolAPI
                 Console.WriteLine("Nix in Db gefunden");
                 return (false, null, "E404");
             }
-            catch
+            catch (Exception ex)
             {
-                Console.WriteLine("Uuuups");
+                Console.WriteLine("Error at GetLoginCredentialsByEmailAsync: " + ex.Message);
                 return (false, null, "E404");
             }
         }
@@ -37,8 +37,9 @@ namespace DigitecToolAPI
             {
                 return await LoginCredentials_DB.Find(filter).AnyAsync();
             }
-            catch
+            catch (Exception ex)
             {
+                Console.WriteLine("Error at CheckLoginExistsAsync: " + ex.Message);
                 return false;
             }
         }

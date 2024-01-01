@@ -10,11 +10,11 @@ export const EmployeeRow = (props) => {
   return (
     <tr className="EmployeeRow">
       <td>
-        {props.employeeData.firstname} {props.employeeData.lastname}
+        {props.employeeData.firstName} {props.employeeData.lastName}
       </td>
-      <td>{props.employeeData.workerrole}</td>
+      <td>{props.employeeData.workerRole}</td>
       <td>Team: {props.employeeData.team}</td>
-      <td>{props.employeeData.personalnumber}</td>
+      <td>{props.employeeData.personalNumber}</td>
       <td>
         <Link onClick={handleEditEmployee} className="EmployeeLink">
           <span class="material-symbols-outlined">manage_accounts</span>

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using DigitecToolAPI.Packages;
+using Microsoft.AspNetCore.Mvc;
 
 
 namespace DigitecToolAPI.Controllers
@@ -7,11 +8,11 @@ namespace DigitecToolAPI.Controllers
     [ApiController]
     public class EmployeeController : ControllerBase
     {
-        // GET: api/<UserController>
-        [HttpGet]
-        public IEnumerable<string> Get()
+        // GET - Get all Employees from Data Base
+        [HttpGet("all")]
+        public async Task<IEnumerable<Employee>?> GetAsync()
         {
-            return new string[] { "value1", "value2" };
+            return await GetEmployees.GetAllEmployeesAsync();
         }
 
         // GET api/<UserController>/5
@@ -21,16 +22,17 @@ namespace DigitecToolAPI.Controllers
             return "value";
         }
 
-        // POST api/<UserController>
+        // POST - Add new Userlogin
         [HttpPost]
-        public void Post([FromBody] string value)
+        public async Task<IActionResult> PostAsync([FromBody] Employee newEmployee)
         {
-        }
+            if (await SetEmployees.AddEmployeeAsync(newEmployee))
+            {
+                Console.WriteLine("hehehehe");
+                return Ok();
+            }
 
-        // PUT api/<UserController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
+            return NotFound();
         }
 
         // DELETE api/<UserController>/5
