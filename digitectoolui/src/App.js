@@ -21,10 +21,11 @@ import { EditPlan } from "./Pages/Dashboard/EditPlan";
 import { Employees } from "./Pages/Dashboard/Employees";
 import { Tickets } from "./Pages/Dashboard/Tickets";
 import { Settings } from "./Pages/Dashboard/Settings";
+import { EditEmployee } from "./Pages/Dashboard/EditEmployee";
 
 // Importing AdminDashboard Pages
 import { Users } from "./Pages/AdminDashboard/Users";
-import {AdminSettings} from "./Pages/AdminDashboard/AdminSettings";
+import { AdminSettings } from "./Pages/AdminDashboard/AdminSettings";
 
 function App() {
   // Permissions
@@ -139,15 +140,13 @@ function App() {
                 <Settings personalnumber={personalnumber} userrole={userrole} />
               }
             />
+
+            <Route path="employee/:personalnumber" element={<EditEmployee />} />
           </Route>
 
           <Route
             path="AdminDashboard"
-            element={
-              <AdminDashboardLayout
-                userrole={userrole}
-              />
-            }
+            element={<AdminDashboardLayout userrole={userrole} />}
           >
             <Route
               path="today"

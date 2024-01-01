@@ -8,9 +8,9 @@ import "../Dashboard/Dashboard.css";
 
 export const DashboardLayout = (props) => {
   const { loggedIn, personalnumber, userrole } = props;
-  if (!loggedIn) {
-    return <Navigate replace to="/LogIn" />;
-  }
+  // if (!loggedIn) {
+  //   return <Navigate replace to="/LogIn" />;
+  // }
   return (
     <div className="dashboard-container">
       <div className="nav-container">

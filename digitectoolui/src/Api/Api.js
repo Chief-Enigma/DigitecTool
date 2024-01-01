@@ -2,7 +2,6 @@ class ClientApi {
   constructor() {
     this.baseURL = "https://api.hackster.ch/api/";
     //this.baseURL = "http://localhost:5089/api/";
-
   }
 
   request = async (url, method, data) => {
@@ -24,11 +23,9 @@ class ClientApi {
 
   async login(data) {
     const url = this.baseURL + "Authentication";
-
     try {
       return await this.request(url, "POST", data);
     } catch (error) {
-      // Handle any errors that occurred during the request
       console.error("Login error:", error);
     }
   }

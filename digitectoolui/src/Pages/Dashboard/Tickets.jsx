@@ -1,5 +1,9 @@
 import React from "react";
 
 export const Tickets = (props) => {
-  return <p>This is Tickets page!</p>;
+  return (
+    <div className="DashboardContendBox">
+      <h1>Ticket Page</h1>
+    </div>
+  );
 };

@@ -1,5 +1,9 @@
 import React from "react";
 
 export const Settings = (props) => {
-  return <p>This is Settings page!</p>;
+  return (
+    <div className="DashboardContendBox">
+      <h1>Settings Page</h1>
+    </div>
+  );
 };
