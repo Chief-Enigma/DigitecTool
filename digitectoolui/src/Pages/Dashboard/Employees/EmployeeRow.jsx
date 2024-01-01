@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export const EmployeeRow = (props) => {
   const handleEditEmployee = () => {
-    props.setEditEmployeeData(props.employeeData.personalnumber);
+    props.setEditEmployeeData(props.employeeData.personalNumber);
     props.setEditActiv(true);
   };
 
