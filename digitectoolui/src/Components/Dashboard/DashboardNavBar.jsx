@@ -7,8 +7,18 @@ export const DashboardNavBar = (props) => {
     <nav className="DashboardNavBar">
       <ul>
         <li>
-          <NavLink to="today" activeClassName="active" className="DashboardNavElement">
+          <NavLink
+            to="today"
+            activeClassName="active"
+            className="DashboardNavElement"
+          >
             <span className="material-symbols-outlined">event</span>Today
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="changeshift" className="DashboardNavElement">
+            <span class="material-symbols-outlined">swap_horiz</span>
+            Diensttausch
           </NavLink>
         </li>
         <li>
@@ -24,7 +34,8 @@ export const DashboardNavBar = (props) => {
         </li>
         <li>
           <NavLink to="tickets" className="DashboardNavElement">
-            <span className="material-symbols-outlined">receipt_long</span>Tickets
+            <span className="material-symbols-outlined">receipt_long</span>
+            Tickets
           </NavLink>
         </li>
         <li>

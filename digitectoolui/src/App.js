@@ -21,7 +21,8 @@ import { EditPlan } from "./Pages/Dashboard/EditPlan";
 import { Employees } from "./Pages/Dashboard/Employees";
 import { Tickets } from "./Pages/Dashboard/Tickets";
 import { Settings } from "./Pages/Dashboard/Settings";
-import { EditEmployee } from "./Pages/Dashboard/EditEmployee";
+import { EditEmployee } from "./Pages/Dashboard/Employees/EditEmployee";
+import {ChangeShift} from "./Pages/Dashboard/ChangeShift";
 
 // Importing AdminDashboard Pages
 import { Users } from "./Pages/AdminDashboard/Users";
@@ -126,6 +127,12 @@ function App() {
                   personalnumber={personalnumber}
                   userrole={userrole}
                 />
+              }
+            />
+            <Route
+              path="changeshift"
+              element={
+                <ChangeShift personalnumber={personalnumber} userrole={userrole} />
               }
             />
             <Route

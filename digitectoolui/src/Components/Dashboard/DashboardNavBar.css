@@ -13,7 +13,7 @@ nav.DashboardNavBar {
   white-space: nowrap;
 }
 
-.DashboardNavBar li a {
+.DashboardNavBar li {
   text-decoration: none;
 }
 
@@ -44,5 +44,4 @@ nav.DashboardNavBar {
 .DashboardNavElement.active {
   background-color: #f0f0f0;
   color: #1a1a1a;
-
 }

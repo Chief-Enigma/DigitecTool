@@ -1,23 +1,22 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { EditEmployee } from "../EditEmployee";
-
-import { Navigate } from "react-router-dom";
-
-const handleEditUser = () => {
-  return <EditEmployee />;
-};
 
 export const EmployeeRow = (props) => {
+  const handleEditEmployee = () => {
+    props.setEditEmployeeData(props.employeeData.personalnumber);
+    props.setEditActiv(true);
+  };
+
   return (
     <tr className="EmployeeRow">
-      <td>Julian</td>
-      <td>Bambauer</td>
-      <td>Maintanance Technican</td>
-      <td>Team: Sakac</td>
-      <td>8168</td>
       <td>
-        <Link to={`/Dashboard/employee/${props.personalnumber}`} className="EmployeeLink" >
+        {props.employeeData.firstname} {props.employeeData.lastname}
+      </td>
+      <td>{props.employeeData.workerrole}</td>
+      <td>Team: {props.employeeData.team}</td>
+      <td>{props.employeeData.personalnumber}</td>
+      <td>
+        <Link onClick={handleEditEmployee} className="EmployeeLink">
           <span class="material-symbols-outlined">manage_accounts</span>
         </Link>
       </td>
