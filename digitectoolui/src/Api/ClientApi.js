@@ -1,7 +1,7 @@
 class ClientApi {
   constructor() {
-    this.baseURL = "https://api.hackster.ch/api/";
-    //this.baseURL = "http://localhost:5089/api/";
+    //this.baseURL = "https://api.hackster.ch/api/";
+    this.baseURL = "http://localhost:5089/api/";
   }
 
   request = async (url, method, data) => {
@@ -26,7 +26,16 @@ class ClientApi {
     try {
       return await this.request(url, "POST", data);
     } catch (error) {
-      console.error("Login error:", error);
+      console.error("Error at login: ", error);
+    }
+  }
+
+  async GetAllEmployees() {
+    const url = this.baseURL + "Employee/all";
+    try {
+      return await this.request(url, "GET", undefined);
+    } catch (error) {
+      console.error("Error at GetAllEmployees: ", error);
     }
   }
 }

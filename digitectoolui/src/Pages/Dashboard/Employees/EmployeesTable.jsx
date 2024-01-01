@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { EmployeeRow } from "./EmployeeRow";
+import ClientApi from "../../../Api/ClientApi";
 
-const employees = [
+const employees2 = [
   {
     personalnumber: "1",
     team: "Eren",
@@ -52,19 +53,35 @@ const employees = [
 
 export const EmployeesTable = (props) => {
   const [searchBar, setSearchBar] = useState("");
+  const [employees, setEmployees] = useState([]);
 
-  const employeeRows = [];
+  const getEmployees = async () => {
+    try {
+      const result = await ClientApi.GetAllEmployees();
+      setEmployees(result);
+    } catch (error) {
+      console.error("Error fetching employees:", error);
+    }
+  };
+
   const employeeSearchResults = [];
+  const employeeRows = [];
 
   const handleSearch = async (e) => {
     setSearchBar(e.target.value);
-    console.log(e.target.value);
+    // console.log(e.target.value);
   };
 
   const handleAddEmployee = () => {
     props.setEditActiv(true);
     props.setNewEmployee(true);
   };
+
+  useEffect(() => {
+    getEmployees();
+  }, []);
+
+  console.log(employees);
 
   employees.forEach((employee) => {
     employeeRows.push(
