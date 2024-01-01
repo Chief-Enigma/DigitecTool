@@ -38,6 +38,15 @@ class ClientApi {
       console.error("Error at GetAllEmployees: ", error);
     }
   }
+
+  async AddEmployee(data) {
+    const url = this.baseURL + "Employee";
+    try {
+      return await this.request(url, "POST", data);
+    } catch (error) {
+      console.error("Error at AddEmployee: ", error);
+    }
+  }
 }
 
 export default new ClientApi();

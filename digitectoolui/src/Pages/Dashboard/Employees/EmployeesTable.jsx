@@ -3,54 +3,6 @@ import { Link } from "react-router-dom";
 import { EmployeeRow } from "./EmployeeRow";
 import ClientApi from "../../../Api/ClientApi";
 
-const employees2 = [
-  {
-    personalnumber: "1",
-    team: "Eren",
-    workerrole: "MT",
-    firstname: "Ivan",
-    lastname: "IvanIvan",
-    email: "",
-    phonenumber: "",
-  },
-  {
-    personalnumber: "2",
-    team: "Eren",
-    workerrole: "JT",
-    firstname: "Dragan",
-    lastname: "DraganDragan",
-    email: "",
-    phonenumber: "",
-  },
-  {
-    personalnumber: "3",
-    team: "Eren",
-    workerrole: "JT",
-    firstname: "Sali",
-    lastname: "SaliSali",
-    email: "",
-    phonenumber: "",
-  },
-  {
-    personalnumber: "4",
-    team: "Zeljko",
-    workerrole: "MT",
-    firstname: "Julian",
-    lastname: "Bambauer",
-    email: "",
-    phonenumber: "",
-  },
-  {
-    personalnumber: "5",
-    team: "Zeljko",
-    workerrole: "JT",
-    firstname: "Anto",
-    lastname: "AntoAnto",
-    email: "",
-    phonenumber: "",
-  },
-];
-
 export const EmployeesTable = (props) => {
   const [searchBar, setSearchBar] = useState("");
   const [employees, setEmployees] = useState([]);
@@ -81,8 +33,6 @@ export const EmployeesTable = (props) => {
     getEmployees();
   }, []);
 
-  console.log(employees);
-
   employees.forEach((employee) => {
     employeeRows.push(
       <EmployeeRow
@@ -106,10 +56,9 @@ export const EmployeesTable = (props) => {
           onChange={handleSearch}
         />
         <Link onClick={handleAddEmployee} className="AddEmployeeLink">
-          <span class="material-symbols-outlined">person_add</span>
+          <span className="material-symbols-outlined">person_add</span>
         </Link>
       </div>
-      <br />
       <table className="EmployeeTable">
         <tr className="EmployeeRow EmployeeTitleRow">
           <td>Name</td>
