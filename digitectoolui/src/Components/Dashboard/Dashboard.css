@@ -8,3 +8,10 @@
   .main-content {
     flex-grow: 1;
   }
+
+  .DashboardContendBox {
+    margin: 10px;
+    padding: 10px;
+    border: 2px solid #333;
+    border-radius: 10px;
+  }

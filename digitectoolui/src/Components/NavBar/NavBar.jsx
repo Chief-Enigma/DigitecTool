@@ -21,7 +21,7 @@ export const NavBar = (props) => {
             <a>Dashboard</a>
           </Link>
         </li>
-        <li style={{ display: (props.userrole === "Admin") ? "block" : "none" }}>
+        <li style={{ display: props.userrole === "Admin" ? "block" : "none" }}>
           <Link to="AdminDashboard">
             <a>Admin Dashboard</a>
           </Link>

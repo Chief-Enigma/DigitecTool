@@ -1,0 +1,42 @@
+
+
+.Searchbar {
+  margin: 0.4rem 0;
+  width: fill;
+  max-width: 75%;
+  color: #fefefe;
+  background-color: #1a1a1a;
+  padding: 0.5rem;
+  border: 2px solid #333;
+  border-radius: 10px;
+}
+
+/* Employee Row */
+
+.EmployeeTable {
+  width: fill;
+  border-collapse: collapse;
+}
+
+.EmployeeRow {
+    border: 1px solid #333;
+    border-left: none;
+    border-right: none;
+}
+
+.EmployeeRow:first-child{
+    border-top: none;
+}
+
+.EmployeeRow:last-child{
+    border-bottom: none;
+}
+
+.EmployeeRow td{
+    padding: 0.5rem;
+}
+
+.EmployeeLink{
+    text-decoration: none;
+    color: #fefefe;
+}

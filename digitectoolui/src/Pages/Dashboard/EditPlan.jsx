@@ -1,5 +1,9 @@
 import React from "react";
 
 export const EditPlan = (props) => {
-  return <p>This is EditPlan page!</p>;
+  return (
+    <div className="DashboardContendBox">
+      <h1>Editplan Page</h1>
+    </div>
+  );
 };

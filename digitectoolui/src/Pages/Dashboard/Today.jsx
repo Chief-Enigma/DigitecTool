@@ -1,5 +1,9 @@
 import React from "react";
 
 export const Today = (props) => {
-  return <p>This is today page!</p>;
+  return (
+    <div className="DashboardContendBox">
+      <h1>Today Page</h1>
+    </div>
+  );
 };
