@@ -17,12 +17,14 @@ import { NotFound } from "./Pages/NotFound";
 
 // Importing Dashboard Pages
 import { Today } from "./Pages/Dashboard/Today";
+import { ChangeShift } from "./Pages/Dashboard/ChangeShift";
+import { ReportSick } from "./Pages/Dashboard/ReportSick";
+import { RequestHolliday } from "./Pages/Dashboard/RequestHolliday";
 import { EditPlan } from "./Pages/Dashboard/EditPlan";
 import { Employees } from "./Pages/Dashboard/Employees";
 import { Tickets } from "./Pages/Dashboard/Tickets";
 import { Settings } from "./Pages/Dashboard/Settings";
-import { EditEmployee } from "./Pages/Dashboard/Employees/EditEmployee";
-import {ChangeShift} from "./Pages/Dashboard/ChangeShift";
+import { Help } from "./Pages/Dashboard/Help";
 
 // Importing AdminDashboard Pages
 import { Users } from "./Pages/AdminDashboard/Users";
@@ -115,6 +117,24 @@ function App() {
               }
             />
             <Route
+              path="changeshift"
+              element={
+                <ChangeShift personalnumber={personalnumber} userrole={userrole} />
+              }
+            />
+            <Route
+              path="reportsick"
+              element={
+                <ReportSick personalnumber={personalnumber} userrole={userrole} />
+              }
+            />
+            <Route
+              path="requestholliday"
+              element={
+                <RequestHolliday personalnumber={personalnumber} userrole={userrole} />
+              }
+            />
+            <Route
               path="editplan"
               element={
                 <EditPlan personalnumber={personalnumber} userrole={userrole} />
@@ -130,12 +150,6 @@ function App() {
               }
             />
             <Route
-              path="changeshift"
-              element={
-                <ChangeShift personalnumber={personalnumber} userrole={userrole} />
-              }
-            />
-            <Route
               path="tickets"
               element={
                 <Tickets personalnumber={personalnumber} userrole={userrole} />
@@ -147,8 +161,12 @@ function App() {
                 <Settings personalnumber={personalnumber} userrole={userrole} />
               }
             />
-
-            <Route path="employee/:personalnumber" element={<EditEmployee />} />
+            <Route
+              path="help"
+              element={
+                <Help personalnumber={personalnumber} userrole={userrole} />
+              }
+            />
           </Route>
 
           <Route
