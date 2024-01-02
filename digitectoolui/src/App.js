@@ -28,6 +28,7 @@ import { Help } from "./Pages/Dashboard/Help";
 
 // Importing AdminDashboard Pages
 import { Users } from "./Pages/AdminDashboard/Users";
+import { Permissions } from "./Pages/AdminDashboard/Permissions";
 import { AdminSettings } from "./Pages/AdminDashboard/AdminSettings";
 
 function App() {
@@ -164,7 +165,7 @@ function App() {
             <Route
               path="help"
               element={
-                <Help personalnumber={personalnumber} userrole={userrole} />
+                <Settings personalnumber={personalnumber} userrole={userrole} />
               }
             />
           </Route>
@@ -188,6 +189,10 @@ function App() {
             <Route
               path="settings"
               element={<AdminSettings personalnumber={personalnumber} />}
+            />
+            <Route
+              path="permissions"
+              element={<Permissions personalnumber={personalnumber} />}
             />
           </Route>
 

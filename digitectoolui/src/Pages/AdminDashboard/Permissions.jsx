@@ -1,9 +1,9 @@
 import React from "react";
 
-export const Users = (props) => {
+export const Permissions = (props) => {
   return (
     <div className="DashboardContendBox">
-      <h1>Users Page</h1>
+      <h1>Permissions Page</h1>
     </div>
   );
 };
