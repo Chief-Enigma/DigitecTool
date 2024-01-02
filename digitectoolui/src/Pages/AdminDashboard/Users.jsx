@@ -1,5 +1,7 @@
 import React from "react";
 
 export const Users = (props) => {
-  return <p>This is Users page!</p>;
+  <div className="DashboardContendBox">
+  <h1>Users Page</h1>
+</div>
 };

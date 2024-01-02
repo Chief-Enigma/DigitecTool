@@ -22,6 +22,21 @@ export const DashboardNavBar = (props) => {
           </NavLink>
         </li>
         <li>
+          <NavLink to="reportsick" className="DashboardNavElement">
+            <span class="material-symbols-outlined">
+              coronavirus
+            </span>Krankmelden
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="requestholliday" className="DashboardNavElement">
+            <span class="material-symbols-outlined">
+              beach_access
+            </span>
+            Abwesenheit beantragen
+          </NavLink>
+        </li>
+        <li>
           <NavLink to="editplan" className="DashboardNavElement">
             <span className="material-symbols-outlined">edit_calendar</span>
             Schichtplan bearbeiten
@@ -42,6 +57,14 @@ export const DashboardNavBar = (props) => {
           <NavLink to="settings" className="DashboardNavElement">
             <span className="material-symbols-outlined">settings</span>
             Einstellungen
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="help" className="DashboardNavElement">
+            <span class="material-symbols-outlined">
+              lightbulb
+            </span>
+            Hilfe
           </NavLink>
         </li>
       </ul>
