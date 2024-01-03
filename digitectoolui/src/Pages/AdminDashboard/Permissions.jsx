@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ClientApi from "../../Api/ClientApi";
 import { UserRow } from "./Permissions/UserRow";
+import "./Permissions/Permissions.css"
 
 export const Permissions = (props) => {
 
@@ -16,9 +17,9 @@ export const Permissions = (props) => {
 
   const getUsers = async () => {
     try {
-      const result = await ClientApi.GetAllEmployees();
+      const result = await ClientApi.GetAllUsers();
       setUsers(result);
-      console.log(users);
+      console.log(result);
     } catch (error) {
       console.error("Error fetching employees:", error);
     }
@@ -63,7 +64,7 @@ export const Permissions = (props) => {
         <tr className="EmployeeRow EmployeeTitleRow">
           <td>Email</td>
           <td>Personalnummer</td>
-          <td>Funktion</td>
+          <td>Benutzertyp</td>
           <td>Berechtigungen</td>
         </tr>
         {userRows}

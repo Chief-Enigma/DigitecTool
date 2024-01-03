@@ -1,15 +1,25 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
+
+
 export const UserRow = (props) => {
+
+
+    const permissionObject = [];
+    (props.userData.permissions).forEach((permission) => {
+        permissionObject.push(
+            <label className="PermissionBox">{permission}</label>
+        )
+    })
 
 
     return (
         <tr className="EmployeeRow">
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td>{props.userData.email}</td>
+            <td>{props.userData.personalNumber}</td>
+            <td>{props.userData.userRole}</td>
+            <td>{permissionObject}</td>
 
         </tr>
     );
