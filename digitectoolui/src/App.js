@@ -172,7 +172,7 @@ function App() {
             <Route
               path="help"
               element={
-                <Settings personalnumber={personalnumber} userrole={userrole} />
+                <Help personalnumber={personalnumber} userrole={userrole} />
               }
             />
           </Route>

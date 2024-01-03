@@ -14,6 +14,12 @@ namespace DigitecToolAPI.Controllers
             return await GetLoginCredentials.CheckLoginExistsAsync(PersonalNumber);
         }
 
+        [HttpGet("all")]
+        public async Task<IEnumerable<LoginCredentials>?> GetAllAsync()
+        {
+            return await GetLoginCredentials.GetAllLoginCredentialsAsync();
+        }
+
         // POST - Add new Userlogin
         [HttpPost]
         public async Task<IActionResult> PostAsync([FromBody] LoginCredentials newloginCredentials)

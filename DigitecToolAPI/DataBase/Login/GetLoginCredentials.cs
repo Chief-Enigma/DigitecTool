@@ -43,5 +43,22 @@ namespace DigitecToolAPI
                 return false;
             }
         }
+
+        public static async Task<List<LoginCredentials>?> GetAllLoginCredentialsAsync()
+        {
+            var filter = Builders<LoginCredentials>.Filter.Empty; // Empty filter to get all documents
+
+            try
+            {
+                var employees = await LoginCredentials_DB.Find(filter).ToListAsync();
+                return employees;
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error at GetAllLoginCredentialsAsync: " + ex.Message);
+                return null;
+            }
+        }
     }
 }
