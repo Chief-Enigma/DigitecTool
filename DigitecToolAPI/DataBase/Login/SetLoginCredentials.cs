@@ -43,6 +43,11 @@ namespace DigitecToolAPI
         {
             var filter = Builders<LoginCredentials>.Filter.Eq(lc => lc.PersonalNumber, PersonalNumber);
             UpdateDefinition<LoginCredentials> update;
+
+            if (updateloginCredentials.Payload == null)
+            {
+                return false;
+            }
             try
             {
                 if (await LoginCredentials_DB.Find(filter).AnyAsync())
@@ -62,6 +67,13 @@ namespace DigitecToolAPI
                     {
                         update = Builders<LoginCredentials>.Update
                         .Set(lc => lc.UserRole, updateloginCredentials.Payload);
+                    }
+                    else if (updateloginCredentials.Type == "Permissions")
+                    {
+                        List<string>? permissionsList = Newtonsoft.Json.JsonConvert.DeserializeObject<List<string>>(updateloginCredentials.Payload);
+
+                        update = Builders<LoginCredentials>.Update
+                            .Set(lc => lc.Permissions, permissionsList);
                     }
                     else
                     {
