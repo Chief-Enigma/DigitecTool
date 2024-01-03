@@ -20,6 +20,7 @@ import { Today } from "./Pages/Dashboard/Today";
 import { ChangeShift } from "./Pages/Dashboard/ChangeShift";
 import { ReportSick } from "./Pages/Dashboard/ReportSick";
 import { RequestHolliday } from "./Pages/Dashboard/RequestHolliday";
+import { CreatePlan } from "./Pages/Dashboard/CreatePlan copy";
 import { EditPlan } from "./Pages/Dashboard/EditPlan";
 import { Employees } from "./Pages/Dashboard/Employees";
 import { Tickets } from "./Pages/Dashboard/Tickets";
@@ -134,6 +135,12 @@ function App() {
               path="requestholliday"
               element={
                 <RequestHolliday personalnumber={personalnumber} userrole={userrole} />
+              }
+            />
+            <Route
+              path="createplan"
+              element={
+                <CreatePlan personalnumber={personalnumber} userrole={userrole} />
               }
             />
             <Route

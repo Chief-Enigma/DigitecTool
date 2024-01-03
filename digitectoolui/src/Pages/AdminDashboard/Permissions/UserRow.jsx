@@ -9,7 +9,9 @@ export const UserRow = (props) => {
     const permissionObject = [];
     (props.userData.permissions).forEach((permission) => {
         permissionObject.push(
-            <label className="PermissionBox">{permission}</label>
+            <label className="PermissionBox">{permission}<span class="material-symbols-outlined">
+                close
+            </span></label>
         )
     })
 

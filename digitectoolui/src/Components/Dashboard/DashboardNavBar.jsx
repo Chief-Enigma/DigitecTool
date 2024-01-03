@@ -37,6 +37,14 @@ export const DashboardNavBar = (props) => {
           </NavLink>
         </li>
         <li>
+          <NavLink to="createplan" className="DashboardNavElement">
+            <span class="material-symbols-outlined">
+              calendar_add_on
+            </span>
+            Schichtplan erstellen
+          </NavLink>
+        </li>
+        <li>
           <NavLink to="editplan" className="DashboardNavElement">
             <span className="material-symbols-outlined">edit_calendar</span>
             Schichtplan bearbeiten
