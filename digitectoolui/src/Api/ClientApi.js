@@ -21,6 +21,7 @@ class ClientApi {
     }
   };
 
+  // Post login request
   async login(data) {
     const url = this.baseURL + "Authentication";
     try {
@@ -30,6 +31,7 @@ class ClientApi {
     }
   }
 
+  // Get all Employees
   async GetAllEmployees() {
     const url = this.baseURL + "Employee/all";
     try {
@@ -39,12 +41,33 @@ class ClientApi {
     }
   }
 
+  // Post new Employee
   async AddEmployee(data) {
     const url = this.baseURL + "Employee";
     try {
       return await this.request(url, "POST", data);
     } catch (error) {
       console.error("Error at AddEmployee: ", error);
+    }
+  }
+
+  // Get all Employees
+  async GetAllUsers() {
+    const url = this.baseURL + "Login/all";
+    try {
+      return await this.request(url, "GET", undefined);
+    } catch (error) {
+      console.error("Error at GetAllUsers: ", error);
+    }
+  }
+
+  // Put updated Login Credentials
+  async EditLoginCredentials(data, personalnumber) {
+    const url = this.baseURL + "Login/" + personalnumber;
+    try {
+      return await this.request(url, "PUT", data);
+    } catch (error) {
+      console.error("Error at EditLoginCredentials: ", error);
     }
   }
 }
