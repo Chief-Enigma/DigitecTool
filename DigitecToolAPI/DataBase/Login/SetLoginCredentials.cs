@@ -63,6 +63,11 @@ namespace DigitecToolAPI
                         update = Builders<LoginCredentials>.Update
                         .Set(lc => lc.UserRole, updateloginCredentials.Payload);
                     }
+                    else if (updateloginCredentials.Type == "Permissions")
+                    {
+                        update = Builders<LoginCredentials>.Update
+                        .Set(lc => lc.Permissions, updateloginCredentials.Payload);
+                    }
                     else
                     {
                         return false;

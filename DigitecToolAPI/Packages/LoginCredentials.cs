@@ -9,7 +9,7 @@ namespace DigitecToolAPI.Packages
         public int PersonalNumber { get; set; }
         public string? Email { get; set; }
         public string? UserRole { get; set; }
-        public List<string> Permissions { get; set; }
+        public List<string>? Permissions { get; set; }
         public string? PasswordHash { get; set; }
     }
 }

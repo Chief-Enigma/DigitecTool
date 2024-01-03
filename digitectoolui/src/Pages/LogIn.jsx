@@ -63,6 +63,7 @@ export const LogIn = (props) => {
             personalnumber:
               AuthenticationResult.returnCredentials.personalNumber,
             userrole: AuthenticationResult.returnCredentials.userRole,
+            permissions: AuthenticationResult.returnCredentials.permissions
           })
         );
 
@@ -72,6 +73,7 @@ export const LogIn = (props) => {
 
         props.setUserRole(AuthenticationResult.returnCredentials.userRole);
         console.log(AuthenticationResult.returnCredentials.userRole);
+        console.log(AuthenticationResult.returnCredentials.permissions)
 
         props.setLoggedIn(true);
 

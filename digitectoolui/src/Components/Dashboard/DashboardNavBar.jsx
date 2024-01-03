@@ -54,7 +54,7 @@ export const DashboardNavBar = (props) => {
           </NavLink>
         </li>
         <li>
-          <NavLink to="tickets" className="DashboardNavElement">
+          <NavLink to="maintenance" className="DashboardNavElement">
             <span class="material-symbols-outlined">
               home_repair_service
             </span>
