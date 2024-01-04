@@ -1,0 +1,50 @@
+nav.DashboardNavBar {
+  margin: 10px;
+  /* padding: 15px; */
+  /* border: 2px solid #ddd;
+  border-radius: 10px; */
+}
+
+.DashboardNavBar ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.DashboardNavBar li a {
+  text-decoration: none;
+}
+
+.DashboardNavElement {
+  list-style-type: none;
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px; /* Adjust as needed */
+  padding: 10px;
+  text-decoration: none;
+  border: 2px solid #ddd; /* Light gray border */
+  border-radius: 10px;
+}
+
+.DashboardNavElement {
+  text-decoration: none;
+  color: white;
+}
+
+.material-symbols-outlined {
+  margin-right: 10px;
+}
+
+.DashboardNavElement:hover {
+  border-color: #333; /* Dark gray border on hover or when active */
+}
+
+/* Optionally, you can add a different background color for the active link */
+.DashboardNavElement.active {
+  background-color: #f0f0f0;
+  color: #1a1a1a;
+  
+
+}
