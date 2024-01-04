@@ -5,7 +5,7 @@ on:
     branches:
       - master
     paths:
-      - 'digitectoolui/**'
+      - 'digitecui/**'
       - '.github/workflows/DigitecToolUi.yml'
 
 jobs:
@@ -17,10 +17,10 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Build Docker container
-        run: docker build -f digitectoolui/Dockerfile -t digitectoolui:$(git rev-parse --short "$GITHUB_SHA") .
+        run: docker build -f digitecui/Dockerfile -t digitecui:$(git rev-parse --short "$GITHUB_SHA") .
 
       - name: Save Docker image to tarball
-        run: docker save digitectoolui:$(git rev-parse --short "$GITHUB_SHA") -o /tmp/digitectoolui.tar
+        run: docker save digitecui:$(git rev-parse --short "$GITHUB_SHA") -o /tmp/digitecui.tar
 
   deploy:
     runs-on: self-hosted
@@ -28,7 +28,7 @@ jobs:
 
     steps:
       - name: Load Docker image from tarball
-        run: docker load -i /tmp/digitectoolui.tar
+        run: docker load -i /tmp/digitecui.tar
 
       - name: Remove old docker container
         run: |
@@ -42,7 +42,7 @@ jobs:
       - name: Deploy new container
         run: |
           CONTAINER_NAME=DigitecToolUi
-          docker run -d -p 300:80 -p 301:443 --name $CONTAINER_NAME digitectoolui:$(git rev-parse --short "$GITHUB_SHA")
+          docker run -d -p 300:80 -p 301:443 --name $CONTAINER_NAME digitecui:$(git rev-parse --short "$GITHUB_SHA")
 
           
 
