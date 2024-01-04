@@ -1,0 +1,42 @@
+nav.NavBarMain {
+    background-color: #00559d;
+  }
+  
+  .NavBarMain ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+  
+  .NavBarMain li .NavElement{
+    float: left;
+  }
+  
+  .NavBarMain li .NavElement{
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 20px 30px;
+    text-decoration: none;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+  }
+  
+  @media only screen and (max-width: 600px) {
+    .NavBarMain li {
+      font-size: 14px;
+      padding: 7px 7px;
+    }
+  }
+  
+  .NavBarMain li .NavElement:hover{
+    background-color: #054b88;
+  }
+  
+  .NavBarMain li.Login {
+    float: right;
+  }
+  
+
+  /* Do rework here!!!!!!!!!!! */
