@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from "react";
+import "./EmployeesComponents/EmployeesMain.css";
 import Get from "../../../Functions/Api/Requests/Get";
+
+import { EmployeeHeader } from "./EmployeesComponents/EmployeeHeader";
+import { EmployeeTable } from "./EmployeesComponents/EmployeeTable";
 
 const getEmployees = async () => {
   try {
@@ -11,9 +15,16 @@ const getEmployees = async () => {
 };
 
 export const EmployeesMain = () => {
-  useEffect(() => {
-    getEmployees();
-  }, []);
+  const [searchInput, setSearchInput] = useState("");
 
-  return <h1>This is EmployeesMain</h1>;
+  const handleSearchChange = (value) => {
+    setSearchInput(value);
+  };
+
+  return (
+    <div className="DashboardContendBox">
+      <EmployeeHeader onSearchChange={handleSearchChange} />
+      <EmployeeTable searchInput={searchInput} />
+    </div>
+  );
 };

@@ -76,12 +76,13 @@ export const DashboardNavBarMain = () => {
         </li>
 
         <li>
-          {permissions.includes("employees") && (
+          {permissions.includes("employees") ||
+          permissions.includes("editemployees") ? (
             <NavLink to="employees" className="DashboardNavElement">
               <span className="material-symbols-outlined">groups</span>
               Mitarbeiter
             </NavLink>
-          )}
+          ) : null}
         </li>
 
         {permissions.includes("tickets") && (

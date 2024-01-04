@@ -1,0 +1,59 @@
+.SearchbarContainer {
+    display: flex;
+    align-items: center;
+    margin: 0.4rem 0;
+  }
+
+
+  .Searchbar {
+    flex: 1;
+    color: #fefefe;
+    background-color: #1a1a1a;
+    padding: 0.5rem;
+    border: 2px solid #333;
+    border-radius: 10px;
+  }
+  
+  .AddEmployeeLink {
+    text-decoration: none;
+    color: #fefefe;
+    margin-left: 1rem; /* Adjust the margin as needed */
+  }
+
+/* Employee Row */
+
+.EmployeeTable {
+    margin-top: 2rem;
+  width: fill;
+  border-collapse: collapse;
+}
+
+.EmployeeTitleRow{
+    font-weight: bold;
+    text-align : center;
+}
+
+.EmployeeRow {
+    border: 1px solid #333;
+    border-left: none;
+    border-right: none;
+    text-align : left;
+}
+
+.EmployeeRow:first-child{
+    border-top: none;
+}
+
+.EmployeeRow:last-child{
+    border-bottom: none;
+}
+
+.EmployeeRow td, .EmployeeRow th{
+    padding: 0.5rem;
+}
+
+.EmployeeLink{
+    text-decoration: none;
+    color: #fefefe;
+}
+
