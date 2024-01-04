@@ -1,5 +1,20 @@
 import React from "react";
 
 export const AccountMain = () => {
-  return <h1>This is AccountMain</h1>;
+  const handleLogout = () => {
+    localStorage.removeItem("user");
+    window.location.reload();
+  };
+
+  return (
+    <div  className="middlediv">
+      <div className="LoginContainer">
+        <div style={{textAlign: 'center'}} className="InputContainer">
+        <button className="LoginButton" onClick={handleLogout}>
+          Log In!
+        </button>
+        </div>
+      </div>
+    </div>
+  );
 };

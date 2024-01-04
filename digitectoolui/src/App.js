@@ -36,12 +36,12 @@ import { AdminPermissionsMain } from "./Pages/AdminDashboard/Permissions/AdminPe
 import { AdminSettingsMain } from "./Pages/AdminDashboard/Settings/AdminSettingsMain";
 import { AdminHelpMain } from "./Pages/AdminDashboard/Help/AdminHelpMain";
 
-const ProtectedRoute = ({ element, requiredPermission }) => {
+const ProtectedRoute = ({ element, requiredPermissions }) => {
   const [user, setUser] = useState(null);
+  const [permissions, setPermissions] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Check if the user is logged in
     const checkLoggedIn = async () => {
       try {
         const storedUser = localStorage.getItem("user");
@@ -60,19 +60,22 @@ const ProtectedRoute = ({ element, requiredPermission }) => {
   }, []);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <div></div>;
+  }
+
+  if (!loading) {
   }
 
   if (!user) {
     return <Navigate to="/login" />;
   }
 
-  // Check if the user has the required permission
-  const hasPermission = requiredPermission
-    ? user.permissions && user.permissions.includes(requiredPermission)
+  const hasPermission = requiredPermissions
+    ? requiredPermissions.some((permission) =>
+        user.permissions.includes(permission)
+      )
     : true;
 
-  // If the user has the required permission, render the route, otherwise redirect
   return hasPermission ? element : <Navigate to="/dashboard/today" replace />;
 };
 
@@ -150,7 +153,7 @@ const App = () => {
               element={
                 <ProtectedRoute
                   element={<EmployeesMain />}
-                  requiredPermission="employees"
+                  requiredPermission={["employees", "editemployee"]}
                 />
               }
             />

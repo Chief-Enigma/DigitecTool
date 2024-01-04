@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Post from "../../Functions/Api/Requests/Post";
 import { useNavigate } from "react-router-dom";
-import { Navigate } from "react-router-dom";
+import "./LoginComponents/LoginMain.css"
 
 export const LoginMain = () => {
   const [email, setEmail] = useState("");
