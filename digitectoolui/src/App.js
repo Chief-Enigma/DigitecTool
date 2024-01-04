@@ -1,5 +1,5 @@
 // Import React dependencis
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 // Import Layouts
@@ -36,7 +36,7 @@ import { AdminPermissionsMain } from "./Pages/AdminDashboard/Permissions/AdminPe
 import { AdminSettingsMain } from "./Pages/AdminDashboard/Settings/AdminSettingsMain";
 import { AdminHelpMain } from "./Pages/AdminDashboard/Help/AdminHelpMain";
 
-const ProtectedRoute = ({ element }) => {
+const ProtectedRoute = ({ element, requiredPermission }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -67,7 +67,13 @@ const ProtectedRoute = ({ element }) => {
     return <Navigate to="/login" />;
   }
 
-  return element;
+  // Check if the user has the required permission
+  const hasPermission = requiredPermission
+    ? user.permissions && user.permissions.includes(requiredPermission)
+    : true;
+
+  // If the user has the required permission, render the route, otherwise redirect
+  return hasPermission ? element : <Navigate to="/dashboard/today" replace />;
 };
 
 const App = () => {
@@ -89,14 +95,83 @@ const App = () => {
             element={<ProtectedRoute element={<DashboardLayoutMain />} />}
           >
             <Route path="today" element={<TodayMain />} />
-            <Route path="changeshift" element={<ShiftChangeMain />} />
-            <Route path="reportsick" element={<ReportSickMain />} />
-            <Route path="requestholliday" element={<RequestHollidaysMain />} />
-            <Route path="createplan" element={<CreateShiftplanMain />} />
-            <Route path="editplan" element={<EditShiftplanMain />} />
-            <Route path="employees" element={<EmployeesMain />} />
-            <Route path="tickets" element={<TicketsMain />} />
-            <Route path="maintenance" element={<MaintenanceMain />} />
+            <Route
+              path="changeshift"
+              element={
+                <ProtectedRoute
+                  element={<ShiftChangeMain />}
+                  requiredPermission="changeshift"
+                />
+              }
+            />
+
+            <Route
+              path="reportsick"
+              element={
+                <ProtectedRoute
+                  element={<ReportSickMain />}
+                  requiredPermission="reportsick"
+                />
+              }
+            />
+
+            <Route
+              path="requestholliday"
+              element={
+                <ProtectedRoute
+                  element={<RequestHollidaysMain />}
+                  requiredPermission="requestholliday"
+                />
+              }
+            />
+
+            <Route
+              path="createplan"
+              element={
+                <ProtectedRoute
+                  element={<CreateShiftplanMain />}
+                  requiredPermission="createplan"
+                />
+              }
+            />
+
+            <Route
+              path="editplan"
+              element={
+                <ProtectedRoute
+                  element={<EditShiftplanMain />}
+                  requiredPermission="editplan"
+                />
+              }
+            />
+
+            <Route
+              path="employees"
+              element={
+                <ProtectedRoute
+                  element={<EmployeesMain />}
+                  requiredPermission="employees"
+                />
+              }
+            />
+            <Route
+              path="tickets"
+              element={
+                <ProtectedRoute
+                  element={<TicketsMain />}
+                  requiredPermission="tickets"
+                />
+              }
+            />
+            <Route
+              path="maintenance"
+              element={
+                <ProtectedRoute
+                  element={<MaintenanceMain />}
+                  requiredPermission="maintenance"
+                />
+              }
+            />
             <Route path="settings" element={<SettingsMain />} />
             <Route path="help" element={<HelpMain />} />
           </Route>
