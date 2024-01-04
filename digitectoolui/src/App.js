@@ -1,5 +1,5 @@
 // Import React dependencis
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 // Import Layouts
@@ -36,24 +36,34 @@ import { AdminPermissionsMain } from "./Pages/AdminDashboard/Permissions/AdminPe
 import { AdminSettingsMain } from "./Pages/AdminDashboard/Settings/AdminSettingsMain";
 import { AdminHelpMain } from "./Pages/AdminDashboard/Help/AdminHelpMain";
 
-const ProtectedRoute = ({ element, path }) => {
-  const [loggedIn, setLoggedIn] = useState(true);
+const ProtectedRoute = ({ element }) => {
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-  // useEffect(() => {
-  //   // Check if the user is logged in
-  //   const checkLoggedIn = async () => {
-  //     try {
-  //       const user = await ClientApi.CheckLoginStatus(); // Replace with your actual authentication check
-  //       setLoggedIn(user.loggedIn);
-  //     } catch (error) {
-  //       console.error("Error checking login status:", error);
-  //     }
-  //   };
+  useEffect(() => {
+    // Check if the user is logged in
+    const checkLoggedIn = async () => {
+      try {
+        const storedUser = localStorage.getItem("user");
 
-  //   checkLoggedIn();
-  // }, []);
+        if (storedUser) {
+          setUser(JSON.parse(storedUser));
+        }
+      } catch (error) {
+        console.error("Error checking login status:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-  if (!loggedIn) {
+    checkLoggedIn();
+  }, []);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (!user) {
     return <Navigate to="/login" />;
   }
 
