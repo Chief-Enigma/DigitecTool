@@ -51,6 +51,10 @@ namespace DigitecToolAPI
             try
             {
                 var employees = await LoginCredentials_DB.Find(filter).ToListAsync();
+                foreach (var employee in employees)
+                {
+                    employee.PasswordHash = string.Empty;
+                }
                 return employees;
 
             }
