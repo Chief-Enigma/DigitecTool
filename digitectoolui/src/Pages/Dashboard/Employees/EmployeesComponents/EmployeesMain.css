@@ -1,59 +1,106 @@
+/* Searchbar */
 .SearchbarContainer {
-    display: flex;
-    align-items: center;
-    margin: 0.4rem 0;
-  }
+  display: flex;
+  align-items: center;
+  margin: 0.4rem 0;
+}
 
+.Searchbar {
+  flex: 1;
+  color: #fefefe;
+  background-color: #1a1a1a;
+  padding: 0.5rem;
+  border: 2px solid #333;
+  border-radius: 10px;
+}
 
-  .Searchbar {
-    flex: 1;
-    color: #fefefe;
-    background-color: #1a1a1a;
-    padding: 0.5rem;
-    border: 2px solid #333;
-    border-radius: 10px;
-  }
+.AddEmployeeLink {
+  text-decoration: none;
+  color: #fefefe;
+  margin-left: 1rem; /* Adjust the margin as needed */
+}
+
+/* AddEmployee */
+
+/* .AddEmployeeContainer {
+  display: flex;
+  align-items: center;
+  margin: 0.4rem 0;
+  border: 2px solid #333;
+  border-radius: 10px;
+  padding: 10px;
+  max-height: fit-content;
+} */
+
+/* AddEmployee */
+
+.AddEmployeeContainer {
+
+  overflow: hidden;
+  max-height: 0;
+  /* transition: max-height 0.9s ease-out; */
+}
+
+.AddEmployeeContainer.open {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0.4rem 0;
+  border: 2px solid #333;
+  border-radius: 10px;
+  max-height: 1000px; /* Adjust the max-height to a value that accommodates your content */
+}
+
+.AddEmployeeForm {
   
-  .AddEmployeeLink {
-    text-decoration: none;
-    color: #fefefe;
-    margin-left: 1rem; /* Adjust the margin as needed */
-  }
+}
+
+.DataContainer{
+  margin: 1rem;
+}
+
+.DataContainer input , .DataContainer select {
+
+}
+
+.AddLabel {
+
+}
 
 /* Employee Row */
 
 .EmployeeTable {
-    margin-top: 2rem;
-  width: fill;
+  margin-top: 2rem;
+  width: stretch;
   border-collapse: collapse;
 }
 
-.EmployeeTitleRow{
-    font-weight: bold;
-    text-align : center;
+.EmployeeTitleRow {
+  font-weight: bold;
+  text-align: center;
 }
 
 .EmployeeRow {
-    border: 1px solid #333;
-    border-left: none;
-    border-right: none;
-    text-align : left;
+  border: 1px solid #333;
+  border-left: none;
+  border-right: none;
+  text-align: left;
 }
 
-.EmployeeRow:first-child{
-    border-top: none;
+.EmployeeRow:first-child {
+  border-top: none;
 }
 
-.EmployeeRow:last-child{
-    border-bottom: none;
+.EmployeeRow:last-child {
+  border-bottom: none;
 }
 
-.EmployeeRow td, .EmployeeRow th{
-    padding: 0.5rem;
+.EmployeeRow td,
+.EmployeeRow th {
+  padding: 0.5rem;
 }
 
-.EmployeeLink{
-    text-decoration: none;
-    color: #fefefe;
+.EmployeeLink {
+  text-decoration: none;
+  color: #fefefe;
 }
-
