@@ -1,9 +1,28 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 
 import "./NavBarMain.css";
 
 export const NavBarMain = () => {
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem("user");
+
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
+    }
+
+    setLoading(false);
+  }, []);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  const userRole = user ? user.userrole : null;
+
   return (
     <nav className="NavBarMain">
       <ul>
@@ -22,11 +41,13 @@ export const NavBarMain = () => {
             Dashboard
           </NavLink>
         </li>
-        <li>
-          <NavLink to="admindashboard" className="NavElement">
-            Admin Dashboard
-          </NavLink>
-        </li>
+        {userRole === "Admin" && (
+          <li>
+            <NavLink to="admindashboard" className="NavElement">
+              Admin Dashboard
+            </NavLink>
+          </li>
+        )}
         <li style={{ float: "right" }}>
           <NavLink to="account" className="NavElement">
             Account

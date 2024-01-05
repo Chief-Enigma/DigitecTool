@@ -5,17 +5,9 @@ import Get from "../../../Functions/Api/Requests/Get";
 import { EmployeeHeader } from "./EmployeesComponents/EmployeeHeader";
 import { EmployeeTable } from "./EmployeesComponents/EmployeeTable";
 
-const getEmployees = async () => {
-  try {
-    const result = await Get.GetAllEmployees();
-    console.log(result);
-  } catch (error) {
-    console.error("Error fetching employees:", error);
-  }
-};
-
-export const EmployeesMain = () => {
+export const EmployeesMain = ({ user }) => {
   const [searchInput, setSearchInput] = useState("");
+  console.log('User:', user.permissions);
 
   const handleSearchChange = (value) => {
     setSearchInput(value);

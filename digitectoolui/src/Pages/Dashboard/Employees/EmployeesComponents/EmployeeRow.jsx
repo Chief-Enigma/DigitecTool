@@ -12,7 +12,7 @@ export const EmployeeRow = ({ employee }) => {
       <td>{employee.personalNumber}</td>
       <td>
         <Link className="EmployeeLink">
-          <span class="material-symbols-outlined">manage_accounts</span>
+          <span className="material-symbols-outlined">manage_accounts</span>
         </Link>
       </td>
     </tr>
