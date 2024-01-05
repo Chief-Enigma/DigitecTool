@@ -36,7 +36,6 @@ import { AdminPermissionsMain } from "./Pages/AdminDashboard/Permissions/AdminPe
 import { AdminSettingsMain } from "./Pages/AdminDashboard/Settings/AdminSettingsMain";
 import { AdminHelpMain } from "./Pages/AdminDashboard/Help/AdminHelpMain";
 
-
 const ProtectedRoute = ({ element, requiredPermissions, requiredUserrole }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -70,11 +69,13 @@ const ProtectedRoute = ({ element, requiredPermissions, requiredUserrole }) => {
 
   const hasPermission = requiredPermissions
     ? requiredPermissions.some((permission) =>
-      user.permissions.includes(permission)
-    )
+        user.permissions.includes(permission)
+      )
     : true;
 
-  const hasUserRole = requiredUserrole ? user.userrole === requiredUserrole : true;
+  const hasUserRole = requiredUserrole
+    ? user.userrole === requiredUserrole
+    : true;
 
   if (!hasPermission || !hasUserRole) {
     return <Navigate to="/dashboard/today" replace />;
@@ -85,11 +86,6 @@ const ProtectedRoute = ({ element, requiredPermissions, requiredUserrole }) => {
 
   return protectedElement;
 };
-
-
-
-
-
 
 const App = () => {
   return (
