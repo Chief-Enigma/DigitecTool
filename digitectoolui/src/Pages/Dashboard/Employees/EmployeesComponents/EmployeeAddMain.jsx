@@ -9,6 +9,7 @@ export const EmployeeAddMain = () => {
     "Shift Manager",
   ];
   const [formData, setFormData] = useState({
+    id: {},
     personalnumber: "",
     firstname: "",
     lastname: "",
