@@ -28,7 +28,7 @@ export const DashboardNavBarMain = () => {
         <li>
           <NavLink
             to="today"
-            activeClassName="active"
+            activeclassame="active"
             className="DashboardNavElement"
           >
             <span className="material-symbols-outlined">event</span>Today
@@ -112,7 +112,7 @@ export const DashboardNavBarMain = () => {
         </li>
         <li>
           <NavLink to="help" className="DashboardNavElement">
-            <span class="material-symbols-outlined">lightbulb</span>
+            <span className="material-symbols-outlined">lightbulb</span>
             Hilfe
           </NavLink>
         </li>

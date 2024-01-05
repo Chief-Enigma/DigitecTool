@@ -36,9 +36,9 @@ import { AdminPermissionsMain } from "./Pages/AdminDashboard/Permissions/AdminPe
 import { AdminSettingsMain } from "./Pages/AdminDashboard/Settings/AdminSettingsMain";
 import { AdminHelpMain } from "./Pages/AdminDashboard/Help/AdminHelpMain";
 
-const ProtectedRoute = ({ element, requiredPermissions }) => {
+
+const ProtectedRoute = ({ element, requiredPermissions, requiredUserrole }) => {
   const [user, setUser] = useState(null);
-  const [permissions, setPermissions] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -47,7 +47,8 @@ const ProtectedRoute = ({ element, requiredPermissions }) => {
         const storedUser = localStorage.getItem("user");
 
         if (storedUser) {
-          setUser(JSON.parse(storedUser));
+          const parsedUser = JSON.parse(storedUser);
+          setUser(parsedUser);
         }
       } catch (error) {
         console.error("Error checking login status:", error);
@@ -63,21 +64,32 @@ const ProtectedRoute = ({ element, requiredPermissions }) => {
     return <div></div>;
   }
 
-  if (!loading) {
-  }
-
   if (!user) {
     return <Navigate to="/login" />;
   }
 
   const hasPermission = requiredPermissions
     ? requiredPermissions.some((permission) =>
-        user.permissions.includes(permission)
-      )
+      user.permissions.includes(permission)
+    )
     : true;
 
-  return hasPermission ? element : <Navigate to="/dashboard/today" replace />;
+  const hasUserRole = requiredUserrole ? user.userrole === requiredUserrole : true;
+
+  if (!hasPermission || !hasUserRole) {
+    return <Navigate to="/dashboard/today" replace />;
+  }
+
+  // Pass the user prop to the nested components
+  const protectedElement = React.cloneElement(element, { user });
+
+  return protectedElement;
 };
+
+
+
+
+
 
 const App = () => {
   return (
@@ -152,7 +164,7 @@ const App = () => {
               path="employees"
               element={
                 <ProtectedRoute
-                  element={<EmployeesMain />}
+                  element={<EmployeesMain user={ProtectedRoute.user} />}
                   requiredPermission={["employees", "editemployee"]}
                 />
               }
@@ -180,7 +192,12 @@ const App = () => {
           </Route>
           <Route
             path="admindashboard"
-            element={<ProtectedRoute element={<AdminDashboardLayoutMain />} />}
+            element={
+              <ProtectedRoute
+                element={<AdminDashboardLayoutMain />}
+                requiredUserrole="Admin"
+              />
+            }
           >
             <Route path="today" element={<AdminTodayMain />} />
             <Route path="employees" element={<AdminEmployeesMain />} />

@@ -21,7 +21,7 @@ export const EmployeeTable = ({ searchInput }) => {
   }, []);
 
   employees.forEach((employee) => {
-    employeeRows.push(<EmployeeRow employee={employee} />);
+    employeeRows.push(<EmployeeRow key={employee.personalNumber} employee={employee} />);
   });
 
   return (

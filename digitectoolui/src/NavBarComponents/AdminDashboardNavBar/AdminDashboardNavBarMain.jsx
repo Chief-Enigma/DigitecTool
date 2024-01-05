@@ -8,7 +8,7 @@ export const AdminDashboardNavBarMain = () => {
         <li>
           <NavLink
             to="today"
-            activeClassName="active"
+            activeclassname="active"
             className="DashboardNavElement"
           >
             <span className="material-symbols-outlined">event</span>Today
@@ -21,13 +21,13 @@ export const AdminDashboardNavBarMain = () => {
         </li>
         <li>
           <NavLink to="users" className="DashboardNavElement">
-            <span class="material-symbols-outlined">group</span>
+            <span className="material-symbols-outlined">group</span>
             Benutzer
           </NavLink>
         </li>
         <li>
           <NavLink to="permissions" className="DashboardNavElement">
-            <span class="material-symbols-outlined">admin_panel_settings</span>
+            <span className="material-symbols-outlined">admin_panel_settings</span>
             Berechtigungen
           </NavLink>
         </li>
