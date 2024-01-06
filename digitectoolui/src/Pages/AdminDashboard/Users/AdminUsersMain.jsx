@@ -1,5 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
+import "./AdminUsersComponents/AdminUserMain.css";
+
+import { UserHeader } from "./AdminUsersComponents/AdminUserHeader";
+import { UserTable } from "./AdminUsersComponents/AdminUserTable";
 
 export const AdminUsersMain = () => {
-  return <h1>This is AdminUsersMain</h1>;
+  const [searchInput, setSearchInput] = useState("");
+  const handleSearchChange = (value) => {
+    setSearchInput(value);
+  };
+  return (
+    <div className="DashboardContendBox">
+      <UserHeader onSearchChange={handleSearchChange} />
+      <UserTable searchInput={searchInput} />
+    </div>
+  );
 };

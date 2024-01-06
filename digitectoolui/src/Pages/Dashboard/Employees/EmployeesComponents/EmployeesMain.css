@@ -1,24 +1,4 @@
-/* Searchbar */
-.SearchbarContainer {
-  display: flex;
-  align-items: center;
-  margin: 0.4rem 0;
-}
 
-.Searchbar {
-  flex: 1;
-  color: #fefefe;
-  background-color: #1a1a1a;
-  padding: 0.5rem;
-  border: 2px solid #333;
-  border-radius: 10px;
-}
-
-.AddEmployeeLink {
-  text-decoration: none;
-  color: #fefefe;
-  margin-left: 1rem; /* Adjust the margin as needed */
-}
 
 /* AddEmployee */
 

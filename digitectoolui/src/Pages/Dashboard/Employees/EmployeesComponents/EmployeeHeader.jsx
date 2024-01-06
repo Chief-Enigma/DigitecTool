@@ -23,7 +23,7 @@ export const EmployeeHeader = ({ onSearchChange }) => {
           placeholder="Name oder Personalnummer eingeben..."
           onChange={handleSearchInputChange}
         />
-        <Link onClick={handleAddEmployee} className="AddEmployeeLink">
+        <Link onClick={handleAddEmployee} className="SearchBarButtonEnd">
           <span className="material-symbols-outlined">person_add</span>
         </Link>
       </div>
