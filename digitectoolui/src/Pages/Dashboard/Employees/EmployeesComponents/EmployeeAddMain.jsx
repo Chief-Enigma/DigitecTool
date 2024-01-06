@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Post from "../../../../Functions/Api/Requests/Post";
 
 export const EmployeeAddMain = () => {
-  const teams = ["Julian", "Eren", "Zeljko", "Andreas"];
+  const teams = ["Andreas", "Fatih", "Eren", "Zeljko"];
   const workerroles = [
     "Junior Maintenance Technician",
     "Maintenance Technician",
@@ -16,7 +16,7 @@ export const EmployeeAddMain = () => {
     birthdate: "",
     email: "",
     phonenumber: "",
-    team: teams[0], // Default to the first team in the array
+    team: "", // Default to the first team in the array
     workerrole: "",
   });
 
@@ -25,7 +25,7 @@ export const EmployeeAddMain = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = async(e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const AuthenticationResult = await Post.AddEmployee(formData);
     console.log(AuthenticationResult);
@@ -41,7 +41,7 @@ export const EmployeeAddMain = () => {
       birthdate: "",
       email: "",
       phonenumber: "",
-      team: teams[0],
+      team: "",
       workerrole: "",
     });
   };
@@ -127,6 +127,9 @@ export const EmployeeAddMain = () => {
           value={formData.team}
           onChange={handleChange}
         >
+          <option value="" disabled>
+            Team wählen
+          </option>
           {teams.map((team) => (
             <option key={team} value={team}>
               {team}
@@ -144,22 +147,38 @@ export const EmployeeAddMain = () => {
           value={formData.workerrole}
           onChange={handleChange}
         >
+          <option value="" disabled>
+            Funktion wählen oder eigene erstellen
+          </option>
           {workerroles.map((workerrole) => (
             <option key={workerrole} value={workerrole}>
               {workerrole}
             </option>
           ))}
+          <option value="custom">Eigene</option>
         </select>
         <label className="AddLabel" htmlFor="workerrole">
           Position
         </label>
+        {formData.workerrole === "custom" && (
+          <input
+            type="text"
+            name="customWorkerRole"
+            id="customWorkerRole"
+            value={formData.customWorkerRole}
+            onChange={handleChange}
+            placeholder="Eigene Funktion eingeben"
+          />
+        )}
       </div>
-      <button type="submit" onClick={handleSubmit}>
-        <span className="material-symbols-outlined">done</span>
-      </button>
-      <button type="submit" onClick={handleAbort}>
-        <span className="material-symbols-outlined">close</span>
-      </button>
+      <div className="DataContainer">
+        <button type="submit" onClick={handleSubmit}>
+          <span className="material-symbols-outlined">done</span>
+        </button>
+        <button type="submit" onClick={handleAbort}>
+          <span className="material-symbols-outlined">close</span>
+        </button>
+      </div>
     </form>
   );
 };
