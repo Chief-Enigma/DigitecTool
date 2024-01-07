@@ -5,6 +5,7 @@ import { EmployeeAddMain } from "./EmployeeAddMain";
 
 export const EmployeeHeader = ({ onSearchChange }) => {
   const [addEmployee, setAddEmployee] = useState(false);
+  
   const handleSearchInputChange = (event) => {
     const inputValue = event.target.value;
     onSearchChange(inputValue);

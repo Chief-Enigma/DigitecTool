@@ -30,6 +30,16 @@ class Post {
       console.error("Error at AddEmployee: ", error);
     }
   }
+
+  // Post new Shiftmonth
+  async GenerateShiftMonth(data) {
+    const url = ApiRequest.baseURL + "Shift/newmonth";
+    try {
+      return await ApiRequest.request(url, "POST", data);
+    } catch (error) {
+      console.log("Error at GenerateShiftMonth: " + error);
+    }
+  }
 }
 
 export default new Post();
