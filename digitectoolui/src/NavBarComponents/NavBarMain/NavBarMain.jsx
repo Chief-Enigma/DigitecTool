@@ -41,7 +41,7 @@ export const NavBarMain = () => {
             Dashboard
           </NavLink>
         </li>
-        {userRole === "Admin" && (
+        {(userRole === "admin" || userRole === "sysadmin") && (
           <li>
             <NavLink to="admindashboard" className="NavElement">
               Admin Dashboard

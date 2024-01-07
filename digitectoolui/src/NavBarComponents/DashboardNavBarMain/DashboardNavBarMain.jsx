@@ -21,6 +21,7 @@ export const DashboardNavBarMain = () => {
   }
 
   const permissions = user ? user.permissions : [];
+  const userRole = user ? user.userrole : null;
 
   return (
     <nav className="DashboardNavBar">
@@ -34,75 +35,78 @@ export const DashboardNavBarMain = () => {
             <span className="material-symbols-outlined">event</span>Today
           </NavLink>
         </li>
-        {permissions.includes("changeshift") && (
+        {userRole === "sysadmin" || permissions.includes("changeshift") ? (
           <li>
             <NavLink to="changeshift" className="DashboardNavElement">
               <span className="material-symbols-outlined">swap_horiz</span>
               Diensttausch
             </NavLink>
           </li>
-        )}
-        {permissions.includes("reportsick") && (
+        ) : null}
+        {userRole === "sysadmin" || permissions.includes("reportsick") ? (
           <li>
             <NavLink to="reportsick" className="DashboardNavElement">
               <span className="material-symbols-outlined">coronavirus</span>
               Krankmelden
             </NavLink>
           </li>
-        )}
-        <li>
-          {permissions.includes("requestholliday") && (
+        ) : null}
+
+        {userRole === "sysadmin" || permissions.includes("requestholliday") ? (
+          <li>
             <NavLink to="requestholliday" className="DashboardNavElement">
               <span className="material-symbols-outlined">beach_access</span>
               Abwesenheit beantragen
             </NavLink>
-          )}
-        </li>
-        <li>
-          {permissions.includes("createplan") && (
+          </li>
+        ) : null}
+
+        {userRole === "sysadmin" || permissions.includes("createplan") ? (
+          <li>
             <NavLink to="createplan" className="DashboardNavElement">
               <span className="material-symbols-outlined">calendar_add_on</span>
               Schichtplan erstellen
             </NavLink>
-          )}
-        </li>
-        <li>
-          {permissions.includes("editplan") && (
-            <NavLink to="editplan" className="DashboardNavElement">
-              <span className="material-symbols-outlined">edit_calendar</span>
-              Schichtplan bearbeiten
-            </NavLink>
-          )}
-        </li>
+          </li>
+        ) : null}
+{(userRole === "sysadmin" || permissions.includes("editplan")) ? (
+  <li>
+    <NavLink to="editplan" className="DashboardNavElement">
+      <span className="material-symbols-outlined">edit_calendar</span>
+      Schichtplan bearbeiten
+    </NavLink>
+  </li>
+) : null}
 
-        <li>
-          {permissions.includes("employees") ||
-          permissions.includes("editemployees") ? (
+        {userRole === "sysadmin" ||
+        permissions.includes("employees") ||
+        permissions.includes("editemployees") ? (
+          <li>
             <NavLink to="employees" className="DashboardNavElement">
               <span className="material-symbols-outlined">groups</span>
               Mitarbeiter
             </NavLink>
-          ) : null}
-        </li>
+          </li>
+        ) : null}
 
-        {permissions.includes("tickets") && (
+        {userRole === "sysadmin" || permissions.includes("tickets") ? (
           <li>
             <NavLink to="tickets" className="DashboardNavElement">
               <span className="material-symbols-outlined">receipt_long</span>
               Tickets
             </NavLink>
           </li>
-        )}
-        <li>
-          {permissions.includes("maintenance") && (
+        ) : null}
+        {userRole === "sysadmin" || permissions.includes("maintenance") ? (
+          <li>
             <NavLink to="maintenance" className="DashboardNavElement">
               <span className="material-symbols-outlined">
                 home_repair_service
               </span>
               Wartung
             </NavLink>
-          )}
-        </li>
+          </li>
+        ) : null}
 
         <li>
           <NavLink to="settings" className="DashboardNavElement">
