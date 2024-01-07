@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./AdminPermissionsComponents/AdminPermissionsMain.css";
 
 import { AdminPermissionsHeader } from "./AdminPermissionsComponents/AdminPermissionsHeader";
 import { AdminPermissionsUserTable } from "./AdminPermissionsComponents/AdminPermissionsUserTable";
 
-export const AdminPermissionsMain = () => {
+export const AdminPermissionsMain = ({user}) => {
   const [searchInput, setSearchInput] = useState("");
+  console.log(user)
   const handleSearchChange = (value) => {
     setSearchInput(value);
   };

@@ -1,0 +1,27 @@
+.RoleLabel{
+    display: inline-flex;
+    align-items: center;
+    margin: 0.2rem;
+    padding: 0.3rem;
+    border-radius: 10px;
+}
+
+.PermissionBox {
+    display: inline-flex;
+    align-items: center;
+    margin: 0.2rem;
+    padding: 0.2rem;
+    border: 1px solid red;
+    border-radius: 10px;
+    background-color: rgba(255, 0, 0, 0.3);
+  }
+  
+  .PermissionText {
+    margin-right: 4px; /* Space between text and icon */
+  }
+  
+  .PermissionBox span {
+    cursor: pointer;
+    margin-left: 4px; 
+    margin-right: 4px; 
+  }

@@ -4,15 +4,13 @@ import { AdminPermissionsUserRow } from "./AdminPermissionsUserRow";
 
 export const AdminPermissionsUserTable = ({ searchInput }) => {
   const [users, setUsers] = useState([]);
-  const userSearchResults = [];
-  const userRows = [];
+  const [userSearchResults, setUserSearchResults] = useState([]);
 
   useEffect(() => {
     const getUsers = async () => {
       try {
         const result = await Get.GetAllUsers();
         setUsers(result);
-        console.log(result);
       } catch (error) {
         console.error("Error fetching employees:", error);
       }
@@ -20,11 +18,31 @@ export const AdminPermissionsUserTable = ({ searchInput }) => {
     getUsers();
   }, []);
 
-  users.forEach((user) => {
-    userRows.push(
-      <AdminPermissionsUserRow key={user.personalNumber} user={user} />
-    );
-  });
+  useEffect(() => {
+    if (searchInput.trim() === "") {
+      setUserSearchResults(users);
+      return;
+    }
+
+    const filteredUsers = users.filter((user) => {
+      const lowerCaseSearchInput = searchInput.toLowerCase();
+
+      if (
+        !isNaN(searchInput) &&
+        user.personalNumber.toString().startsWith(searchInput)
+      ) {
+        return true;
+      }
+      return user.email.toLowerCase().startsWith(lowerCaseSearchInput);
+    });
+
+    const sortedUsers = filteredUsers.sort((a, b) => {
+      const roleOrder = { sysadmin: 0, admin: 1, user: 2 };
+      return roleOrder[a.userRole] - roleOrder[b.userRole];
+    });
+
+    setUserSearchResults(sortedUsers);
+  }, [searchInput, users]);
 
   return (
     <div>
@@ -36,7 +54,9 @@ export const AdminPermissionsUserTable = ({ searchInput }) => {
             <td>Benutzertyp</td>
             <td>Berechtigungen</td>
           </tr>
-          {userRows}
+          {userSearchResults.map((user) => (
+            <AdminPermissionsUserRow key={user.personalNumber} user={user} />
+          ))}
         </tbody>
       </table>
     </div>
