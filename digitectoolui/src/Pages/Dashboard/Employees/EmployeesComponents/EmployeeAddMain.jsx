@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Post from "../../../../Functions/Api/Requests/Post";
 
 export const EmployeeAddMain = () => {
-  const teams = ["Andreas", "Fatih", "Eren", "Zeljko"];
+  const teams = ["Andreas", "Fatih", "Eren", "Zeljko", "Julian"];
   const workerroles = [
     "Junior Maintenance Technician",
     "Maintenance Technician",
@@ -22,7 +22,14 @@ export const EmployeeAddMain = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+  
+    // If the selected role is "Eigene," update the workerrole field
+    // Otherwise, update the corresponding field directly
+    setFormData((prevData) => ({
+      ...prevData,
+      workerrole: prevData.workerrole === "custom" ? value : prevData.workerrole,
+      [name]: value,
+    }));
   };
 
   const handleSubmit = async (e) => {

@@ -15,13 +15,15 @@ export const AdminPermissionsUserRow = ({ user }) => {
   const getRoleColor = (role) => {
     switch (role) {
       case "user":
-        return "#0acf03c7";
+        return "10, 207, 3"; // Green
       case "admin":
-        return "#faae0ac7";
+        return "250, 174, 10"; // Orange
       case "sysadmin":
-        return "#fa260ac7";
+        return "250, 38, 10"; // Red
+      case "manager":
+        return "10, 76, 250"; // Blue (suggestion)
       default:
-        return "white"; // Default color or any other color you want
+        return "255, 255, 255"; // Default color or any other color you want
     }
   };
 
@@ -32,7 +34,10 @@ export const AdminPermissionsUserRow = ({ user }) => {
       <td>
         <label
           className="RoleLabel"
-          style={{ backgroundColor: getRoleColor(user.userRole) }}
+          style={{
+            backgroundColor: `rgba(${getRoleColor(user.userRole)}, 0.3)`, // Adding the '0.3' for opacity
+            borderColor: `rgba(${getRoleColor(user.userRole)}, 1)`, // No opacity for borderColor
+          }}
         >
           <span>{user.userRole}</span>
         </label>

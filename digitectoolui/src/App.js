@@ -217,8 +217,24 @@ const App = () => {
             }
           >
             <Route path="today" element={<AdminTodayMain />} />
-            <Route path="employees" element={<AdminEmployeesMain />} />
-            <Route path="users" element={<AdminUsersMain />} />
+            <Route
+              path="employees"
+              element={
+                <ProtectedRoute
+                  element={<AdminTodayMain />}
+                  requiredUserrole={["admin", "sysadmin"]}
+                />
+              }
+            />
+            <Route
+              path="users"
+              element={
+                <ProtectedRoute
+                  element={<AdminUsersMain />}
+                  requiredUserrole={["admin", "sysadmin"]}
+                />
+              }
+            />
             <Route
               path="permissions"
               element={

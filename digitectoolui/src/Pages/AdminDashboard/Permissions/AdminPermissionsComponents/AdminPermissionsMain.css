@@ -1,10 +1,11 @@
-.RoleLabel{
+.RoleLabel {
     display: inline-flex;
     align-items: center;
     margin: 0.2rem;
-    padding: 0.3rem;
+    padding: 0.2rem 0.5rem; /* Added padding for better spacing */
+    border: 1px solid; /* Strong border color (green) */
     border-radius: 10px;
-}
+  }
 
 .PermissionBox {
     display: inline-flex;
