@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using DigitecToolAPI.Packages;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -23,9 +24,12 @@ namespace DigitecToolAPI.Controllers
         }
 
         // POST api/<ShiftController>
-        [HttpPost]
-        public void Post([FromBody] string value)
+        [HttpPost("newmonth")]
+        public async Task<ActionResult> PostAsync([FromBody] newShiftRequest request)
         {
+
+            List<RawShift> rawShifts = await GenerateShifts.GenerateNewShiftMonth(request.month);
+            return Ok(rawShifts);
         }
 
         // PUT api/<ShiftController>/5
@@ -39,5 +43,11 @@ namespace DigitecToolAPI.Controllers
         public void Delete(int id)
         {
         }
+    }
+
+    public class newShiftRequest
+    {
+        public string? month { get; set; }
+        public int? year { get; set; }
     }
 }

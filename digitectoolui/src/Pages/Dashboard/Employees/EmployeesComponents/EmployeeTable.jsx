@@ -4,6 +4,7 @@ import { EmployeeRow } from "./EmployeeRow";
 
 export const EmployeeTable = ({ searchInput }) => {
   const [employees, setEmployees] = useState([]);
+  const [employeeSearchResults, setEmployeeSearchResults] = useState([]);
   const [expandedRows, setExpandedRows] = useState([]);
 
   useEffect(() => {
@@ -18,6 +19,53 @@ export const EmployeeTable = ({ searchInput }) => {
     };
     getEmployees();
   }, []);
+
+  useEffect(() => {
+    if (searchInput.trim() === "") {
+      sortAndSetEmployees(employees.slice());
+      return;
+    }
+
+    const filteredEmployees = employees.filter((employee) => {
+      const lowerCaseSearchInput = searchInput.toLowerCase();
+
+      if (
+        !isNaN(searchInput) &&
+        employee.personalNumber.toString().startsWith(searchInput)
+      ) {
+        return true;
+      }
+      return employee.firstName.toLowerCase().startsWith(lowerCaseSearchInput);
+    });
+
+    sortAndSetEmployees(filteredEmployees);
+  }, [searchInput, employees]);
+
+  const sortAndSetEmployees = (employeeArray) => {
+    const sortedEmployees = employeeArray.sort((a, b) => {
+      const roleOrder = {
+        "Shift Manager": 0,
+        "Maintenance Technician": 1,
+        "Junior Maintenance Technician": 2,
+      };
+
+      const roleComparison = roleOrder[a.workerRole] - roleOrder[b.workerRole];
+      if (roleComparison !== 0) {
+        return roleComparison;
+      }
+
+      const personalNumberA = isNaN(a.personalNumber)
+        ? 0
+        : Number(a.personalNumber);
+      const personalNumberB = isNaN(b.personalNumber)
+        ? 0
+        : Number(b.personalNumber);
+
+      return personalNumberA - personalNumberB;
+    });
+
+    setEmployeeSearchResults(sortedEmployees);
+  };
 
   const toggleRow = (personalNumber) => {
     const newExpandedRows = [...expandedRows];
@@ -41,7 +89,7 @@ export const EmployeeTable = ({ searchInput }) => {
             <td>Personalnummer</td>
             <td></td>
           </tr>
-          {employees.map((employee) => (
+          {employeeSearchResults.map((employee) => (
             <EmployeeRow
               key={employee.personalNumber}
               employee={employee}
