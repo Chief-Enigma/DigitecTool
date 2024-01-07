@@ -7,9 +7,9 @@ namespace DigitecToolAPI
     {
         public static IMongoCollection<LoginCredentials> LoginCredentials_DB = Mongo.db.GetCollection<LoginCredentials>("LoginCredentials");
 
-        public static async Task<bool> AddLoginCredentialsAsync(LoginCredentials newloginCredentials)
+        public static async Task<bool> AddLoginCredentialsAsync(int PersonalNumber)
         {
-            var filter = Builders<LoginCredentials>.Filter.Eq(lc => lc.PersonalNumber, newloginCredentials.PersonalNumber);
+            var filter = Builders<LoginCredentials>.Filter.Eq(lc => lc.PersonalNumber, PersonalNumber);
             try
             {
                 if (await LoginCredentials_DB.Find(filter).AnyAsync())
@@ -17,6 +17,21 @@ namespace DigitecToolAPI
                     Console.WriteLine("Found existing login");
                     return false;
                 }
+
+                var Employee = await GetEmployees.GetEmployeeByPersonalNumberAsync(PersonalNumber);
+
+                if (Employee == null)
+                {
+                    return false;
+                }
+
+                LoginCredentials newloginCredentials = new()
+                {
+                    PersonalNumber = PersonalNumber,
+                    Email = Employee.Email,
+                    UserRole = "user",
+                    Permissions = ["reportsick"]
+                };
 
                 newloginCredentials.PasswordHash = BCrypt.Net.BCrypt.EnhancedHashPassword(newloginCredentials.PersonalNumber.ToString(), 13);
                 await LoginCredentials_DB.InsertOneAsync(newloginCredentials);

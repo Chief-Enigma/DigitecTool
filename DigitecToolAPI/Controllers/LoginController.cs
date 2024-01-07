@@ -22,9 +22,9 @@ namespace DigitecToolAPI.Controllers
 
         // POST - Add new Userlogin
         [HttpPost]
-        public async Task<IActionResult> PostAsync([FromBody] LoginCredentials newloginCredentials)
+        public async Task<IActionResult> PostAsync([FromBody] int PersonalNumber)
         {
-            if (await SetLoginCredentials.AddLoginCredentialsAsync(newloginCredentials))
+            if (await SetLoginCredentials.AddLoginCredentialsAsync(PersonalNumber))
             {
                 Console.WriteLine("hehehehe");
                 return Ok();

@@ -14,7 +14,7 @@ export const UserTable = ({ searchInput }) => {
         setUsers(result);
         console.log(result);
       } catch (error) {
-        console.error("Error fetching employees:", error);
+        console.error("Error getUsers: ", error);
       }
     };
     getUsers();

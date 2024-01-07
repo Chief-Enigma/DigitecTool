@@ -24,7 +24,7 @@ export const LoginMain = () => {
     setEmailError("");
     setPasswordError("");
 
-    const AuthenticationResult = await Post.login({
+    const AuthenticationResult = await Post.auth({
       LoginEmail: email.toLowerCase(),
       LoginPassword: password,
     });
