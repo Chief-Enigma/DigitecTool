@@ -7,7 +7,7 @@ export const AdminPermissionsUserTable = ({ searchInput }) => {
   const [userSearchResults, setUserSearchResults] = useState([]);
 
   useEffect(() => {
-    const getUsers = async () => {
+    const fetchData = async () => {
       try {
         const result = await Get.GetAllUsers();
         setUsers(result);
@@ -15,12 +15,14 @@ export const AdminPermissionsUserTable = ({ searchInput }) => {
         console.error("Error fetching employees:", error);
       }
     };
-    getUsers();
-  }, []);
+
+    fetchData();
+  }, []); // Empty dependency array to fetch users only once when the component mounts
 
   useEffect(() => {
     if (searchInput.trim() === "") {
-      setUserSearchResults(users);
+      // If search input is empty, display all users
+      sortAndSetUsers(users.slice()); // Create a new array to trigger re-render
       return;
     }
 
@@ -36,13 +38,28 @@ export const AdminPermissionsUserTable = ({ searchInput }) => {
       return user.email.toLowerCase().startsWith(lowerCaseSearchInput);
     });
 
-    const sortedUsers = filteredUsers.sort((a, b) => {
-      const roleOrder = { sysadmin: 0, admin: 1, user: 2 };
-      return roleOrder[a.userRole] - roleOrder[b.userRole];
-    });
-
-    setUserSearchResults(sortedUsers);
+    sortAndSetUsers(filteredUsers);
   }, [searchInput, users]);
+
+  const sortAndSetUsers = (userArray) => {
+    const sortedUsers = userArray.sort((a, b) => {
+      const roleOrder = { sysadmin: 0, admin: 1, manager: 2, user: 3 };
+  
+      // Sort by role first
+      const roleComparison = roleOrder[a.userRole] - roleOrder[b.userRole];
+      if (roleComparison !== 0) {
+        return roleComparison;
+      }
+  
+      // If roles are the same, sort by personal number
+      const personalNumberA = isNaN(a.personalNumber) ? 0 : Number(a.personalNumber);
+      const personalNumberB = isNaN(b.personalNumber) ? 0 : Number(b.personalNumber);
+  
+      return personalNumberA - personalNumberB;
+    });
+  
+    setUserSearchResults(sortedUsers);
+  };
 
   return (
     <div>
