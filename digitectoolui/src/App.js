@@ -221,7 +221,7 @@ const App = () => {
               path="employees"
               element={
                 <ProtectedRoute
-                  element={<AdminTodayMain />}
+                  element={<AdminEmployeesMain />}
                   requiredUserrole={["admin", "sysadmin"]}
                 />
               }

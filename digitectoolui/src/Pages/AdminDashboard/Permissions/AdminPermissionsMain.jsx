@@ -4,12 +4,14 @@ import "./AdminPermissionsComponents/AdminPermissionsMain.css";
 import { AdminPermissionsHeader } from "./AdminPermissionsComponents/AdminPermissionsHeader";
 import { AdminPermissionsUserTable } from "./AdminPermissionsComponents/AdminPermissionsUserTable";
 
-export const AdminPermissionsMain = ({user}) => {
+export const AdminPermissionsMain = ({ user }) => {
   const [searchInput, setSearchInput] = useState("");
-  console.log(user)
+  console.log(user);
+
   const handleSearchChange = (value) => {
     setSearchInput(value);
   };
+
   return (
     <div className="DashboardContendBox">
       <AdminPermissionsHeader onSearchChange={handleSearchChange} />

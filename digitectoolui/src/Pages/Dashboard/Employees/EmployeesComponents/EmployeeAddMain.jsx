@@ -16,18 +16,17 @@ export const EmployeeAddMain = () => {
     birthdate: "",
     email: "",
     phonenumber: "",
-    team: "", // Default to the first team in the array
+    team: "",
     workerrole: "",
   });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-  
-    // If the selected role is "Eigene," update the workerrole field
-    // Otherwise, update the corresponding field directly
+
     setFormData((prevData) => ({
       ...prevData,
-      workerrole: prevData.workerrole === "custom" ? value : prevData.workerrole,
+      workerrole:
+        prevData.workerrole === "custom" ? value : prevData.workerrole,
       [name]: value,
     }));
   };
@@ -39,9 +38,8 @@ export const EmployeeAddMain = () => {
   };
 
   const handleAbort = (e) => {
-    e.preventDefault(); // Prevent the form from submitting
+    e.preventDefault();
     setFormData({
-      // Reset all form data properties to their initial values
       personalnumber: "",
       firstname: "",
       lastname: "",
