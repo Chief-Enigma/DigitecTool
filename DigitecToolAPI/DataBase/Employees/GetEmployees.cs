@@ -24,5 +24,27 @@ namespace DigitecToolAPI
                 return null;
             }
         }
+
+        public static async Task<Employee?> GetEmployeeByPersonalNumberAsync(int PersonalNumber)
+        {
+            var filter = Builders<Employee>.Filter.Eq(em => em.PersonalNumber, PersonalNumber);
+
+            try
+            {
+                var Employee = await Employee_DB.Find(filter).FirstOrDefaultAsync();
+
+                if (Employee != null)
+                {
+                    return (Employee);
+                }
+                Console.WriteLine("Nix in Db gefunden");
+                return (null);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error at GetEmployeeByPersonalNumberAsync: " + ex.Message);
+                return (null);
+            }
+        }
     }
 }

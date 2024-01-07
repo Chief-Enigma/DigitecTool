@@ -4,8 +4,7 @@ import { EmployeeRow } from "./EmployeeRow";
 
 export const EmployeeTable = ({ searchInput }) => {
   const [employees, setEmployees] = useState([]);
-  const employeeSearchResults = [];
-  const employeeRows = [];
+  const [expandedRows, setExpandedRows] = useState([]);
 
   useEffect(() => {
     const getEmployees = async () => {
@@ -20,9 +19,16 @@ export const EmployeeTable = ({ searchInput }) => {
     getEmployees();
   }, []);
 
-  employees.forEach((employee) => {
-    employeeRows.push(<EmployeeRow key={employee.personalNumber} employee={employee} />);
-  });
+  const toggleRow = (personalNumber) => {
+    const newExpandedRows = [...expandedRows];
+    const index = newExpandedRows.indexOf(personalNumber);
+    if (index !== -1) {
+      newExpandedRows.splice(index, 1);
+    } else {
+      newExpandedRows.push(personalNumber);
+    }
+    setExpandedRows(newExpandedRows);
+  };
 
   return (
     <div>
@@ -35,7 +41,14 @@ export const EmployeeTable = ({ searchInput }) => {
             <td>Personalnummer</td>
             <td></td>
           </tr>
-          {employeeRows}
+          {employees.map((employee) => (
+            <EmployeeRow
+              key={employee.personalNumber}
+              employee={employee}
+              expanded={expandedRows.includes(employee.personalNumber)}
+              toggleRow={toggleRow}
+            />
+          ))}
         </tbody>
       </table>
     </div>
