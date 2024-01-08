@@ -38,6 +38,21 @@ namespace DigitecToolAPI.Controllers
             }
         }
 
+        [HttpGet("{id}")]
+        public async Task<ActionResult> GetByPersonalNumberAsync(int id)
+        {
+            var employee = await GetEmployees.GetEmployeeByPersonalNumberAsync(id);
+            if (employee != null)
+            {
+                return Ok(employee);
+            }
+            else
+            {
+                return NotFound();
+            }
+        }
+
+
         // POST - Add new Userlogin
         [HttpPost]
         public async Task<IActionResult> PostAsync([FromBody] Employee newEmployee)

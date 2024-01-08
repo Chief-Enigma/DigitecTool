@@ -1,45 +1,33 @@
 import React, { useState } from "react";
 import { MonthSelector } from "./CreateShiftplanComponents/MonthSelector";
+import { PlaningContainer } from "./CreateShiftplanComponents/PlaningContainer";
 
-const ShiftTable = ({ shiftMonth }) => {
-  return (
-    <table className="ShiftTable">
-      <thead>
-        <tr>
-          <th>Datum</th>
-          <th>Schicht</th>
-          <th>Job</th>
-          <th>Notiz</th>
-        </tr>
-      </thead>
-      <tbody>
-        {shiftMonth.map((shift) => (
-          <tr key={shift.Id}>
-            <td>{shift.shiftDate}</td>
-            <td>{shift.personalNumber}</td>
-            <td>{shift.Job}</td>
-            <td>{shift.Note}</td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
-  );
-};
-
-
-export const CreateShiftplanMain = () => {
+export const CreateShiftplanMain = ({ user }) => {
   const [shiftMonth, setShiftMonth] = useState([]);
+  const [employeesTeam, setEmployeesTeam] = useState([]);
 
-  const handleShiftResponse = (value) => {
-    setShiftMonth(value);
-    console.log(value);
+  const handleShiftResponse = (
+    { shiftResponse },
+    { employeesTeamResponse }
+  ) => {
+    setShiftMonth(shiftResponse);
+    setEmployeesTeam(employeesTeamResponse);
+
+    console.log("SHiftResponse: ");
+    console.log(shiftResponse);
+
+    console.log("EmployeesTeam: ");
+    console.log(employeesTeamResponse);
   };
 
   return (
     <div className="DashboardContendBox">
       <h2>Schichtplan erstellen</h2>
-      <MonthSelector onResponse={handleShiftResponse} />
-      <ShiftTable shiftMonth={shiftMonth} />
+      <MonthSelector
+        onResponse={handleShiftResponse}
+        personalNumber={user.personalnumber}
+      />
+      <PlaningContainer shiftMonth={shiftMonth} employeesTeam={employeesTeam} />
     </div>
   );
 };
