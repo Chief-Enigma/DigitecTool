@@ -35,15 +35,37 @@ namespace DigitecToolAPI
 
                 if (Employee != null)
                 {
-                    return (Employee);
+                    return Employee;
                 }
                 Console.WriteLine("Nix in Db gefunden");
-                return (null);
+                return null;
             }
             catch (Exception ex)
             {
                 Console.WriteLine("Error at GetEmployeeByPersonalNumberAsync: " + ex.Message);
-                return (null);
+                return null;
+            }
+        }
+
+        public static async Task<List<Employee>?> GetEmployeesByTeamAsync(string teamName)
+        {
+            var filter = Builders<Employee>.Filter.Eq(em => em.Team, teamName);
+
+            try
+            {
+                var employees = await Employee_DB.Find(filter).ToListAsync();
+
+                if (employees != null)
+                {
+                    return employees;
+                }
+                Console.WriteLine("Nix in Db gefunden");
+                return null;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error at GetEmployeeByPersonalNumberAsync: " + ex.Message);
+                return null;
             }
         }
     }

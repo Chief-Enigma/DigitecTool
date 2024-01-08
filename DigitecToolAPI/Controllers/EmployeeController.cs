@@ -10,17 +10,48 @@ namespace DigitecToolAPI.Controllers
     {
         // GET - Get all Employees from Data Base
         [HttpGet("all")]
-        public async Task<IEnumerable<Employee>?> GetAsync()
+        public async Task<ActionResult> GetAllAsync()
         {
-            return await GetEmployees.GetAllEmployeesAsync();
+            var employees = await GetEmployees.GetAllEmployeesAsync();
+            if (employees != null)
+            {
+                return Ok(employees);
+            }
+            else
+            {
+                return NotFound();
+            }
         }
 
         // GET api/<UserController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
+        [HttpGet("team/{team}")]
+        public async Task<ActionResult> GetByTeamAsync(string team)
         {
-            return "value";
+            var employees = await GetEmployees.GetEmployeesByTeamAsync(team);
+            if (employees != null)
+            {
+                return Ok(employees);
+            }
+            else
+            {
+                return NotFound();
+            }
         }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult> GetByPersonalNumberAsync(int id)
+        {
+            var employee = await GetEmployees.GetEmployeeByPersonalNumberAsync(id);
+            if (employee != null)
+            {
+                return Ok(employee);
+            }
+            else
+            {
+                return NotFound();
+            }
+        }
+
 
         // POST - Add new Userlogin
         [HttpPost]

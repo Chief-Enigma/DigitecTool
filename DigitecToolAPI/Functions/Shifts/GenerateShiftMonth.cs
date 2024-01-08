@@ -3,12 +3,12 @@ namespace DigitecToolAPI
 {
     public class GenerateShifts
     {
-        public static async Task<List<RawShift>> GenerateNewShiftMonth(string month)
+        public static async Task<List<RawShift>> GenerateNewShiftMonth(newShiftRequest request)
         {
-            var employees = await GetEmployees.GetAllEmployeesAsync();
+            var employees = await GetEmployees.GetEmployeesByTeamAsync(request.team);
             Console.WriteLine("Got employees");
-            int monthNumber = ConvertMonthNameToNumber(month);
-            Console.WriteLine("Got Monthnumber: " + month + " " + monthNumber);
+            int monthNumber = ConvertMonthNameToNumber(request.month);
+            Console.WriteLine("Got Monthnumber: " + request.month + " " + monthNumber);
 
 
             List<RawShift> shifts = new List<RawShift>();

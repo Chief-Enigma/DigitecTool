@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import Post from "../../../../Functions/Api/Requests/Post";
+import Get from "../../../../Functions/Api/Requests/Get";
 
-export const MonthSelector = ({ onResponse }) => {
+export const MonthSelector = ({ onResponse, personalNumber }) => {
   const [selectedMonth, setSelectedMonth] = useState("");
   const months = [
     "Januar",
@@ -17,15 +18,28 @@ export const MonthSelector = ({ onResponse }) => {
     "November",
     "Dezember",
   ];
+
   const handleMonthChange = (event) => {
     setSelectedMonth(event.target.value);
   };
 
   const handleButtonClick = async () => {
     try {
-      const shiftResponse = await Post.GenerateShiftMonth({month: selectedMonth, year: 2024});
-      console.log(shiftResponse);
-      onResponse(shiftResponse);
+      const employeeResponse = await Get.GetEmployeeByPersonalNumber(
+        personalNumber
+      );
+
+      const shiftResponse = await Post.GenerateShiftMonth({
+        month: selectedMonth,
+        year: 2024,
+        team: employeeResponse.team,
+      });
+
+      const employeesTeamResponse = await Get.GetAllEmployeesByTeam(
+        employeeResponse.team
+      );
+
+      onResponse({ shiftResponse }, { employeesTeamResponse });
     } catch (error) {
       console.error("Error making POST request:", error);
     }
@@ -43,7 +57,9 @@ export const MonthSelector = ({ onResponse }) => {
           </option>
         ))}
       </select>
-      <button onClick={handleButtonClick}>Erstellen</button>
+      <button disabled={!selectedMonth} onClick={handleButtonClick}>
+        Erstellen
+      </button>
     </div>
   );
 };

@@ -11,6 +11,24 @@ class Get {
     }
   }
 
+  async GetAllEmployeesByTeam(team) {
+    const url = ApiRequest.baseURL + "Employee/team/" + team;
+    try {
+      return await ApiRequest.request(url, "GET", undefined);
+    } catch (error) {
+      console.error("Error at GetAllEmployeesByTeam: ", error);
+    }
+  }
+
+  async GetEmployeeByPersonalNumber(id) {
+    const url = ApiRequest.baseURL + "Employee/" + id;
+    try {
+      return await ApiRequest.request(url, "GET", undefined);
+    } catch (error) {
+      console.error("Error at GetEmployeeByPersonalNumber: ", error);
+    }
+  }
+
   // Get all Users
   async GetAllUsers() {
     const url = ApiRequest.baseURL + "Login/all";

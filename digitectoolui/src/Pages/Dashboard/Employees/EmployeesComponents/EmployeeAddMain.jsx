@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Post from "../../../../Functions/Api/Requests/Post";
 
 export const EmployeeAddMain = () => {
-  const teams = ["Andreas", "Fatih", "Eren", "Zeljko", "Julian"];
+  const teams = ["Andreas", "Eren", "Zeljko", "Julian"];
   const workerroles = [
     "Junior Maintenance Technician",
     "Maintenance Technician",
