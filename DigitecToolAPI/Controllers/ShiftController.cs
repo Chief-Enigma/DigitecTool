@@ -28,7 +28,7 @@ namespace DigitecToolAPI.Controllers
         public async Task<ActionResult> PostAsync([FromBody] newShiftRequest request)
         {
 
-            List<RawShift> rawShifts = await GenerateShifts.GenerateNewShiftMonth(request.month);
+            List<RawShift> rawShifts = await GenerateShifts.GenerateNewShiftMonth(request);
             return Ok(rawShifts);
         }
 
@@ -43,11 +43,5 @@ namespace DigitecToolAPI.Controllers
         public void Delete(int id)
         {
         }
-    }
-
-    public class newShiftRequest
-    {
-        public string? month { get; set; }
-        public int? year { get; set; }
     }
 }

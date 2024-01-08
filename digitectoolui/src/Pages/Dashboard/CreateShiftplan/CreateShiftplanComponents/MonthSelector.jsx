@@ -23,7 +23,7 @@ export const MonthSelector = ({ onResponse }) => {
 
   const handleButtonClick = async () => {
     try {
-      const shiftResponse = await Post.GenerateShiftMonth({month: selectedMonth, year: 2024});
+      const shiftResponse = await Post.GenerateShiftMonth({month: selectedMonth, year: 2024, team: "Zeljko"});
       console.log(shiftResponse);
       onResponse(shiftResponse);
     } catch (error) {

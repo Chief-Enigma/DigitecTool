@@ -125,7 +125,7 @@ const App = () => {
                 <ProtectedRoute
                   element={<ShiftChangeMain />}
                   requiredPermissions={["changeshift"]}
-                  requiredUserrole={["user", "admin", "sysadmin"]}
+                  requiredUserrole={["user", "manager", "admin", "sysadmin"]}
                 />
               }
             />
@@ -147,7 +147,7 @@ const App = () => {
                 <ProtectedRoute
                   element={<RequestHollidaysMain />}
                   requiredPermissions={["requestholliday"]}
-                  requiredUserrole={["user", "admin", "sysadmin"]}
+                  requiredUserrole={["user", "manager", "admin", "sysadmin"]}
                 />
               }
             />
@@ -158,7 +158,7 @@ const App = () => {
                 <ProtectedRoute
                   element={<CreateShiftplanMain />}
                   requiredPermissions={["createplan"]}
-                  requiredUserrole={["user", "admin", "sysadmin"]}
+                  requiredUserrole={["user", "manager", "admin", "sysadmin"]}
                 />
               }
             />
@@ -169,7 +169,7 @@ const App = () => {
                 <ProtectedRoute
                   element={<EditShiftplanMain />}
                   requiredPermissions={["editplan"]}
-                  requiredUserrole={["user", "admin", "sysadmin"]}
+                  requiredUserrole={["user", "manager", "admin", "sysadmin"]}
                 />
               }
             />
@@ -180,7 +180,7 @@ const App = () => {
                 <ProtectedRoute
                   element={<EmployeesMain user={ProtectedRoute.user} />}
                   requiredPermissions={["employees", "editemployees"]}
-                  requiredUserrole={["user", "admin", "sysadmin"]}
+                  requiredUserrole={["user", "manager", "admin", "sysadmin"]}
                 />
               }
             />
@@ -190,7 +190,7 @@ const App = () => {
                 <ProtectedRoute
                   element={<TicketsMain />}
                   requiredPermissions={["tickets"]}
-                  requiredUserrole={["user", "admin", "sysadmin"]}
+                  requiredUserrole={["user", "manager", "admin", "sysadmin"]}
                 />
               }
             />
@@ -200,7 +200,7 @@ const App = () => {
                 <ProtectedRoute
                   element={<MaintenanceMain />}
                   requiredPermissions={["maintenance"]}
-                  requiredUserrole={["user", "admin", "sysadmin"]}
+                  requiredUserrole={["user", "manager", "admin", "sysadmin"]}
                 />
               }
             />
