@@ -4,4 +4,6 @@ class Delete {
 
 }
 
-export default new Delete();
+const DeleteRequest = new Delete();
+
+export default DeleteRequest;

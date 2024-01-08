@@ -4,7 +4,7 @@ import Post from "../../../../Functions/Api/Requests/Post";
 
 export const EmployeeRow = ({ employee, expanded, toggleRow }) => {
   const handleGenerateLogin = async () => {
-    const result = await Post.AddLogin(employee.personalNumber);
+    await Post.AddLogin(employee.personalNumber);
   };
   return (
     <>

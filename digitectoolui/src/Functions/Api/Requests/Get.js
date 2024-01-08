@@ -40,4 +40,6 @@ class Get {
   }
 }
 
-export default new Get();
+const GetRequest = new Get();
+
+export default GetRequest;

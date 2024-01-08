@@ -12,4 +12,6 @@ class Put {
   }
 }
 
-export default new Put();
+const PutRequest = new Put();
+
+export default PutRequest;

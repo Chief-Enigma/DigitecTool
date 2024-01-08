@@ -42,4 +42,6 @@ class Post {
   }
 }
 
-export default new Post();
+const PostRequest = new Post();
+
+export default PostRequest;
