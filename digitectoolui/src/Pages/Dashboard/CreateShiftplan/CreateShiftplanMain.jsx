@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { MonthSelector } from "./CreateShiftplanComponents/MonthSelector";
 import { PlaningContainer } from "./CreateShiftplanComponents/PlaningContainer";
 
+import "./CreateShiftplanComponents/CreateShiftplanMain.css"
+
 export const CreateShiftplanMain = ({ user }) => {
   const [shiftMonth, setShiftMonth] = useState([]);
   const [employeesTeam, setEmployeesTeam] = useState([]);

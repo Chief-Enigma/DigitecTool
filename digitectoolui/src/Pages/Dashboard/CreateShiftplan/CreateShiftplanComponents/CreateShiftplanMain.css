@@ -1,0 +1,25 @@
+.PlaningContainer {
+  border: 2px solid #333;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.CreateShiftTable {
+}
+
+.JobTypeLabel {
+  border: 2px solid #333;
+  border-radius: 3px;
+  padding: 5px 5px;
+  margin: 6px;
+}
+
+.SelectedJobType {
+  border: 1px solid red;
+}
+
+.NameLabel {
+}
+
+.DayLabel {
+}
