@@ -39,5 +39,24 @@ namespace DigitecToolAPI
                 return false;
             }
         }
+
+        public static async Task<bool> DeletEmployeeAsync(int PersonalNumber)
+        {
+            var filter = Builders<Employee>.Filter.Eq(lc => lc.PersonalNumber, PersonalNumber);
+            try
+            {
+                await Employee_DB.DeleteOneAsync(filter);
+                if (!await Employee_DB.Find(filter).AnyAsync())
+                {
+                    return true;
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error at DeletEmployeeAsync: " + ex.Message);
+                return false;
+            }
+        }
     }
 }

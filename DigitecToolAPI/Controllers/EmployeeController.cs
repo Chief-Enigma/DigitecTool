@@ -67,9 +67,17 @@ namespace DigitecToolAPI.Controllers
         }
 
         // DELETE api/<UserController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpDelete("{PersonalNumber}")]
+        public async Task<IActionResult> DeleteAsync(int PersonalNumber)
         {
+            if (await SetEmployees.DeletEmployeeAsync(PersonalNumber))
+            {
+                return Ok();
+            }
+            else
+            {
+                return NotFound();
+            }
         }
     }
 }
