@@ -5,6 +5,7 @@ import { AdminPermissionsUserRow } from "./AdminPermissionsUserRow";
 export const AdminPermissionsUserTable = ({ searchInput }) => {
   const [users, setUsers] = useState([]);
   const [userSearchResults, setUserSearchResults] = useState([]);
+  const [selectedPermission, setSelectedPermission] = useState(null);
   const avaliblePermissions = [
     "changeshift",
     "reportsick",
@@ -17,14 +18,10 @@ export const AdminPermissionsUserTable = ({ searchInput }) => {
     "maintenance",
   ];
 
-  const permissionList = [];
-  avaliblePermissions.forEach((permission) => {
-    permissionList.push(
-      <label key={permission} className="PermissionBox">
-        <span className="PermissionText">{permission}</span>
-      </label>
-    );
-  });
+  const handlePermissionTypeClick = (permission) => {
+    setSelectedPermission(permission);
+    console.log("Selected Permission: " + permission);
+  };
 
   useEffect(() => {
     const getUsers = async () => {
@@ -87,7 +84,17 @@ export const AdminPermissionsUserTable = ({ searchInput }) => {
       <br />
       <div>
         <p>Verfügbare Berechtigungen</p>
-        {permissionList}
+        {avaliblePermissions.map((permission) => (
+          <label
+            key={permission}
+            className={`PermissionBox ${
+              selectedPermission === permission ? "SelectedPermissionBox" : ""
+            }`}
+            onClick={() => handlePermissionTypeClick(permission)}
+          >
+            <span className="PermissionText">{permission}</span>
+          </label>
+        ))}
       </div>
       <table className="EmployeeTable">
         <tbody>
@@ -98,7 +105,12 @@ export const AdminPermissionsUserTable = ({ searchInput }) => {
             <td>Berechtigungen</td>
           </tr>
           {userSearchResults.map((user) => (
-            <AdminPermissionsUserRow key={user.personalNumber} user={user} />
+            <AdminPermissionsUserRow
+              key={user.personalNumber}
+              user={user}
+              selectedPermission={selectedPermission}
+              setSelectedPermission={setSelectedPermission}
+            />
           ))}
         </tbody>
       </table>
