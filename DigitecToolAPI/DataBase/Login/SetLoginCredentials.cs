@@ -59,6 +59,7 @@ namespace DigitecToolAPI
             var filter = Builders<LoginCredentials>.Filter.Eq(lc => lc.PersonalNumber, PersonalNumber);
             UpdateDefinition<LoginCredentials> update;
 
+            Console.WriteLine("Got into function");
             if (updateloginCredentials.Payload == null)
             {
                 return false;
@@ -85,6 +86,7 @@ namespace DigitecToolAPI
                     }
                     else if (updateloginCredentials.Type == "Permissions")
                     {
+                        Console.WriteLine("Got in permissions!!!!");
                         List<string>? permissionsList = Newtonsoft.Json.JsonConvert.DeserializeObject<List<string>>(updateloginCredentials.Payload);
 
                         update = Builders<LoginCredentials>.Update

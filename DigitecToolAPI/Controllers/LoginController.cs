@@ -37,6 +37,7 @@ namespace DigitecToolAPI.Controllers
         [HttpPut("{PersonalNumber}")]
         public async Task<IActionResult> PutAsync(int PersonalNumber, [FromBody] ChangeCredentials updateloginCredentials)
         {
+            Console.WriteLine("gotsomething");
             if (await SetLoginCredentials.EditLoginCredentialsAsync(PersonalNumber, updateloginCredentials) && updateloginCredentials.Payload != null)
             {
                 return Ok();
