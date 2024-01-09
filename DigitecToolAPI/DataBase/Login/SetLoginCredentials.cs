@@ -30,7 +30,7 @@ namespace DigitecToolAPI
                     PersonalNumber = PersonalNumber,
                     Email = Employee.Email,
                     UserRole = "user",
-                    Permissions = ["reportsick"]
+                    Permissions = ["changeshift", "reportsick", "requestholliday", "employees", "tickets"],
                 };
 
                 newloginCredentials.PasswordHash = BCrypt.Net.BCrypt.EnhancedHashPassword(newloginCredentials.PersonalNumber.ToString(), 13);
