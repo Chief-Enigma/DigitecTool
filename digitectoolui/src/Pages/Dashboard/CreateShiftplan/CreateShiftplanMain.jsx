@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { MonthSelector } from "./CreateShiftplanComponents/MonthSelector";
 import { PlaningContainer } from "./CreateShiftplanComponents/PlaningContainer";
 
-import "./CreateShiftplanComponents/CreateShiftplanMain.css"
+import "./CreateShiftplanComponents/CreateShiftplanMain.css";
 
 export const CreateShiftplanMain = ({ user }) => {
   const [shiftMonth, setShiftMonth] = useState([]);
@@ -24,11 +24,14 @@ export const CreateShiftplanMain = ({ user }) => {
 
   return (
     <div className="DashboardContendBox">
-      <h2>Schichtplan erstellen Test</h2>
-      <MonthSelector
-        onResponse={handleShiftResponse}
-        personalNumber={user.personalnumber}
-      />
+      <div>
+        <h2>Schichtplan erstellen Test</h2>
+        <p>Some text here</p>
+        <MonthSelector
+          onResponse={handleShiftResponse}
+          personalNumber={user.personalnumber}
+        />
+      </div>
       <PlaningContainer shiftMonth={shiftMonth} employeesTeam={employeesTeam} />
     </div>
   );

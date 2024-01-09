@@ -4,7 +4,17 @@
   padding: 10px;
 }
 
+.PlanSettings {
+  /* Hier können zusätzliche Styles für PlanSettings hinzugefügt werden, falls erforderlich */
+}
+
 .CreateShiftTable {
+  /* Hier können zusätzliche Styles für CreateShiftTable hinzugefügt werden, falls erforderlich */
+}
+
+.HeaderRow td {
+  padding-top: 20px;
+  font-weight: bold;
 }
 
 .JobTypeLabel {
@@ -15,11 +25,22 @@
 }
 
 .SelectedJobType {
-  border: 1px solid red;
+  border: 2px solid blue;
 }
 
 .NameLabel {
+  padding-right: 20px;
 }
 
 .DayLabel {
+  text-align: center;
+}
+
+.ShiftDayLabel {
+  min-width: 45px; /* Hier die gewünschte Breite festlegen */
+  padding: 6px 12px;
+  border: 2px solid #333;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
 }
