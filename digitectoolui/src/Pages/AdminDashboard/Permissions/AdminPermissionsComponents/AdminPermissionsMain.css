@@ -24,10 +24,17 @@
   /* Space between text and icon */
 }
 
-.SelectedPermissionText {}
+.SelectedPermissionBox {
+  border-width: 2px;
+  font-weight: bold;
+}
 
 .PermissionBox span {
   cursor: pointer;
   margin-left: 4px;
   margin-right: 4px;
+}
+
+.UserEmail{
+  cursor: pointer;
 }
