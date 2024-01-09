@@ -63,7 +63,7 @@ export const AdminPermissionsUserRow = ({ user, selectedPermission, setSelectedP
   return (
     <tr className="EmployeeRow" onClick={addPermission}>
       <td>{user.personalNumber}</td>
-      <td>{user.email}</td>
+      <td ><span className="UserEmail">{user.email}</span></td>
       <td>
         <label
           className="RoleLabel"
