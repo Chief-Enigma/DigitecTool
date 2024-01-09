@@ -5,6 +5,26 @@ import { AdminPermissionsUserRow } from "./AdminPermissionsUserRow";
 export const AdminPermissionsUserTable = ({ searchInput }) => {
   const [users, setUsers] = useState([]);
   const [userSearchResults, setUserSearchResults] = useState([]);
+  const avaliblePermissions = [
+    "changeshift",
+    "reportsick",
+    "requestholliday",
+    "createplan",
+    "editplan",
+    "employees",
+    "editemployees",
+    "tickets",
+    "maintenance",
+  ];
+
+  const permissionList = [];
+  avaliblePermissions.forEach((permission) => {
+    permissionList.push(
+      <label key={permission} className="PermissionBox">
+        <span className="PermissionText">{permission}</span>
+      </label>
+    );
+  });
 
   useEffect(() => {
     const getUsers = async () => {
@@ -64,6 +84,11 @@ export const AdminPermissionsUserTable = ({ searchInput }) => {
 
   return (
     <div>
+      <br />
+      <div>
+        <p>Verfügbare Berechtigungen</p>
+        {permissionList}
+      </div>
       <table className="EmployeeTable">
         <tbody>
           <tr className="EmployeeRow EmployeeTitleRow">

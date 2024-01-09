@@ -1,16 +1,36 @@
-import React from "react";
+import React, { useState } from "react";
 //import { Link } from "react-router-dom";
+import Put from "../../../../Functions/Api/Requests/Put";
 
 export const AdminPermissionsUserRow = ({ user }) => {
-  const permissionObject = [];
-  user.permissions.forEach((permission) => {
-    permissionObject.push(
-      <label key={permission} className="PermissionBox">
-        <span className="PermissionText">{permission}</span>
-        <span className="material-symbols-outlined">close</span>
-      </label>
+  const [permissions, setPermissions] = useState(user.permissions);
+
+  const removePermission = (permissionToRemove) => {
+    const updatedPermissions = permissions.filter(
+      (permission) => permission !== permissionToRemove
     );
-  });
+    setPermissions(updatedPermissions);
+
+    // Hier rufst du die EditLoginCredentials-Funktion auf, um die Änderungen ans Backend zu senden
+    const data = {
+      Type: "Permissions",
+      Payload: JSON.stringify(updatedPermissions), // Umwandlung in einen JSON-String
+    };
+    const personalnumber = user.personalNumber; // Oder hole die personalNumber von deinem Benutzerobjekt
+    Put.EditLoginCredentials(data, personalnumber);
+  };
+
+  const permissionObject = permissions.map((permission) => (
+    <label key={permission} className="PermissionBox">
+      <span className="PermissionText">{permission}</span>
+      <span
+        className="material-symbols-outlined"
+        onClick={() => removePermission(permission)}
+      >
+        close
+      </span>
+    </label>
+  ));
 
   const getRoleColor = (role) => {
     switch (role) {
