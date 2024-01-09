@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-//import { Link } from "react-router-dom";
 import Put from "../../../../Functions/Api/Requests/Put";
 
-export const AdminPermissionsUserRow = ({ user }) => {
+export const AdminPermissionsUserRow = ({ user, selectedPermission, setSelectedPermission }) => {
   const [permissions, setPermissions] = useState(user.permissions);
 
   const removePermission = (permissionToRemove) => {
@@ -11,13 +10,27 @@ export const AdminPermissionsUserRow = ({ user }) => {
     );
     setPermissions(updatedPermissions);
 
-    // Hier rufst du die EditLoginCredentials-Funktion auf, um die Änderungen ans Backend zu senden
     const data = {
       Type: "Permissions",
-      Payload: JSON.stringify(updatedPermissions), // Umwandlung in einen JSON-String
+      Payload: JSON.stringify(updatedPermissions),
     };
-    const personalnumber = user.personalNumber; // Oder hole die personalNumber von deinem Benutzerobjekt
+    const personalnumber = user.personalNumber;
     Put.EditLoginCredentials(data, personalnumber);
+  };
+
+  const addPermission = () => {
+    if (selectedPermission && !permissions.includes(selectedPermission)) {
+      const updatedPermissions = [...permissions, selectedPermission];
+      setPermissions(updatedPermissions);
+      setSelectedPermission(null)
+
+      const data = {
+        Type: "Permissions",
+        Payload: JSON.stringify(updatedPermissions),
+      };
+      const personalnumber = user.personalNumber;
+      Put.EditLoginCredentials(data, personalnumber);
+    }
   };
 
   const permissionObject = permissions.map((permission) => (
@@ -48,15 +61,15 @@ export const AdminPermissionsUserRow = ({ user }) => {
   };
 
   return (
-    <tr className="EmployeeRow">
+    <tr className="EmployeeRow" onClick={addPermission}>
       <td>{user.personalNumber}</td>
       <td>{user.email}</td>
       <td>
         <label
           className="RoleLabel"
           style={{
-            backgroundColor: `rgba(${getRoleColor(user.userRole)}, 0.3)`, // Adding the '0.3' for opacity
-            borderColor: `rgba(${getRoleColor(user.userRole)}, 1)`, // No opacity for borderColor
+            backgroundColor: `rgba(${getRoleColor(user.userRole)}, 0.3)`,
+            borderColor: `rgba(${getRoleColor(user.userRole)}, 1)`,
           }}
         >
           <span>{user.userRole}</span>
