@@ -8,17 +8,33 @@ namespace DigitecToolAPI
     {
         public static IMongoCollection<RawShift> RawShift_DB = Mongo.db.GetCollection<RawShift>("RawShifts");
 
-        public static async Task<RawShift> GetRawShiftFromDatabase(int personalNumber, DateOnly shiftDate)
+        public static async Task<RawShift?> GetRawShiftFromDatabase(int personalNumber, DateOnly shiftDate)
         {
-            var filter = Builders<RawShift>.Filter.Eq(x => x.PersonalNumber, personalNumber) & Builders<RawShift>.Filter.Eq(x => x.ShiftDate, shiftDate);
-            return await RawShift_DB.Find(filter).FirstOrDefaultAsync();
+            try
+            {
+                var filter = Builders<RawShift>.Filter.Eq(x => x.PersonalNumber, personalNumber) & Builders<RawShift>.Filter.Eq(x => x.ShiftDate, shiftDate);
+                return await RawShift_DB.Find(filter).FirstOrDefaultAsync();
+            }
+            catch
+            {
+                return null;
+            }
         }
 
-        public static async Task<bool> RawShiftExists(int personalNumber, DateOnly shiftDate)
+        public static async Task<RawShift?> RawShiftExists(int personalNumber, DateOnly shiftDate)
         {
             var filter = Builders<RawShift>.Filter.Eq(x => x.PersonalNumber, personalNumber) & Builders<RawShift>.Filter.Eq(x => x.ShiftDate, shiftDate);
-            var existingShift = await RawShift_DB.Find(filter).FirstOrDefaultAsync();
-            return existingShift != null;
+
+            try
+            {
+                var existingShift = await RawShift_DB.Find(filter).FirstOrDefaultAsync();
+                return existingShift;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Nope, SHiftnotfound: " + ex.Message);
+                return null;
+            }
         }
 
         public static async Task<List<RawShift>> GetRawShiftsForMonth(DateOnly firstDayOfMonth)

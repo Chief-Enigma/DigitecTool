@@ -15,7 +15,7 @@ export const CreateShiftplanMain = ({ user }) => {
     setShiftMonth(shiftResponse);
     setEmployeesTeam(employeesTeamResponse);
 
-    console.log("SHiftResponse: ");
+    console.log("ShiftResponse: ");
     console.log(shiftResponse);
 
     console.log("EmployeesTeam: ");

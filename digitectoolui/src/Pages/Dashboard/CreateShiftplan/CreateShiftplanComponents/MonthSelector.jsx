@@ -19,24 +19,26 @@ export const MonthSelector = ({ onResponse, personalNumber }) => {
     "Dezember",
   ];
 
-  const handleMonthChange = async (event) => {
+  const handleMonthChange = (event) => {
     const newSelectedMonth = event.target.value;
     setSelectedMonth(newSelectedMonth);
+  };
 
+  const GetPlan = async (month) => {
     try {
       const employeeResponse = await Get.GetEmployeeByPersonalNumber(
         personalNumber
       );
 
-      const shiftResponse = await Post.GetShiftMonth({
-        month: newSelectedMonth,
-        year: 2024,
-        team: employeeResponse.team,
-      });
-
       const employeesTeamResponse = await Get.GetAllEmployeesByTeam(
         employeeResponse.team
       );
+
+      const shiftResponse = await Post.GetShiftMonth({
+        month: month,
+        year: 2024,
+        team: employeeResponse.team,
+      });
 
       onResponse({ shiftResponse }, { employeesTeamResponse });
     } catch (error) {
@@ -45,9 +47,8 @@ export const MonthSelector = ({ onResponse, personalNumber }) => {
   };
 
   useEffect(() => {
-    // Führe die API-Anfrage aus, wenn ein Monat ausgewählt ist
     if (selectedMonth) {
-      handleMonthChange({ target: { value: selectedMonth } });
+      GetPlan(selectedMonth);
     }
   }, [selectedMonth]); // Höre auf Änderungen von selectedMonth
 

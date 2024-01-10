@@ -17,34 +17,32 @@ namespace DigitecToolAPI.Controllers
         }
 
         // GET api/<ShiftController>/5
-        [HttpGet("getplan")]
-        public async Task<List<WorkerShift>> GetAsync()
+        [HttpGet("getplan/{month}")]
+        public async Task<ActionResult> GetAsync(string month)
         {
-            return await GenerateWorkerShifts.GetShiftsForCurrentMonthAsync();
+            var workerShifts = await GenerateShifts.GetShiftsForCurrentMonthAsync(month);
+            
+            if (workerShifts != null)
+            {
+                return Ok(workerShifts);
+            }
+            else
+            {
+                return NotFound();
+            }
         }
 
         // POST api/<ShiftController>
         [HttpPost("newmonth")]
         public async Task<ActionResult> PostAsync([FromBody] newShiftRequest request)
         {
-
-            List<RawShift> rawShifts = await GenerateShifts.GenerateNewShiftMonth(request);
-            return Ok(rawShifts);
-        }
-
-        [HttpPut("savemonth")]
-        public async Task<ActionResult> SaveMonthAsync([FromBody] List<RawShift> updatedShifts)
-        {
-            var result = await SaveShifts.SaveShiftsToDB(updatedShifts);
-
-            if (result)
-            {
-                return Ok();
-            }
-            else
+            if (request == null)
             {
                 return BadRequest();
             }
+
+            List<RawShift> rawShifts = await GenerateShifts.GenerateNewShiftMonth(request);
+            return Ok(rawShifts);
         }
 
         [HttpPut("saveday")]
