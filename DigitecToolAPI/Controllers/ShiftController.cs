@@ -20,7 +20,7 @@ namespace DigitecToolAPI.Controllers
         [HttpGet("getplan/{data}")]
         public async Task<List<WorkerShift>> GetAsync(string month)
         {
-            return null;
+            return await GenerateWorkerShifts.GetShiftsForCurrentMonthAsync();
         }
 
         // POST api/<ShiftController>
