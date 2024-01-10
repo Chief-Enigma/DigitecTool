@@ -1,13 +1,9 @@
 import React from "react";
-import Worker from "./worker";
+import {Worker} from "./worker";
 
 //import { Users } from "../DemoShiftPlan";
 
-export default function WorkerTable({ workers }) {
-
-
-
-
+export const WorkerTable = ({ workers }) => {
   if (workers.length >= 15) {
     const midpoint = Math.ceil(workers.length / 2);
     const workersColumn1 = workers.slice(0, midpoint);
@@ -23,12 +19,11 @@ export default function WorkerTable({ workers }) {
       workerrows2.push(<Worker worker={worker} />);
     });
 
-
     return (
       <tr>
         <table>
           <td>
-            <table className="WorkerTable DoubleWorkTable" >{workerrows1}</table>
+            <table className="WorkerTable DoubleWorkTable">{workerrows1}</table>
           </td>
           <td>
             <table className="WorkerTable DoubleWorkTable">{workerrows2}</table>
@@ -36,7 +31,6 @@ export default function WorkerTable({ workers }) {
         </table>
       </tr>
     );
-
   } else {
     const workerrows = [];
     workers.forEach((worker) => {
@@ -49,6 +43,4 @@ export default function WorkerTable({ workers }) {
       </tr>
     );
   }
-
-
-}
+};

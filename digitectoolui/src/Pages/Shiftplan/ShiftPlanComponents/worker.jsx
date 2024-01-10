@@ -1,13 +1,14 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-export default function Worker({ worker }) {
+export const Worker = ({ worker }) => {
   return (
     <tr className="worker">
       <td>
         <Link
           to={`/personalshiftplan/${worker.name.replace(/ /g, "-")}`}
-          className="name">
+          className="name"
+        >
           <span>{worker.name}</span>
         </Link>
         <span className="role"> {worker.role}</span>
@@ -16,4 +17,4 @@ export default function Worker({ worker }) {
       </td>
     </tr>
   );
-}
+};
