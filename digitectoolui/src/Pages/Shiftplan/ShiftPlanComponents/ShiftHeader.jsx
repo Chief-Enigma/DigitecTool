@@ -1,6 +1,6 @@
 import React, { forwardRef } from "react";
 
-export default function ShiftHeader({ shiftheader }) {
+export const ShiftHeader = ({ shiftheader }) => {
   return (
     <th
       className="ShiftHeader"
@@ -9,4 +9,4 @@ export default function ShiftHeader({ shiftheader }) {
       <a>{shiftheader.shiftname}</a>
     </th>
   );
-}
+};
