@@ -21,5 +21,13 @@ namespace DigitecToolAPI
             return existingShift != null;
         }
 
+        public static async Task<List<RawShift>> GetRawShiftsForMonth(DateOnly firstDayOfMonth)
+        {
+
+            var filter = Builders<RawShift>.Filter.Gte(x => x.ShiftDate, firstDayOfMonth);
+            return await RawShift_DB.Find(filter).ToListAsync();
+
+        }
+
     }
 }

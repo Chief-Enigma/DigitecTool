@@ -38,6 +38,16 @@ class Get {
       console.error("Error at GetAllUsers: ", error);
     }
   }
+
+  // Get MonthPlan
+  async GetShiftPlanForMonth() {
+    const url = ApiRequest.baseURL + "Login/currentmonth";
+    try {
+      return await ApiRequest.request(url, "GET", undefined);
+    } catch (error) {
+      console.error("Error at GetShiftPlanForMonth: ", error);
+    }
+  }
 }
 
 const GetRequest = new Get();
