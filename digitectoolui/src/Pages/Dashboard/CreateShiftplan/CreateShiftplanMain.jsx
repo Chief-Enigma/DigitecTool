@@ -26,7 +26,6 @@ export const CreateShiftplanMain = ({ user }) => {
     <div className="DashboardContendBox">
       <div>
         <h2>Schichtplan bearbeiten</h2>
-        <p>Some Text here</p>
         <MonthSelector
           onResponse={handleShiftResponse}
           personalNumber={user.personalnumber}
