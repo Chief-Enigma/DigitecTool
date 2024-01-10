@@ -6,7 +6,7 @@ import { ShiftDayTable } from "./ShiftplanComponents/ShiftDayTable";
 
 import "./ShiftplanComponents/ShiftplanStyle.css";
 
-export const ShiftLayouts = [
+const ShiftLayouts = [
   { shiftID: "FS", shiftname: "Frühschicht", backgroundcolor: "#de1f43" },
   { shiftID: "SS", shiftname: "Spätschicht", backgroundcolor: "#99C68E" },
   { shiftID: "NS", shiftname: "Nachtschicht", backgroundcolor: "#46C7C7" },
