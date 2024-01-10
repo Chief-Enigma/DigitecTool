@@ -32,6 +32,22 @@ namespace DigitecToolAPI.Controllers
             return Ok(rawShifts);
         }
 
+        [HttpPut("savemonth")]
+        public async Task<ActionResult> SaveMonthAsync([FromBody] List<RawShift> updatedShifts)
+        {
+            var result = await SaveShifts.SaveShiftsToDB(updatedShifts);
+            Console.WriteLine(updatedShifts);
+
+            if (result)
+            {
+                return Ok("Shifts updated successfully.");
+            }
+            else
+            {
+                return StatusCode(500, "Internal Server Error");
+            }
+        }
+
         // PUT api/<ShiftController>/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] string value)

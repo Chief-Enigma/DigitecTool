@@ -29,7 +29,7 @@ export const MonthSelector = ({ onResponse, personalNumber }) => {
         personalNumber
       );
 
-      const shiftResponse = await Post.GenerateShiftMonth({
+      const shiftResponse = await Post.GetShiftMonth({
         month: selectedMonth,
         year: 2024,
         team: employeeResponse.team,

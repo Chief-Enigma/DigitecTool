@@ -61,14 +61,14 @@ export const DashboardNavBarMain = () => {
           </li>
         ) : null}
 
-        {userRole === "sysadmin" || permissions.includes("createplan") ? (
+        {/* {userRole === "sysadmin" || permissions.includes("createplan") ? (
           <li>
             <NavLink to="createplan" className="DashboardNavElement">
               <span className="material-symbols-outlined">calendar_add_on</span>
               Schichtplan erstellen
             </NavLink>
           </li>
-        ) : null}
+        ) : null} */}
 {(userRole === "sysadmin" || permissions.includes("editplan")) ? (
   <li>
     <NavLink to="editplan" className="DashboardNavElement">

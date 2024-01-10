@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Put from "../../../../Functions/Api/Requests/Put";
 
 export const PlaningContainer = ({ shiftMonth, employeesTeam }) => {
   const JobTypes = [
@@ -13,7 +14,7 @@ export const PlaningContainer = ({ shiftMonth, employeesTeam }) => {
     "TD",
     "F",
     "K",
-    "-"
+    "-",
   ];
   const [selectedJobType, setSelectedJobType] = useState(null);
   const [shiftDays, setShiftDays] = useState([]);
@@ -23,16 +24,24 @@ export const PlaningContainer = ({ shiftMonth, employeesTeam }) => {
     console.log(`Selected Job Type: ${jobType}`);
   };
 
-  const handleSaveTable = () => {
+  const handleSaveTable = async () => {
     const updatedShifts = shiftMonth.map((shift) => {
       const matchingShift = shiftDays.find(
         (updatedShift) => updatedShift.shiftDate === shift.shiftDate
       );
 
       return matchingShift || shift; // Use the updated value if available, otherwise keep the original shift
+      
     });
 
-    console.log("Updated Shifts:", updatedShifts);
+    console.log(updatedShifts)
+    try {
+      // Hier wird angenommen, dass die API die aktualisierten Shifts mit ObjectId zurückgibt
+      const response = await Put.SaveShiftMonth(updatedShifts);
+      console.log("Updated Shifts:", response.data); // Überprüfen Sie die Konsolenausgabe für die ObjectId
+    } catch (error) {
+      console.log("Error at handleSaveTable: " + error);
+    }
   };
 
   useEffect(() => {
