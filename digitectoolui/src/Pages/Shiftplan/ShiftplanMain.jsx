@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import Get from "../../Functions/Api/Requests/Get";
 import ShiftDayTable from "./ShiftplanComponents/ShiftDayTable";
 
-import "./ShiftplanComponents/ShiftplanMain.css";
 
 export const ShiftLayouts = [
   { shiftID: "FS", shiftname: "Frühschicht", backgroundcolor: "#de1f43" },
@@ -49,7 +48,7 @@ function generateShiftDayTables(workerShifts) {
         Shifts.push(Shift);
       }
     });
-    console.log("Shifts!!!!!!!!!!!!!!!!!!!!!!!" + Shifts);
+    console.log("Shifts!" + Shifts);
     DayTables.push(
       <ShiftDayTable
         shiftheaders={ShiftLayouts}
