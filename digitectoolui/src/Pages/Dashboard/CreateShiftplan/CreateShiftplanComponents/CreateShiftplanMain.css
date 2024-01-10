@@ -4,6 +4,24 @@
   padding: 10px;
 }
 
+.MonthSelectorContainer {
+  margin: 10px 0px;
+}
+
+.MonthSelectorContainer label {
+  font-size: 16px;
+  margin-right: 10px;
+}
+
+.MonthSelectorContainer select {
+  padding: 4px;
+  background-color: #333;
+  color: #fefefe;
+  font-size: 14px;
+  border: 2px solid #333;
+  border-radius: 3px;
+}
+
 .PlanSettings {
   /* Hier können zusätzliche Styles für PlanSettings hinzugefügt werden, falls erforderlich */
 }
@@ -20,12 +38,13 @@
 .JobTypeLabel {
   border: 2px solid #333;
   border-radius: 3px;
-  padding: 5px 5px;
+  padding: 5px 10px;
   margin: 6px;
+  min-width: 50px;
 }
 
 .SelectedJobType {
-  border: 2px solid blue;
+  border: 2px solid #fefefe;
 }
 
 .NameLabel {
