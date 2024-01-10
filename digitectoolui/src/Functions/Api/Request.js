@@ -1,8 +1,8 @@
 
 class ApiRequest {
   constructor() {
-    this.baseURL = "https://api.hackster.ch/api/";
-    //this.baseURL = "http://localhost:5089/api/";
+    //this.baseURL = "https://api.hackster.ch/api/";
+    this.baseURL = "http://localhost:5089/api/";
   }
 
   request = async (url, method, data) => {
@@ -28,3 +28,4 @@ const apiRequestInstance = new ApiRequest();
 
 // Export the instance as the default module export
 export default apiRequestInstance;
+

@@ -10,7 +10,6 @@ namespace DigitecToolAPI
             int monthNumber = ConvertMonthNameToNumber(request.month);
             Console.WriteLine("Got Monthnumber: " + request.month + " " + monthNumber);
 
-
             List<RawShift> shifts = new List<RawShift>();
 
             foreach (var employee in employees)
@@ -19,19 +18,38 @@ namespace DigitecToolAPI
                 {
                     DateOnly shiftDate = new DateOnly(DateTime.Now.Year, monthNumber, day);
 
-                    RawShift rawShift = new RawShift
+                    // Überprüfen, ob bereits ein RawShift für diese Personalnummer und Datum existiert
+                    if (!await GetRawShifts.RawShiftExists(employee.PersonalNumber, shiftDate))
                     {
-                        PersonalNumber = employee.PersonalNumber,
-                        ShiftDate = shiftDate,
-                        // Other properties are set to their default values
-                    };
+                        // Wenn nicht vorhanden, RawShift generieren und in die Datenbank schreiben
+                        RawShift rawShift = new RawShift
+                        {
+                            PersonalNumber = employee.PersonalNumber,
+                            ShiftDate = shiftDate,
+                            // Other properties are set to their default values
+                        };
 
-                    shifts.Add(rawShift);
+                        // Hier können Sie den RawShift in die Datenbank schreiben
+                        await SetRawShifts.SaveRawShiftToDatabase(rawShift);
+
+                        // Nach dem Speichern in die Datenbank können Sie den RawShift wieder abrufen, um die ObjectId zu erhalten
+                        var savedShift = await GetRawShifts.GetRawShiftFromDatabase(employee.PersonalNumber, shiftDate);
+                        shifts.Add(savedShift);
+                    }
+                    else
+                    {
+                        // Wenn bereits vorhanden, können Sie den vorhandenen RawShift abrufen und zur Liste hinzufügen
+                        var existingShift = await GetRawShifts.GetRawShiftFromDatabase(employee.PersonalNumber, shiftDate);
+                        shifts.Add(existingShift);
+                    }
                 }
             }
-            //Thread.Sleep(5000); // for loading screen testing simulate server is slow...
+
             return shifts;
         }
+
+
+
 
 
         private static readonly Dictionary<string, int> MonthNameToNumberMap = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase)

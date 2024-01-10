@@ -31,15 +31,17 @@ class Post {
     }
   }
 
-  // Post new Shiftmonth
-  async GenerateShiftMonth(data) {
+  // Post new Shiftmonth request
+  async GetShiftMonth(data) {
     const url = ApiRequest.baseURL + "Shift/newmonth";
     try {
       return await ApiRequest.request(url, "POST", data);
     } catch (error) {
-      console.log("Error at GenerateShiftMonth: " + error);
+      console.log("Error at GetShiftMonth: " + error);
     }
   }
+
+
 }
 
 const PostRequest = new Post();
