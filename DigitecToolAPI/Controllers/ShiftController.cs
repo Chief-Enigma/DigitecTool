@@ -17,10 +17,10 @@ namespace DigitecToolAPI.Controllers
         }
 
         // GET api/<ShiftController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
+        [HttpGet("getplan/{data}")]
+        public async Task<List<WorkerShift>> GetAsync(string month)
         {
-            return "value";
+            return null;
         }
 
         // POST api/<ShiftController>
