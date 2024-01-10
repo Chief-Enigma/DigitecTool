@@ -21,7 +21,7 @@ import { ShiftChangeMain } from "./Pages/Dashboard/ShiftChange/ShiftChangeMain";
 import { ReportSickMain } from "./Pages/Dashboard/ReportSick/ReportSickMain";
 import { RequestHollidaysMain } from "./Pages/Dashboard/RequestHolliday/RequestHollidaysMain";
 import { CreateShiftplanMain } from "./Pages/Dashboard/CreateShiftplan/CreateShiftplanMain";
-import { EditShiftplanMain } from "./Pages/Dashboard/EditShiftplan/EditShiftplanMain";
+//import { EditShiftplanMain } from "./Pages/Dashboard/EditShiftplan/EditShiftplanMain";
 import { EmployeesMain } from "./Pages/Dashboard/Employees/EmployeesMain";
 import { TicketsMain } from "./Pages/Dashboard/Tickets/TicketsMain";
 import { MaintenanceMain } from "./Pages/Dashboard/Maintenance/MaintenanceMain";

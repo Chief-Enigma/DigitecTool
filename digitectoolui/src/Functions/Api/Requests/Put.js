@@ -20,6 +20,16 @@ class Put {
       console.log("Error at SaveShiftMonth: " + error);
     }
   }
+
+  // Post Save Shiftday
+  async SaveShiftDay(data) {
+    const url = ApiRequest.baseURL + "Shift/saveday";
+    try {
+      return await ApiRequest.request(url, "PUT", data);
+    } catch (error) {
+      console.log("Error at SaveShiftDay: " + error);
+    }
+  }
 }
 
 const PutRequest = new Put();

@@ -24,23 +24,12 @@ export const PlaningContainer = ({ shiftMonth, employeesTeam }) => {
     console.log(`Selected Job Type: ${jobType}`);
   };
 
-  const handleSaveTable = async () => {
-    const updatedShifts = shiftMonth.map((shift) => {
-      const matchingShift = shiftDays.find(
-        (updatedShift) => updatedShift.shiftDate === shift.shiftDate
-      );
-
-      return matchingShift || shift; // Use the updated value if available, otherwise keep the original shift
-      
-    });
-
-    console.log(updatedShifts)
+  const SaveDay = async (shiftday) => {
     try {
-      // Hier wird angenommen, dass die API die aktualisierten Shifts mit ObjectId zurückgibt
-      const response = await Put.SaveShiftMonth(updatedShifts);
-      console.log("Updated Shifts:", response.data); // Überprüfen Sie die Konsolenausgabe für die ObjectId
+      const response = await Put.SaveShiftDay(shiftday);
+      console.log(response);
     } catch (error) {
-      console.log("Error at handleSaveTable: " + error);
+      console.log("error at saving shift" + error);
     }
   };
 
@@ -96,7 +85,6 @@ export const PlaningContainer = ({ shiftMonth, employeesTeam }) => {
             {type}
           </label>
         ))}
-        <button onClick={handleSaveTable}>Speichern</button>
       </div>
       <table className="CreateShiftTable" style={{ whiteSpace: "nowrap" }}>
         <tbody>
@@ -133,6 +121,7 @@ export const PlaningContainer = ({ shiftMonth, employeesTeam }) => {
                           // Update the selected job type for the clicked shift
                           if (matchingShift) {
                             matchingShift.job = selectedJobType;
+                            SaveDay(matchingShift);
                             // Update the shift days to trigger a re-render
                             setShiftDays([...shiftDays]);
                           }

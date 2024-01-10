@@ -36,15 +36,29 @@ namespace DigitecToolAPI.Controllers
         public async Task<ActionResult> SaveMonthAsync([FromBody] List<RawShift> updatedShifts)
         {
             var result = await SaveShifts.SaveShiftsToDB(updatedShifts);
-            Console.WriteLine(updatedShifts);
 
             if (result)
             {
-                return Ok("Shifts updated successfully.");
+                return Ok();
             }
             else
             {
-                return StatusCode(500, "Internal Server Error");
+                return BadRequest();
+            }
+        }
+
+        [HttpPut("saveday")]
+        public async Task<ActionResult> SaveDayAsync([FromBody] RawShift updatedShift)
+        {
+            var result = await SaveShifts.SaveShiftDayToDB(updatedShift);
+
+            if (result)
+            {
+                return Ok();
+            }
+            else
+            {
+                return BadRequest();
             }
         }
 
