@@ -7,7 +7,7 @@ namespace DigitecToolAPI
     public class GenerateWorkerShifts
     {
 
-        public async Task<List<WorkerShift>> GetShiftsForCurrentMonthAsync()
+        public static async Task<List<WorkerShift>> GetShiftsForCurrentMonthAsync()
         {
             try
             {
