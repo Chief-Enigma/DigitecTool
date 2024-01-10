@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
+
 import Get from "../../Functions/Api/Requests/Get";
-import { ShiftDayTable } from "../Shiftplan/ShiftplanComponents/ShiftDayTable";
+
+import { ShiftDayTable } from "./ShiftplanComponents/ShiftDayTable";
 
 import "./ShiftplanComponents/ShiftplanStyle.css";
 
@@ -11,7 +13,6 @@ export const ShiftLayouts = [
   { shiftID: "W", shiftname: "Wartung", backgroundcolor: "#1F85DE" },
   { shiftID: "TD", shiftname: "Büro", backgroundcolor: "#999966" },
   { shiftID: "A", shiftname: "Abwesend", backgroundcolor: "#ffffff" },
-  // { shiftID: "-", shiftname: "Abwesend", backgroundcolor: "#ffffff" }
 ];
 
 function getDaysInMonth(year, month) {
@@ -30,7 +31,6 @@ function generateShiftDayTables(workerShifts) {
   const currentMonth = referenceDate.getMonth() + 1;
   const currentDay = referenceDate.getDate();
   const daysInCurrentMonth = getDaysInMonth(currentYear, currentMonth);
-  const daysLeftInMonth = daysInCurrentMonth - currentDay + 1;
 
   //Construct ShiftDate
   function getShiftDate(year, month, day) {
