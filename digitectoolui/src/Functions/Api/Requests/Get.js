@@ -40,8 +40,8 @@ class Get {
   }
 
   // Get MonthPlan
-  async GetShiftPlanForMonth() {
-    const url = ApiRequest.baseURL + "Shift/currentmonth";
+  async GetShiftPlanForMonth(month) {
+    const url = ApiRequest.baseURL + "Shift/getplan/" + month;
     try {
       return await ApiRequest.request(url, "GET", undefined);
     } catch (error) {
