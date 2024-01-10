@@ -41,7 +41,7 @@ class Get {
 
   // Get MonthPlan
   async GetShiftPlanForMonth() {
-    const url = ApiRequest.baseURL + "Login/currentmonth";
+    const url = ApiRequest.baseURL + "Shift/currentmonth";
     try {
       return await ApiRequest.request(url, "GET", undefined);
     } catch (error) {
