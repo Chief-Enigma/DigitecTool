@@ -50,7 +50,6 @@ namespace DigitecToolAPI
             return shifts;
         }
 
-
         public static async Task<List<WorkerShift>> GetShiftsForCurrentMonthAsync(string month)
         {
             List<Employee>? employees = await GetEmployees.GetAllEmployeesAsync();
