@@ -33,8 +33,6 @@ namespace DigitecToolAPI
                         await RawShift_DB.InsertOneAsync(updatedShift);
                     }
                 }
-
-                Console.WriteLine("Shifts updated successfully.");
                 return true;
             }
             catch (Exception ex)
@@ -44,6 +42,39 @@ namespace DigitecToolAPI
                 return false;
             }
         }
+
+        public static async Task<bool> SaveShiftDayToDB(RawShift updatedShift)
+        {
+            try
+            {
+                var filter = Builders<RawShift>.Filter.Eq(x => x.PersonalNumber, updatedShift.PersonalNumber)
+                           & Builders<RawShift>.Filter.Eq(x => x.ShiftDate, updatedShift.ShiftDate);
+
+                var existingShift = await RawShift_DB.Find(filter).FirstOrDefaultAsync();
+
+                if (existingShift != null)
+                {
+                    existingShift.Shift = updatedShift.Shift;
+                    existingShift.Job = updatedShift.Job;
+                    existingShift.Note = updatedShift.Note;
+
+                    await RawShift_DB.ReplaceOneAsync(filter, existingShift);
+                }
+                else
+                {
+                    await RawShift_DB.InsertOneAsync(updatedShift);
+                }
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error at SaveShiftDayToDB: {ex.Message}");
+                Console.WriteLine("Internal Server Error");
+                return false;
+            }
+        }
+
 
     }
 }

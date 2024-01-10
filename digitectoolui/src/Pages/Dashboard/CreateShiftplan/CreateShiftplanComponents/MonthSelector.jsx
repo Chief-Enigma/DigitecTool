@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Post from "../../../../Functions/Api/Requests/Post";
 import Get from "../../../../Functions/Api/Requests/Get";
 
@@ -19,18 +19,17 @@ export const MonthSelector = ({ onResponse, personalNumber }) => {
     "Dezember",
   ];
 
-  const handleMonthChange = (event) => {
-    setSelectedMonth(event.target.value);
-  };
+  const handleMonthChange = async (event) => {
+    const newSelectedMonth = event.target.value;
+    setSelectedMonth(newSelectedMonth);
 
-  const handleButtonClick = async () => {
     try {
       const employeeResponse = await Get.GetEmployeeByPersonalNumber(
         personalNumber
       );
 
       const shiftResponse = await Post.GetShiftMonth({
-        month: selectedMonth,
+        month: newSelectedMonth,
         year: 2024,
         team: employeeResponse.team,
       });
@@ -44,6 +43,14 @@ export const MonthSelector = ({ onResponse, personalNumber }) => {
       console.error("Error making POST request:", error);
     }
   };
+
+  useEffect(() => {
+    // Führe die API-Anfrage aus, wenn ein Monat ausgewählt ist
+    if (selectedMonth) {
+      handleMonthChange({ target: { value: selectedMonth } });
+    }
+  }, [selectedMonth]); // Höre auf Änderungen von selectedMonth
+
   return (
     <div className="MonthSelectorContainer">
       <label>Monat wählen:</label>
@@ -57,9 +64,6 @@ export const MonthSelector = ({ onResponse, personalNumber }) => {
           </option>
         ))}
       </select>
-      <button disabled={!selectedMonth} onClick={handleButtonClick}>
-        Erstellen
-      </button>
     </div>
   );
 };
