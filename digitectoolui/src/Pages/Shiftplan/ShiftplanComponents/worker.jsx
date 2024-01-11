@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 export const Worker = ({ worker }) => {
-  const shouldShowJob = !["F", "K", "KR", "-", "A"].includes(worker.job);
+  const shouldShowJob = !["F", "K", "KR", "-"].includes(worker.job);
 
   const getAbbreviation = (text) => {
     return text
