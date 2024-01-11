@@ -42,24 +42,23 @@ export const EmployeeTable = ({ searchInput }) => {
   }, [searchInput, employees]);
 
   const sortAndSetEmployees = (employeeArray) => {
-    const sortedEmployees = employeeArray.sort((a, b) => {
-      const roleOrder = {
-        "Shift Manager": 0,
-        "Maintenance Technician": 1,
-        "Junior Maintenance Technician": 2,
-      };
+    const roleOrder = {
+      "Shift Manager": 0,
+      "Maintenance Technician": 1,
+      "Junior Maintenance Technician": 2,
+    };
 
-      const roleComparison = roleOrder[a.workerRole] - roleOrder[b.workerRole];
+    const sortedEmployees = employeeArray.sort((a, b) => {
+      const roleA = a.workerRole in roleOrder ? a.workerRole : "Other";
+      const roleB = b.workerRole in roleOrder ? b.workerRole : "Other";
+
+      const roleComparison = roleOrder[roleA] - roleOrder[roleB];
       if (roleComparison !== 0) {
         return roleComparison;
       }
 
-      const personalNumberA = isNaN(a.personalNumber)
-        ? 0
-        : Number(a.personalNumber);
-      const personalNumberB = isNaN(b.personalNumber)
-        ? 0
-        : Number(b.personalNumber);
+      const personalNumberA = isNaN(a.personalNumber) ? 0 : Number(a.personalNumber);
+      const personalNumberB = isNaN(b.personalNumber) ? 0 : Number(b.personalNumber);
 
       return personalNumberA - personalNumberB;
     });
