@@ -11,7 +11,7 @@ export const AccountMain = () => {
       <div className="LoginContainer">
         <div style={{textAlign: 'center'}} className="InputContainer">
         <button className="LoginButton" onClick={handleLogout}>
-          Log In!
+          Log Out!
         </button>
         </div>
       </div>
