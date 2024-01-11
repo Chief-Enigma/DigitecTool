@@ -36,7 +36,7 @@ namespace DigitecToolAPI
                         {
                             PersonalNumber = employee.PersonalNumber,
                             ShiftDate = shiftDate,
-                            Shift = "FS",
+                            Shift = "-",
                         };
 
                         RawShift? newShiftFromDB = await SetRawShifts.SaveRawShiftToDatabase(newRawShift);
