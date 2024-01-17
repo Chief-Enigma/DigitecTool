@@ -21,7 +21,7 @@ namespace DigitecToolAPI.Controllers
         public async Task<ActionResult> GetAsync(string month)
         {
             var workerShifts = await GenerateShifts.GetShiftsForCurrentMonthAsync(month);
-            
+
             if (workerShifts != null)
             {
                 return Ok(workerShifts);
@@ -50,9 +50,9 @@ namespace DigitecToolAPI.Controllers
         {
             var result = await SaveShifts.SaveShiftDayToDB(updatedShift);
 
-            if (result)
+            if (result != null)
             {
-                return Ok();
+                return Ok(result);
             }
             else
             {

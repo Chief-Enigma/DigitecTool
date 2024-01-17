@@ -16,6 +16,20 @@ export const PlaningContainer = ({ shiftMonth, employeesTeam }) => {
     "K",
     "-",
   ];
+
+  const getShiftColor = (shift) => {
+    switch (shift) {
+      case "FS":
+        return "222, 31, 67";
+      case "SS":
+        return "153, 198, 142";
+      case "TD":
+        return "153, 153, 102";
+      default:
+        return "";
+    }
+  };
+
   const [selectedJobType, setSelectedJobType] = useState(null);
   const [shiftDays, setShiftDays] = useState([]);
 
@@ -26,10 +40,31 @@ export const PlaningContainer = ({ shiftMonth, employeesTeam }) => {
 
   const SaveDay = async (shiftday) => {
     try {
+      // Speichere den Schichttag auf dem Server
       const response = await Put.SaveShiftDay(shiftday);
       console.log(response);
+
+      // Überprüfe, ob die Antwort eine aktualisierte ShiftDay-Information enthält
+      if (response && response.data) {
+        const updatedShift = response.data;
+
+        // Finde den Index des aktualisierten Schichts im lokalen State
+        const indexOfUpdatedShift = shiftDays.findIndex(
+          (shift) => shift.id === updatedShift.id
+        );
+
+        if (indexOfUpdatedShift !== -1) {
+          // Aktualisiere den lokalen State mit der aktualisierten Schicht
+          const updatedShiftDays = [...shiftDays];
+          updatedShiftDays[indexOfUpdatedShift] = updatedShift;
+          setShiftDays(updatedShiftDays);
+
+          // Aktualisiere den Jobtyp und die Hintergrundfarbe im lokalen State
+          setSelectedJobType(updatedShift.job);
+        }
+      }
     } catch (error) {
-      console.log("error at saving shift" + error);
+      console.log("Fehler beim Speichern der Schicht: " + error);
     }
   };
 
@@ -115,6 +150,11 @@ export const PlaningContainer = ({ shiftMonth, employeesTeam }) => {
                     <td
                       key={day.date + employee.personalNumber}
                       className="ShiftDayLabel"
+                      style={{
+                        backgroundColor: `rgba(${getShiftColor(
+                          matchingShift.shift
+                        )}, 0.3)`,
+                      }}
                       onClick={() => {
                         // Check if a job type is selected
                         if (selectedJobType) {
