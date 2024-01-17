@@ -83,6 +83,8 @@ export const PlaningContainer = ({ shiftMonth, employeesTeam }) => {
     return roleOrder[a.workerRole] - roleOrder[b.workerRole];
   });
 
+
+
   // Create a mapping of personal numbers to their shifts and sort shifts by date
   const employeeShiftsMap = {};
   shiftMonth.forEach((shift) => {
@@ -161,6 +163,8 @@ export const PlaningContainer = ({ shiftMonth, employeesTeam }) => {
                           // Update the selected job type for the clicked shift
                           if (matchingShift) {
                             matchingShift.job = selectedJobType;
+                            console.log("here is clicked!!!");
+                            console.log(matchingShift);
                             SaveDay(matchingShift);
                             // Update the shift days to trigger a re-render
                             setShiftDays([...shiftDays]);
