@@ -28,14 +28,13 @@ namespace DigitecToolAPI
                     existingShift.Note = updatedShift.Note;
 
                     await RawShift_DB.ReplaceOneAsync(filter, existingShift);
-                    return await existingShift;
                 }
                 else
                 {
                     await RawShift_DB.InsertOneAsync(updatedShift);
-                    return await updatedShift;
                 }
 
+                return await RawShift_DB.Find(filter).FirstOrDefaultAsync(); ;
             }
             catch (Exception ex)
             {
