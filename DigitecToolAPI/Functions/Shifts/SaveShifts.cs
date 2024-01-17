@@ -10,7 +10,7 @@ namespace DigitecToolAPI
 
         public static IMongoCollection<RawShift> RawShift_DB = Mongo.db.GetCollection<RawShift>("RawShifts");
 
-        public static async Task<bool> SaveShiftDayToDB(RawShift updatedShift)
+        public static async Task<RawShift?> SaveShiftDayToDB(RawShift updatedShift)
         {
             try
             {
@@ -34,13 +34,13 @@ namespace DigitecToolAPI
                     await RawShift_DB.InsertOneAsync(updatedShift);
                 }
 
-                return true;
+                return updatedShift;
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Error at SaveShiftDayToDB: {ex.Message}");
                 Console.WriteLine("Internal Server Error");
-                return false;
+                return null;
             }
         }
 
