@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react";
 import Put from "../../../../Functions/Api/Requests/Put";
 
 export const PlaningContainer = ({ shiftMonth, employeesTeam }) => {
+  const [selectedJobType, setSelectedJobType] = useState(null);
+  const [shiftDays, setShiftDays] = useState([]);
+
   const JobTypes = [
     "A",
     "A-TS",
@@ -20,60 +23,16 @@ export const PlaningContainer = ({ shiftMonth, employeesTeam }) => {
   const getShiftColor = (shift) => {
     switch (shift) {
       case "FS":
-        return "222, 31, 67";
+        return `rgba(222, 31, 67, 0.3)`;
       case "SS":
-        return "153, 198, 142";
+        return "rgba(153, 198, 142, 0.3)";
       case "TD":
-        return "153, 153, 102";
+        return "rgba(153, 153, 102, 0.3)";
       default:
         return "";
     }
   };
 
-  const [selectedJobType, setSelectedJobType] = useState(null);
-  const [shiftDays, setShiftDays] = useState([]);
-
-  const handleJobTypeClick = (jobType) => {
-    setSelectedJobType(jobType);
-    console.log(`Selected Job Type: ${jobType}`);
-  };
-
-  const SaveDay = async (shiftday) => {
-    try {
-      // Speichere den Schichttag auf dem Server
-      const response = await Put.SaveShiftDay(shiftday);
-      console.log(response);
-
-      // Überprüfe, ob die Antwort eine aktualisierte ShiftDay-Information enthält
-      if (response && response.data) {
-        const updatedShift = response.data;
-
-        // Finde den Index des aktualisierten Schichts im lokalen State
-        const indexOfUpdatedShift = shiftDays.findIndex(
-          (shift) => shift.id === updatedShift.id
-        );
-
-        if (indexOfUpdatedShift !== -1) {
-          // Aktualisiere den lokalen State mit der aktualisierten Schicht
-          const updatedShiftDays = [...shiftDays];
-          updatedShiftDays[indexOfUpdatedShift] = updatedShift;
-          setShiftDays(updatedShiftDays);
-
-          // Aktualisiere den Jobtyp und die Hintergrundfarbe im lokalen State
-          setSelectedJobType(updatedShift.job);
-        }
-      }
-    } catch (error) {
-      console.log("Fehler beim Speichern der Schicht: " + error);
-    }
-  };
-
-  useEffect(() => {
-    // Update the shift days whenever the selected job type changes
-    setShiftDays([]);
-  }, [selectedJobType]);
-
-  // Sort employees by role: Shift Manager, Maintenance, Juniors
   const sortedEmployees = employeesTeam.sort((a, b) => {
     const roleOrder = {
       "Shift Manager": 0,
@@ -83,9 +42,54 @@ export const PlaningContainer = ({ shiftMonth, employeesTeam }) => {
     return roleOrder[a.workerRole] - roleOrder[b.workerRole];
   });
 
+  const handleJobTypeClick = (jobType) => {
+    setSelectedJobType(jobType);
+  };
 
+  const ShiftDay = (matchingShift, day, employee) => {
+    return (
+      <td
+        key={day.date + employee.personalNumber}
+        className="ShiftDayLabel"
+        style={{
+          backgroundColor: getShiftColor(matchingShift.shift),
+        }}
+        onClick={() => {
+          if (selectedJobType) {
+            if (matchingShift) {
+              matchingShift.job = selectedJobType;
+              SaveDay(matchingShift);
+              console.log("Shiftbox", matchingShift);
+            }
+          }
+        }}
+      >
+        {matchingShift && matchingShift.job !== "" ? matchingShift.job : "-"}
+      </td>
+    );
+  };
 
-  // Create a mapping of personal numbers to their shifts and sort shifts by date
+  const SaveDay = async (shiftday) => {
+    await Put.SaveShiftDay(shiftday)
+      .then((res) => {
+        console.log("API-Antwort", res);
+
+        if (res.shift && selectedJobType) {
+          const updatedShiftDays = shiftDays.map((shift) =>
+            shift.personalNumber === shiftday.personalNumber &&
+            shift.shiftDate === shiftday.shiftDate
+              ? { ...shift, job: selectedJobType, shift: res.shift }
+              : shift
+          );
+          setShiftDays(updatedShiftDays);
+        }
+        return res.shift;
+      })
+      .catch((e) => {
+        console.log("Fehler beim Speichern der Schicht: ", e);
+      });
+  };
+
   const employeeShiftsMap = {};
   shiftMonth.forEach((shift) => {
     if (!employeeShiftsMap[shift.personalNumber]) {
@@ -131,10 +135,7 @@ export const PlaningContainer = ({ shiftMonth, employeesTeam }) => {
             </td>
             {daysInMonth.map((day) => (
               <td key={day.date} className="DayLabel">
-                <label>{`${day.date.slice(8)} ${day.dayName.substring(
-                  0,
-                  3
-                )}`}</label>
+                <label>{`${day.date.slice(8)} ${day.dayName}`}</label>
               </td>
             ))}
           </tr>
@@ -148,35 +149,7 @@ export const PlaningContainer = ({ shiftMonth, employeesTeam }) => {
                   const matchingShift = employeeShifts.find(
                     (shift) => shift.shiftDate === day.date
                   );
-                  return (
-                    <td
-                      key={day.date + employee.personalNumber}
-                      className="ShiftDayLabel"
-                      style={{
-                        backgroundColor: `rgba(${getShiftColor(
-                          matchingShift.shift
-                        )}, 0.3)`,
-                      }}
-                      onClick={() => {
-                        // Check if a job type is selected
-                        if (selectedJobType) {
-                          // Update the selected job type for the clicked shift
-                          if (matchingShift) {
-                            matchingShift.job = selectedJobType;
-                            console.log("here is clicked!!!");
-                            console.log(matchingShift);
-                            SaveDay(matchingShift);
-                            // Update the shift days to trigger a re-render
-                            setShiftDays([...shiftDays]);
-                          }
-                        }
-                      }}
-                    >
-                      {matchingShift && matchingShift.job !== ""
-                        ? matchingShift.job
-                        : "-"}
-                    </td>
-                  );
+                  return ShiftDay(matchingShift, day, employee);
                 })}
               </tr>
             );

@@ -96,7 +96,7 @@ namespace DigitecToolAPI
                 CultureInfo ci = CultureInfo.CurrentCulture;
                 Calendar cal = ci.Calendar;
                 CalendarWeekRule cwr = ci.DateTimeFormat.CalendarWeekRule;
-                DayOfWeek fdow = ci.DateTimeFormat.FirstDayOfWeek;
+                DayOfWeek fdow = ci.DateTimeFormat.FirstDayOfWeek +1 ;
 
                 DateTime shiftDateTime = new DateTime(shiftDate.Year, shiftDate.Month, shiftDate.Day);
                 return cal.GetWeekOfYear(shiftDateTime, cwr, fdow);
