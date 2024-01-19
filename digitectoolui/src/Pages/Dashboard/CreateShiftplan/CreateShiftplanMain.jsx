@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { MonthSelector } from "./CreateShiftplanComponents/MonthSelector";
-import { PlaningContainer2 } from "./CreateShiftplanComponents/PlaningContainer2";
+import { PlaningContainer } from "./CreateShiftplanComponents/PlaningContainer";
 
 import "./CreateShiftplanComponents/CreateShiftplanMain.css";
 
@@ -31,7 +31,7 @@ export const CreateShiftplanMain = ({ user }) => {
           personalNumber={user.personalnumber}
         />
       </div>
-      <PlaningContainer2 shiftMonth={shiftMonth} employeesTeam={employeesTeam} />
+      <PlaningContainer shiftMonth={shiftMonth} employeesTeam={employeesTeam} />
     </div>
   );
 };

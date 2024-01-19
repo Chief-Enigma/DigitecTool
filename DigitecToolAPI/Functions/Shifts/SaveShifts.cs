@@ -51,7 +51,7 @@ namespace DigitecToolAPI
 
             Console.WriteLine("Teamname: " + Employee.Team + " Calender week and date: " + ShiftDate + " " + calendarWeek);
 
-            string[] shiftJobs = { "F", "K", "TD", "KR", "-" };
+            string[] shiftJobs = ["F", "K", "TD", "KR", "-"];
 
             if (shiftJobs.Contains(Job))
             {
