@@ -1,19 +1,36 @@
-
 export const GetShiftStyles = ({ shiftDay }) => {
   const getShiftColor = (shift) => {
     switch (shift) {
       case "FS":
-        return `rgba(222, 31, 67, 0.15)`;
+        return {
+          backgroundColor: "rgba(255, 41, 41, 0.15)",
+          borderColor: "rgba(255, 41, 41, 0.6)",
+        };
       case "SS":
-        return `rgba(153, 198, 142, 0.15)`;
+        return {
+          backgroundColor: "rgba(73, 255, 41, 0.15)",
+          borderColor: "rgba(73, 255, 41, 0.6)",
+        };
       case "TD":
-        return `rgba(153, 153, 102, 0.15)`;
+        return {
+          backgroundColor: "rgba(153, 153, 102, 0.15)",
+          borderColor: "rgba(153, 153, 102, 0.6)",
+        };
       case "K":
-        return `rgba(153, 153, 102,0.15)`;
+        return {
+          backgroundColor: "rgba(255, 41, 180, 0)",
+          borderColor: "rgba(255, 41, 180, 0.6)",
+        };
       case "F":
-        return `rgba(153, 153, 102, 0.15)`;
+        return {
+          backgroundColor: "rgba(41, 134, 255, 0)",
+          borderColor: "rgba(41, 134, 255, 0.6)",
+        };
       case "KR":
-        return `rgba(255, 71, 93, 0.15)`;
+        return {
+          backgroundColor: "rgba(255, 41, 77, 0)",
+          borderColor: "rgba(255, 41, 77, 0.6)",
+        };
       default:
         return "";
     }
@@ -25,30 +42,30 @@ export const GetShiftStyles = ({ shiftDay }) => {
       case "A-AKL":
       case "A-TS":
       case "A-WE":
-        return `rgba(235, 28, 28, 1)`;
+        return "rgb(254, 254, 254)";
       case "B":
-        return "#29e348";
+        return "rgb(254, 254, 254)";
       case "SR":
-        return "#29e444";
+        return "rgb(254, 254, 254)";
       case "W":
       case "SH-W":
-        return "#1c7bff";
+        return "rgb(254, 254, 254)";
       case "TD":
-        return "#1c7bff";
+        return "rgb(254, 254, 254)";
       case "F":
-        return "#1c7bff";
+        return "rgb(41, 134, 255)";
       case "K":
-        return "#1c7bff";
+        return "rgb(255, 41, 180)";
       case "KR":
-        return `rgba(245, 10, 38, 0.15)`;
+        return "rgb(255, 41, 77)";
       default:
         return "";
     }
   };
 
   return {
-    backgroundColor: `${getShiftColor(shiftDay.shift)}`,
-    borderColor: `${getShiftColor(shiftDay.shift)}`,
-    color: `${getJobColor(shiftDay.job)}`,
+    backgroundColor: getShiftColor(shiftDay.shift).backgroundColor,
+    borderColor: getShiftColor(shiftDay.shift).borderColor,
+    color: getJobColor(shiftDay.job),
   };
 };

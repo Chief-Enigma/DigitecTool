@@ -1,81 +1,11 @@
 import React, { useState } from "react";
 import Put from "../../../../Functions/Api/Requests/Put";
-//import { GetShiftStyles } from "./GetShiftStyles";
+import { GetShiftStyles } from "./GetShiftStyles";
 
 import { PlanSettings } from "./PlanSettings";
 import { PlanHeader } from "./PlanHeader";
 
-const GetShiftStyles = ({ shiftDay }) => {
-  const getShiftColor = (shift) => {
-    switch (shift) {
-      case "FS":
-        return {
-          backgroundColor: "rgba(222, 31, 67, 0.15)",
-          borderColor: "rgba(222, 31, 67, 0.6)",
-        };
-      case "SS":
-        return {
-          backgroundColor: "rgba(153, 198, 142, 0.15)",
-          borderColor: "rgba(153, 198, 142, 0.6)",
-        };
-      case "TD":
-        return {
-          backgroundColor: "rgba(153, 153, 102, 0.15)",
-          borderColor: "rgba(153, 153, 102, 0.6)",
-        };
-      case "K":
-        return {
-          backgroundColor: "rgba(153, 153, 102, 0.15)",
-          borderColor: "rgba(153, 153, 102, 0.6)",
-        };
-      case "F":
-        return {
-          backgroundColor: "rgba(153, 153, 102, 0.15)",
-          borderColor: "rgba(153, 153, 102, 0.6)",
-        };
-      case "KR":
-        return {
-          backgroundColor: "rgba(255, 71, 93, 0.15)",
-          borderColor: "rgba(255, 71, 93, 0.6)",
-        };
-      default:
-        return "";
-    }
-  };
 
-  const getJobColor = (job) => {
-    switch (job) {
-      case "A":
-      case "A-AKL":
-      case "A-TS":
-      case "A-WE":
-        return "#eb1c1c";
-      case "B":
-        return "#29e348";
-      case "SR":
-        return "#29e348";
-      case "W":
-      case "SH-W":
-        return "#1c7bff";
-      case "TD":
-        return "#1c7bff";
-      case "F":
-        return "#1c7bff";
-      case "K":
-        return "#1c7bff";
-      case "KR":
-        return "#ed2d44";
-      default:
-        return "";
-    }
-  };
-
-  return {
-    backgroundColor: getShiftColor(shiftDay.shift).backgroundColor,
-    borderColor: getShiftColor(shiftDay.shift).borderColor,
-    color: getJobColor(shiftDay.job),
-  };
-};
 
 export const PlaningContainer = ({ shiftMonth, employeesTeam }) => {
   const [selectedJobType, setSelectedJobType] = useState(null);
