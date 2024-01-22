@@ -9,7 +9,7 @@ class Post {
     } catch (error) {
       console.error("Error at login: ", error);
     }
-  }
+  } 
 
   // Post new Employee
   async AddLogin(data) {
