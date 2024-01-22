@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import Get from "../../../../Functions/Api/Requests/Get";
-
 import { TicketRow } from "./TicketRow";
 
 export const TicketTable = ({ searchInput }) => {
@@ -11,11 +10,11 @@ export const TicketTable = ({ searchInput }) => {
   useEffect(() => {
     const getTickets = async () => {
       try {
-        const result = await Get.GetAllEmployees(); //Change to Tickets
-        setEmployees(result);
+        const result = await Get.GetAllTickets();
+        setTickets(result);
         console.log(result);
       } catch (error) {
-        console.error("Error fetching employees:", error);
+        console.error("Error getting tickets:", error);
       }
     };
     getTickets();
@@ -23,24 +22,49 @@ export const TicketTable = ({ searchInput }) => {
 
   useEffect(() => {
     if (searchInput.trim() === "") {
-      sortAndSetEmployees(employees.slice());
+      sortAndSetTickets(tickets.slice());
       return;
     }
 
-    const filteredEmployees = employees.filter((employee) => {
+    const filteredTickets = tickets.filter((ticket) => {
       const lowerCaseSearchInput = searchInput.toLowerCase();
 
       if (
         !isNaN(searchInput) &&
-        employee.personalNumber.toString().startsWith(searchInput)
+        ticket.ticketNumber.toString().startsWith(searchInput)
       ) {
         return true;
       }
-      return employee.firstName.toLowerCase().startsWith(lowerCaseSearchInput);
+      return ticket.ticketTitle.toLowerCase().startsWith(lowerCaseSearchInput);
     });
 
-    sortAndSetEmployees(filteredEmployees);
-  }, [searchInput, employees]);
+    sortAndSetTickets(filteredTickets);
+  }, [searchInput, tickets]);
+
+  const sortAndSetTickets = (ticketArray) => {
+    const roleOrder = {
+      "Shift Manager": 0,
+      "Maintenance Technician": 1,
+      "Junior Maintenance Technician": 2,
+    };
+
+    const sortedTickets = ticketArray.sort((a, b) => {
+      const roleA = a.workerRole in roleOrder ? a.workerRole : "Other";
+      const roleB = b.workerRole in roleOrder ? b.workerRole : "Other";
+
+      const roleComparison = roleOrder[roleA] - roleOrder[roleB];
+      if (roleComparison !== 0) {
+        return roleComparison;
+      }
+
+      const personalNumberA = isNaN(a.personalNumber) ? 0 : Number(a.personalNumber);
+      const personalNumberB = isNaN(b.personalNumber) ? 0 : Number(b.personalNumber);
+
+      return personalNumberA - personalNumberB;
+    });
+
+    setTicketsSearchResults(sortedTickets);
+  };
 
   const toggleRow = (personalNumber) => {
     const newExpandedRows = [...expandedRows];
@@ -65,7 +89,7 @@ export const TicketTable = ({ searchInput }) => {
             <td>Erstellt von</td>
             <td></td>
           </tr>
-          {employeeSearchResults.map((employee) => (
+          {ticketsSearchResults.map((employee) => (
             <TicketRow
               key={employee.personalNumber}
               employee={employee}

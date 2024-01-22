@@ -13,7 +13,7 @@ export const TicketsMain = ({ user }) => {
   return (
     <div className="DashboardContendBox">
       <TickerHeader onSearchChange={handleSearchChange} />
-      <TicketTable />
+      <TicketTable searchInput={searchInput} />
     </div>
   );
 };

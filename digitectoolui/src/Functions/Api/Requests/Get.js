@@ -48,6 +48,26 @@ class Get {
       console.error("Error at GetShiftPlanForMonth: ", error);
     }
   }
+
+  // Get all Ticket Props
+  async GetAllTickets() {
+    const url = ApiRequest.baseURL + "Tickets/all";
+    try {
+      return await ApiRequest.request(url, "GET", undefined);
+    } catch (error) {
+      console.error("Error at GetAllTickets: ", error);
+    }
+  }
+
+  // Get Tickettext by Ticketnumber
+  async GetTicketText(ticketNumber) {
+    const url = ApiRequest.baseURL + "Tickets/text/" + ticketNumber;
+    try {
+      return await ApiRequest.request(url, "GET", undefined);
+    } catch (error) {
+      console.error("Error at GetTicketText: ", error)
+    }
+  }
 }
 
 const GetRequest = new Get();
