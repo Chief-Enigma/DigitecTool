@@ -26,7 +26,7 @@ export const TickerHeader = ({ onSearchChange }) => {
           <span className="material-symbols-outlined">person_add</span>
         </Link>
       </div>
-      <div className={`AddEmployeeContainer ${addTicket ? "open" : ""}`}>
+      <div className={`AddTicketContainer ${addTicket ? "open" : ""}`}>
         {/* <EmployeeAddMain /> */}
       </div>
     </div>

@@ -5,7 +5,6 @@ import { TicketTable } from "./TicketsComponents/TicketTable";
 
 export const TicketsMain = ({ user }) => {
   const [searchInput, setSearchInput] = useState("");
-  console.log("User:", user.permissions);
 
   const handleSearchChange = (value) => {
     setSearchInput(value);

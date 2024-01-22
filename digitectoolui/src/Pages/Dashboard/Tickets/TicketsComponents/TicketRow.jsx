@@ -1,17 +1,23 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-export const TicketRow = () => {
+
+export const TicketRow = ({ ticket, expanded, toggleRow }) => {
   return (
     <>
-      <tr>
-        <td>Nr. 00001</td>
-        <td>9.1.2024</td>
-        <td>A A-AKL</td>
-        <td>RBG04</td>
-        <td>Zeljko Sakac</td>
+      <tr className={`EmployeeRow ${expanded ? "open" : ""}`}>
+        <td>{ticket.ticketNumber}</td>
+        <td>{ticket.creationDate}</td>
+        <td>{ticket.location}</td>
+        <td>{ticket.akz}</td>
+        <td>{ticket.createdBy}</td>
         <td></td>
       </tr>
+      {true && (
+        <tr>
+          <td colSpan="6">{ticket.ticketText}</td>
+        </tr>
+      )}
     </>
   );
 };
