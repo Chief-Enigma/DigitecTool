@@ -11,6 +11,7 @@ class Get {
     }
   }
 
+  // Get all Employees from a Team
   async GetAllEmployeesByTeam(team) {
     const url = ApiRequest.baseURL + "Employee/team/" + team;
     try {
@@ -20,6 +21,7 @@ class Get {
     }
   }
 
+  // Get single Employee by Personalnumber
   async GetEmployeeByPersonalNumber(id) {
     const url = ApiRequest.baseURL + "Employee/" + id;
     try {
