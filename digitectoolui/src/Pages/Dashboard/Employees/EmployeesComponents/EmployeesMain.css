@@ -83,3 +83,23 @@
   border: 2px solid #333;
   border-radius: 10px;
 }
+
+
+.TicketDataContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0.4rem 0;
+  padding: 0.4rem;
+  border: 2px solid #333;
+  border-radius: 10px;
+
+}
+
+.TicketDataContainer textarea{
+  border: none;
+  background-color: transparent;
+  resize: none;
+  outline: none;
+  color: #fefefe;
+}

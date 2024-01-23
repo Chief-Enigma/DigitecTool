@@ -10,7 +10,7 @@ export const EmployeeHeader = ({ onSearchChange }) => {
     const inputValue = event.target.value;
     onSearchChange(inputValue);
   };
-  const handleAddEmployee = (event) => {
+  const handleAddEmployee = () => {
     setAddEmployee(!addEmployee);
   };
   return (

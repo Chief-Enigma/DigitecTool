@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
+import { TicketAddMain } from "./TicketAddMain";
+
 export const TickerHeader = ({ onSearchChange }) => {
   const [addTicket, setAddTicket] = useState(false);
 
@@ -8,7 +10,7 @@ export const TickerHeader = ({ onSearchChange }) => {
     const inputValue = event.target.value;
     onSearchChange(inputValue);
   };
-  const handleAddTicket = (event) => {
+  const handleAddTicket = () => {
     setAddTicket(!addTicket);
   };
   return (
@@ -27,7 +29,7 @@ export const TickerHeader = ({ onSearchChange }) => {
         </Link>
       </div>
       <div className={`AddTicketContainer ${addTicket ? "open" : ""}`}>
-        {/* <EmployeeAddMain /> */}
+        <TicketAddMain />
       </div>
     </div>
   );

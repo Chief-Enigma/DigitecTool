@@ -52,8 +52,8 @@ class Get {
   }
 
   // Get all Ticket Props
-  async GetAllTickets() {
-    const url = ApiRequest.baseURL + "Ticket/all";
+  async GetAllTickets(ticketstate) {
+    const url = ApiRequest.baseURL + "Ticket/all/" + ticketstate;
     try {
       return await ApiRequest.request(url, "GET", undefined);
     } catch (error) {
@@ -63,11 +63,11 @@ class Get {
 
   // Get Tickettext by Ticketnumber
   async GetTicketText(ticketNumber) {
-    const url = ApiRequest.baseURL + "Ticket/text/" + ticketNumber;
+    const url = ApiRequest.baseURL + "Ticket/tickettext/" + ticketNumber;
     try {
       return await ApiRequest.request(url, "GET", undefined);
     } catch (error) {
-      console.error("Error at GetTicketText: ", error)
+      console.error("Error at GetTicketText: ", error);
     }
   }
 }
