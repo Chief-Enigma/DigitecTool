@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState} from "react";
 
 import Post from "../../../../Functions/Api/Requests/Post";
 
@@ -26,25 +26,18 @@ export const TicketAddMain = () => {
   };
 
   const handleKeyDown = (e) => {
-    // Wenn die Tab-Taste gedrückt wird, füge einen Tabulator ein
     if (e.key === "Tab") {
-      e.preventDefault(); // Verhindert den Standard-Tab-Fokuswechsel
+      e.preventDefault();
       const { selectionStart, selectionEnd, value } = e.target;
-
-      // Teile den Text in zwei Teile an der Cursorposition
       const textBeforeCursor = value.substring(0, selectionStart);
       const textAfterCursor = value.substring(selectionEnd);
-
-      // Füge einen Tabulator an der Cursorposition ein
       const updatedText = textBeforeCursor + "\t" + textAfterCursor;
 
-      // Aktualisiere den Text im State
       setInputText((prevData) => ({
         ...prevData,
         TicketText: updatedText,
       }));
 
-      // Setze den Cursor nach dem eingefügten Tabulator
       const cursorPosition = selectionStart + 1;
       e.target.setSelectionRange(cursorPosition, cursorPosition);
     }

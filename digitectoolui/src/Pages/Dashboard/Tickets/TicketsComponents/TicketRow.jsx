@@ -1,44 +1,83 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import Get from "../../../../Functions/Api/Requests/Get";
 
 export const TicketRow = ({ ticket, expanded, toggleRow }) => {
-  const [ticketText, setTicketText] = useState("");
+  //const ticketStates = ["open", "closed", "to plan", "planed"];
 
-  const getTicketText = async () => {
-    const response = await Get.GetTicketText(ticket.ticketNumber);
-    setTicketText(response.ticketText);
+
+  const formatCreationDate = () => {
+    const creationDate = new Date(ticket.creationDate);
+    const formattedDate = creationDate.toLocaleDateString();
+    return formattedDate;
+  };
+
+  const formatLocation = () => {
+    const locationString = ticket.location.map((location) => (
+      <span key={location} className="Locations">
+        {location}
+      </span>
+    ));
+    return locationString;
+  };
+
+  const getStateColor = (state) => {
+    switch (state) {
+      case "open":
+        return "10, 207, 3"; // Green
+      case "to plan":
+        return "250, 174, 10"; // Orange
+      case "closed":
+        return "250, 38, 10"; // Red
+      case "planed":
+        return "10, 76, 250"; // Blue
+      default:
+        return "255, 255, 255"; // Default color or any other color you want
+    }
   };
 
   return (
     <>
       <tr className={`EmployeeRow ${expanded ? "open" : ""}`}>
         <td>{ticket.ticketNumber}</td>
-        <td>{ticket.creationDate}</td>
-        <td>{ticket.location}</td>
+        <td>{formatCreationDate()}</td>
+        <td>{ticket.ticketTitle}</td>
+        <td>{formatLocation()}</td>
         <td>{ticket.akz}</td>
         <td>{ticket.createdBy}</td>
+        <td>
+          <label
+            className="RoleLabel"
+            style={{
+              backgroundColor: `rgba(${getStateColor(
+                ticket.ticketState
+              )}, 0.3)`,
+              borderColor: `rgba(${getStateColor(ticket.ticketState)}, 1)`,
+            }}
+          >
+            {ticket.ticketState}
+          </label>
+        </td>
         <td>
           <Link
             className="EmployeeLink"
             onClick={() => {
               toggleRow(ticket.ticketNumber);
-              getTicketText();
             }}
           >
-            <span className="toggleicon material-symbols-outlined">expand_more</span>
+            <span className="toggleicon material-symbols-outlined">
+              expand_more
+            </span>
           </Link>
         </td>
       </tr>
       {expanded && (
         <tr className="ExpandedRow">
-          <td colSpan="6">
+          <td colSpan="7">
             <div className={`TicketDataContainer ${expanded ? "open" : ""}`}>
               <textarea
+              
                 readOnly
-                
-                value={ticketText}
-                style={{ width: "100%", height: "100px", resize:'none' }}
+                value={ticket.ticketText}
               />
             </div>
           </td>
