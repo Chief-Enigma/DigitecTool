@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 export const TicketRow = ({ ticket, expanded, toggleRow }) => {
-  //const ticketStates = ["open", "closed", "to plan", "planed"];
+  //const ticketStates = ["open", "to plan", "planed", "closed"];
 
 
   const formatCreationDate = () => {

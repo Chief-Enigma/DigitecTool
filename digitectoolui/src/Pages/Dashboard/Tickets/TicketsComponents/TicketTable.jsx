@@ -4,7 +4,7 @@ import { TicketRow } from "./TicketRow";
 
 export const TicketTable = ({ searchInput }) => {
   const [tickets, setTickets] = useState([]);
-  //const [ticketsSearchResults, setTicketsSearchResults] = useState([]);
+  const [ticketsSearchResults, setTicketsSearchResults] = useState([]);
   const [expandedRows, setExpandedRows] = useState([]);
 
   useEffect(() => {
@@ -12,7 +12,6 @@ export const TicketTable = ({ searchInput }) => {
       try {
         const result = await Get.GetAllTickets("all");
         setTickets(result);
-        console.log(result);
       } catch (error) {
         console.error("Error getting tickets:", error);
       }
@@ -23,7 +22,6 @@ export const TicketTable = ({ searchInput }) => {
   const getTicketText = async (ticketNumber) => {
     await Get.GetTicketText(ticketNumber)
       .then((res) => {
-        console.log("API-Antwort", res);
         const updatedTickets = [...tickets];
         const updatedTicketIndex = updatedTickets.findIndex(
           (ticket) => ticket.ticketNumber === res.ticketNumber
@@ -34,14 +32,55 @@ export const TicketTable = ({ searchInput }) => {
         } else {
           updatedTickets.push(res);
         }
-
-        console.log(updatedTickets);
       })
       .catch((e) => {
         console.log("Fehler beim TicketText holen: ", e);
       });
+  };
 
-    console.log(tickets);
+  useEffect(() => {
+    if (searchInput.trim() === "") {
+      sortAndSetTickets(tickets.slice());
+      return;
+    }
+
+    const filteredTickets = tickets.filter((ticket) => {
+      const lowerCaseSearchInput = searchInput.toLowerCase();
+
+      if (
+        !isNaN(searchInput) &&
+        ticket.ticketNumber.toString().startsWith(searchInput)
+      ) {
+        return true;
+      }
+      return ticket.ticketTitle.toLowerCase().startsWith(lowerCaseSearchInput);
+    });
+
+    sortAndSetTickets(filteredTickets);
+  }, [searchInput, tickets]);
+
+  const sortAndSetTickets = (ticketArray) => {
+    const statusOrder = {
+      open: 0,
+      "to plan": 1,
+      planed: 2,
+      closed: 3,
+    };
+
+    const sortedTickets = ticketArray.sort((a, b) => {
+      const dateComparison =
+        new Date(b.creationDate) - new Date(a.creationDate);
+      if (dateComparison !== 0) {
+        return dateComparison;
+      }
+
+      const statusA = a.ticketState in statusOrder ? a.ticketState : "Other";
+      const statusB = b.ticketState in statusOrder ? b.ticketState : "Other";
+
+      return statusOrder[statusA] - statusOrder[statusB];
+    });
+
+    setTicketsSearchResults(sortedTickets);
   };
 
   const toggleRow = (ticketNumber) => {
@@ -70,7 +109,7 @@ export const TicketTable = ({ searchInput }) => {
             <td>Status</td>
             <td></td>
           </tr>
-          {tickets.map((ticket) => (
+          {ticketsSearchResults.map((ticket) => (
             <TicketRow
               key={ticket.ticketNumber}
               ticket={ticket}
