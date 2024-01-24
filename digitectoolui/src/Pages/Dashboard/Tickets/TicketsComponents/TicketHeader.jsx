@@ -25,7 +25,7 @@ export const TickerHeader = ({ onSearchChange }) => {
           onChange={handleSearchInputChange}
         />
         <Link onClick={handleAddTicket} className="SearchBarButtonEnd">
-          <span className="material-symbols-outlined">person_add</span>
+          <span className="material-symbols-outlined">post_add</span>
         </Link>
       </div>
       <div className={`AddTicketContainer ${addTicket ? "open" : ""}`}>

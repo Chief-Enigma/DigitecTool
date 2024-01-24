@@ -36,6 +36,7 @@
   margin-top: 2rem;
   width: stretch;
   border-collapse: collapse;
+  white-space: nowrap;
 }
 
 .EmployeeTitleRow {
@@ -64,7 +65,7 @@
 
 .EmployeeRow td,
 .EmployeeRow th {
-  padding: 0.5rem;
+  padding: 0.4rem;
 }
 
 .EmployeeLink {
@@ -84,7 +85,6 @@
   border-radius: 10px;
 }
 
-
 .TicketDataContainer {
   display: flex;
   flex-direction: column;
@@ -93,10 +93,12 @@
   padding: 0.4rem;
   border: 2px solid #333;
   border-radius: 10px;
-
 }
 
-.TicketDataContainer textarea{
+.TicketDataContainer textarea {
+  width: 100%;
+  height: 150px;
+  overflow-y: scroll;
   border: none;
   background-color: transparent;
   resize: none;
@@ -104,10 +106,40 @@
   color: #fefefe;
 }
 
+/* width */
+textarea::-webkit-scrollbar {
+  width: 2px;
+  padding-right: 2px;
+}
+
+/* Track */
+textarea::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Handle */
+textarea::-webkit-scrollbar-thumb {
+  background: #333;
+}
+
+/* Handle on hover */
+textarea::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
 .EmployeeRow .toggleicon {
-  
+  transform: rotate(90deg);
+  transition: transform 0.4s ease;
 }
 
 .EmployeeRow.open .toggleicon {
-  color: red;
+  transform: rotate(0deg);
+}
+
+.Locations {
+  padding-right: 0.6rem;
+}
+
+.Locations:last-child {
+  padding-right: 0;
 }

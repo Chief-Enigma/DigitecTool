@@ -20,7 +20,7 @@ export const EmployeeRow = ({ employee, expanded, toggleRow }) => {
             className="EmployeeLink"
             onClick={() => toggleRow(employee.personalNumber)}
           >
-            <span className="material-symbols-outlined">manage_accounts</span>
+            <span className="toggleicon material-symbols-outlined">expand_more</span>
           </Link>
         </td>
       </tr>

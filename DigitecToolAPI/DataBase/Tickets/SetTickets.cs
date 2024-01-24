@@ -11,7 +11,7 @@ namespace DigitecToolAPI
     {
       int nextTicketNumber = await GetNextTicketNumberAsync();
       newTicket.TicketNumber = nextTicketNumber;
-      newTicket.CreationDate = DateTime.Now;
+      //newTicket.CreationDate = DateTime.Now;
 
       await Ticket_DB.InsertOneAsync(newTicket);
 

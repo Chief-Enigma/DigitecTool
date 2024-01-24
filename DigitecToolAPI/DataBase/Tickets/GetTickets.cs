@@ -9,10 +9,19 @@ namespace DigitecToolAPI
     public static IMongoCollection<Ticket> Ticket_DB = Mongo.db.GetCollection<Ticket>("Tickets");
     public static async Task<List<Ticket>?> GetAllTicketsAsync(string ticketState)
     {
-      var filter = Builders<Ticket>.Filter.Eq(ticket => ticket.TicketState, ticketState);
-
       try
       {
+        FilterDefinition<Ticket> filter;
+
+        if (ticketState == "all")
+        {
+          filter = Builders<Ticket>.Filter.Empty;
+        }
+        else
+        {
+          filter = Builders<Ticket>.Filter.Eq(ticket => ticket.TicketState, ticketState);
+        }
+
         var tickets = await Ticket_DB.Find(filter).ToListAsync();
 
         if (tickets != null)
@@ -23,10 +32,9 @@ namespace DigitecToolAPI
           }
           return tickets;
         }
+
         Console.WriteLine($"No Tickets found in the DataBase!");
         return null;
-
-
       }
       catch (Exception ex)
       {
@@ -34,6 +42,7 @@ namespace DigitecToolAPI
         return null;
       }
     }
+
 
     public static async Task<Ticket?> GetTicketByNumberAsync(int ticketNumber)
     {
