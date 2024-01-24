@@ -11,6 +11,7 @@ class Get {
     }
   }
 
+  // Get all Employees from a Team
   async GetAllEmployeesByTeam(team) {
     const url = ApiRequest.baseURL + "Employee/team/" + team;
     try {
@@ -20,6 +21,7 @@ class Get {
     }
   }
 
+  // Get single Employee by Personalnumber
   async GetEmployeeByPersonalNumber(id) {
     const url = ApiRequest.baseURL + "Employee/" + id;
     try {
@@ -46,6 +48,26 @@ class Get {
       return await ApiRequest.request(url, "GET", undefined);
     } catch (error) {
       console.error("Error at GetShiftPlanForMonth: ", error);
+    }
+  }
+
+  // Get all Ticket Props
+  async GetAllTickets(ticketstate) {
+    const url = ApiRequest.baseURL + "Ticket/all/" + ticketstate;
+    try {
+      return await ApiRequest.request(url, "GET", undefined);
+    } catch (error) {
+      console.error("Error at GetAllTickets: ", error);
+    }
+  }
+
+  // Get Tickettext by Ticketnumber
+  async GetTicketText(ticketNumber) {
+    const url = ApiRequest.baseURL + "Ticket/tickettext/" + ticketNumber;
+    try {
+      return await ApiRequest.request(url, "GET", undefined);
+    } catch (error) {
+      console.error("Error at GetTicketText: ", error);
     }
   }
 }

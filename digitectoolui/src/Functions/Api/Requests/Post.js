@@ -41,7 +41,14 @@ class Post {
     }
   }
 
-
+  async SaveTicket(data) {
+    const url = ApiRequest.baseURL + "Ticket/create";
+    try {
+      return await ApiRequest.request(url, "POST", data);
+    } catch (error) {
+      console.log("Error at SaveTicket: " + error);
+    }
+  }
 }
 
 const PostRequest = new Post();

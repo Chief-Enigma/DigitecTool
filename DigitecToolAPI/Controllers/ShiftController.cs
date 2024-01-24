@@ -60,12 +60,6 @@ namespace DigitecToolAPI.Controllers
             }
         }
 
-        // PUT api/<ShiftController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
         // DELETE api/<ShiftController>/5
         [HttpDelete("{id}")]
         public void Delete(int id)
