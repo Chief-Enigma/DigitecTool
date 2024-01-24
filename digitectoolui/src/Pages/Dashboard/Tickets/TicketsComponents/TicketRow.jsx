@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 export const TicketRow = ({ ticket, expanded, toggleRow }) => {
   //const ticketStates = ["open", "to plan", "planed", "closed"];
 
-
   const formatCreationDate = () => {
     const creationDate = new Date(ticket.creationDate);
     const formattedDate = creationDate.toLocaleDateString();
@@ -23,15 +22,15 @@ export const TicketRow = ({ ticket, expanded, toggleRow }) => {
   const getStateColor = (state) => {
     switch (state) {
       case "open":
-        return "10, 207, 3"; // Green
+        return "10, 207, 3";
       case "to plan":
-        return "250, 174, 10"; // Orange
+        return "250, 174, 10";
       case "closed":
-        return "250, 38, 10"; // Red
+        return "250, 38, 10";
       case "planed":
-        return "10, 76, 250"; // Blue
+        return "10, 76, 250";
       default:
-        return "255, 255, 255"; // Default color or any other color you want
+        return "255, 255, 255";
     }
   };
 
@@ -74,11 +73,7 @@ export const TicketRow = ({ ticket, expanded, toggleRow }) => {
         <tr className="ExpandedRow">
           <td colSpan="7">
             <div className={`TicketDataContainer ${expanded ? "open" : ""}`}>
-              <textarea
-              
-                readOnly
-                value={ticket.ticketText}
-              />
+              <textarea readOnly value={ticket.ticketText} />
             </div>
           </td>
         </tr>
