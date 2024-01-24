@@ -16,6 +16,7 @@ export const AdminPermissionsUserTable = ({ searchInput }) => {
     "editemployees",
     "tickets",
     "maintenance",
+    "managetickets",
   ];
 
   const handlePermissionTypeClick = (permission) => {

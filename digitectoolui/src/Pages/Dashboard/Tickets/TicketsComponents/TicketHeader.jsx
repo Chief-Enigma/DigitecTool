@@ -1,17 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 
-import { TicketAddMain } from "./TicketAddMain";
-
-export const TickerHeader = ({ onSearchChange }) => {
-  const [addTicket, setAddTicket] = useState(false);
-
+export const TickerHeader = ({ onSearchChange, onOpenTicketEditor }) => {
   const handleSearchInputChange = (event) => {
     const inputValue = event.target.value;
     onSearchChange(inputValue);
   };
-  const handleAddTicket = () => {
-    setAddTicket(!addTicket);
+  const handleTicketEditor = () => {
+    onOpenTicketEditor(true);
   };
   return (
     <div>
@@ -24,12 +20,9 @@ export const TickerHeader = ({ onSearchChange }) => {
           placeholder="Tickettitel oder Nummer eingeben..."
           onChange={handleSearchInputChange}
         />
-        <Link onClick={handleAddTicket} className="SearchBarButtonEnd">
+        <Link onClick={handleTicketEditor} className="SearchBarButtonEnd">
           <span className="material-symbols-outlined">post_add</span>
         </Link>
-      </div>
-      <div className={`AddTicketContainer ${addTicket ? "open" : ""}`}>
-        <TicketAddMain />
       </div>
     </div>
   );
