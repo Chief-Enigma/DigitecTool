@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Get from "../../../../Functions/Api/Requests/Get";
 
 export const TicketRow = ({ ticket, expanded, toggleRow }) => {
-  const [ticketText, setTicketText] = useState(""); // Fix state initialization
+  const [ticketText, setTicketText] = useState("");
 
   const getTicketText = async () => {
     const response = await Get.GetTicketText(ticket.ticketNumber);
@@ -19,22 +19,20 @@ export const TicketRow = ({ ticket, expanded, toggleRow }) => {
         <td>{ticket.akz}</td>
         <td>{ticket.createdBy}</td>
         <td>
-          {/* Add onClick event to execute getTicketText */}
           <Link
             className="EmployeeLink"
             onClick={() => {
               toggleRow(ticket.ticketNumber);
-              getTicketText(); // Call getTicketText when expanding
+              getTicketText();
             }}
           >
-            <span className="material-symbols-outlined">expand_more</span>
+            <span className="toggleicon material-symbols-outlined">expand_more</span>
           </Link>
         </td>
       </tr>
       {expanded && (
         <tr className="ExpandedRow">
           <td colSpan="6">
-            {/* Render additional employee information and buttons here */}
             <div className={`TicketDataContainer ${expanded ? "open" : ""}`}>
               <textarea
                 readOnly

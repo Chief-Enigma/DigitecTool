@@ -103,3 +103,11 @@
   outline: none;
   color: #fefefe;
 }
+
+.EmployeeRow .toggleicon {
+  
+}
+
+.EmployeeRow.open .toggleicon {
+  color: red;
+}
