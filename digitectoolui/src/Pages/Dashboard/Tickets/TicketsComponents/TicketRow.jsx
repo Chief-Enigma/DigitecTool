@@ -71,7 +71,7 @@ export const TicketRow = ({ ticket, expanded, toggleRow }) => {
       </tr>
       {expanded && (
         <tr className="ExpandedRow">
-          <td colSpan="7">
+          <td colSpan="6">
             <div className={`TicketDataContainer ${expanded ? "open" : ""}`}>
               <textarea readOnly value={ticket.ticketText} />
             </div>

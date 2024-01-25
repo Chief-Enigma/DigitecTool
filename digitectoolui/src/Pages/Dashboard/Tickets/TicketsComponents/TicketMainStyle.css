@@ -1,0 +1,145 @@
+.TicketEditor *{
+  box-sizing: border-box;
+}
+
+.row {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  margin: 0 -16px;
+}
+
+.col-20 {
+  -ms-flex: 20%;
+  flex: 20%;
+}
+
+.col-25 {
+  -ms-flex: 25%;
+  flex: 25%;
+}
+
+.col-40 {
+  -ms-flex: 40%;
+  flex: 40%;
+}
+
+.col-50 {
+  -ms-flex: 50%;
+  flex: 50%;
+}
+
+.col-100 {
+  -ms-flex: 100%;
+  flex: 100%;
+}
+
+.col-20,
+.col-25,
+.col-40,
+.col-50,
+.col-100 {
+  padding: 0 16px;
+}
+
+.TicketEditor input,
+.TicketEditor textarea {
+  width: 100%;
+  resize: none;
+  margin-bottom: 20px;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.TicketLabel {
+  margin-bottom: 10px;
+  display: block;
+}
+
+.TicketLocationLabelBox {
+  margin-bottom: 20px;
+  padding: 7px 0;
+  font-size: 24px;
+}
+
+.TicketButtonContainer {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 0px;
+  margin-left: -10px;
+}
+
+/* Button Styles */
+
+.TicketButton {
+  transition: 250ms;
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+  border-radius: 10px;
+  padding: 0.4rem;
+  border: 2px solid #9e9e9e;
+  color: #9e9e9e;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.TicketButton.save:hover {
+  transition: 250ms;
+  color: #fefefe;
+  background-color: #28a745;
+}
+
+.TicketButton.cancel:hover {
+  transition: 150ms;
+  color: #fefefe;
+  background-color: #007bff;
+}
+
+.TicketButton.delete:hover {
+  transition: 150ms;
+  color: #fefefe;
+  background-color: #dc3545;
+}
+
+/* LocationLabel Styles */
+
+.TicketLocationLabel {
+  display: inline-flex;
+  align-items: center;
+  margin: 0.2rem;
+  padding: 0.2rem;
+  border: 2px solid #9e9e9e;
+  border-radius: 10px;
+}
+
+.TicketLocationText {
+  margin-right: 4px;
+}
+
+.TicketLocationLabel {
+  cursor: pointer;
+  margin-left: 4px;
+  margin-right: 4px;
+}
+
+/* MediaScreen Styles */
+
+@media (max-width: 900px) {
+  .row {
+    flex-direction: column;
+  }
+
+  .TicketButton {
+    margin-bottom: 5px;
+  }
+
+  .col-20,
+  .col-25,
+  .col-40,
+  .col-50 {
+    margin-bottom: 20px;
+  }
+}

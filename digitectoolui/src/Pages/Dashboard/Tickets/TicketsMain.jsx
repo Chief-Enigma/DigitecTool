@@ -4,6 +4,8 @@ import { TickerHeader } from "./TicketsComponents/TicketHeader";
 import { TicketTable } from "./TicketsComponents/TicketTable";
 import { TicketEditorMain } from "./TicketsComponents/TicketEditorMain";
 
+import "./TicketsComponents/TicketMainStyle.css"
+
 export const TicketsMain = ({ user }) => {
   const [searchInput, setSearchInput] = useState("");
   const [TicketEditor, setTicketEditor] = useState(false);
