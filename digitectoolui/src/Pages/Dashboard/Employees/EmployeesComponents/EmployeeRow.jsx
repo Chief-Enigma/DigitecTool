@@ -12,8 +12,8 @@ export const EmployeeRow = ({ employee, expanded, toggleRow }) => {
         <td>
           {employee.firstName} {employee.lastName}
         </td>
-        <td>{employee.workerRole}</td>
-        <td>Team: {employee.team}</td>
+        <td className="non-mobile">{employee.workerRole}</td>
+        <td className="non-mobile">Team: {employee.team}</td>
         <td>{employee.personalNumber}</td>
         <td>
           <Link

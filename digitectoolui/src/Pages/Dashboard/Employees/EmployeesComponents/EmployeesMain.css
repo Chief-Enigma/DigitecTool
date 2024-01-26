@@ -63,8 +63,7 @@
   border-bottom: none;
 }
 
-.EmployeeRow td,
-.EmployeeRow th {
+.EmployeeRow td{
   padding: 0.4rem;
 }
 
@@ -85,47 +84,8 @@
   border-radius: 10px;
 }
 
-.TicketDataContainer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 0.4rem 0;
-  padding: 0.4rem;
-  border: 2px solid #333;
-  border-radius: 10px;
-}
 
-.TicketDataContainer textarea {
-  width: 100%;
-  height: 150px;
-  overflow-y: scroll;
-  border: none;
-  background-color: transparent;
-  resize: none;
-  outline: none;
-  color: #fefefe;
-}
 
-/* width */
-textarea::-webkit-scrollbar {
-  width: 2px;
-  padding-right: 2px;
-}
-
-/* Track */
-textarea::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-/* Handle */
-textarea::-webkit-scrollbar-thumb {
-  background: #333;
-}
-
-/* Handle on hover */
-textarea::-webkit-scrollbar-thumb:hover {
-  background: #555;
-}
 
 .EmployeeRow .toggleicon {
   transform: rotate(90deg);
@@ -136,10 +96,12 @@ textarea::-webkit-scrollbar-thumb:hover {
   transform: rotate(0deg);
 }
 
-.Locations {
-  padding-right: 0.6rem;
-}
+@media (max-width: 400px) {
+  .non-mobile {
+    display: none;
+  }
 
-.Locations:last-child {
-  padding-right: 0;
+  .EmployeeTable{
+    font-size: 0.9rem;
+  }
 }

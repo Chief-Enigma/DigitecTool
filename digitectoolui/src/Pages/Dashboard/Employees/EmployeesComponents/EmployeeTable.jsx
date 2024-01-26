@@ -83,8 +83,8 @@ export const EmployeeTable = ({ searchInput }) => {
         <tbody>
           <tr className="EmployeeRow EmployeeTitleRow">
             <td>Name</td>
-            <td>Funktion</td>
-            <td>Team</td>
+            <td className="non-mobile">Funktion</td>
+            <td className="non-mobile">Team</td>
             <td>Personalnummer</td>
             <td></td>
           </tr>

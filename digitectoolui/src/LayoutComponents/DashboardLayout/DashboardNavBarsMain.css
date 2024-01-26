@@ -33,8 +33,8 @@ nav.DashboardNavBar {
     color: white;
   }
   
-  .material-symbols-outlined {
-    margin-right: 10px;
+  .DashboardNavBarText {
+    margin-left: 10px;
   }
   
   .DashboardNavElement:hover {
@@ -46,3 +46,8 @@ nav.DashboardNavBar {
     color: #1a1a1a;
   }
   
+  @media (max-width: 400px) {
+    nav.DashboardNavBar {
+      display: none;
+    }
+  }

@@ -76,7 +76,7 @@ export const PlaningContainer = ({ shiftMonth, employeesTeam }) => {
   return (
     <div>
       <PlanSettings onSelectJobType={handleJobTypeClick} />
-      <table className="CreateShiftTable" style={{ whiteSpace: "nowrap" }}>
+      <table className="CreateShiftTable" style={{ whiteSpace: "nowrap"}}>
         <tbody>
           <PlanHeader daysInMonth={daysInMonth} />
           {sortedEmployees.map((employee) => {

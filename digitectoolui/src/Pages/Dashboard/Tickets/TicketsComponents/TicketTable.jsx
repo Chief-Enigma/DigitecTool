@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Get from "../../../../Functions/Api/Requests/Get";
 import { TicketRow } from "./TicketRow";
 
-export const TicketTable = ({ searchInput }) => {
+export const TicketTable = ({ searchInput, ticketNumberToEdit }) => {
   const [tickets, setTickets] = useState([]);
   const [ticketsSearchResults, setTicketsSearchResults] = useState([]);
   const [expandedRows, setExpandedRows] = useState([]);
@@ -97,15 +97,15 @@ export const TicketTable = ({ searchInput }) => {
 
   return (
     <div>
-      <table className="EmployeeTable">
+      <table className="TicketTable">
         <tbody>
-          <tr className="EmployeeRow EmployeeTitleRow">
+          <tr className="TicketRow TicketTitleRow">
             <td>Nr.</td>
             <td>Datum</td>
             <td>Titel</td>
-            <td>Bereich</td>
-            <td>AKZ</td>
-            <td>Erstellt von</td>
+            <td className="non-mobile">Bereich</td>
+            <td className="non-mobile">AKZ</td>
+            <td className="non-mobile">Erstellt von</td>
             <td>Status</td>
             <td></td>
           </tr>
@@ -115,6 +115,7 @@ export const TicketTable = ({ searchInput }) => {
               ticket={ticket}
               expanded={expandedRows.includes(ticket.ticketNumber)}
               toggleRow={toggleRow}
+              ticketNumberToEdit={ticketNumberToEdit}
             />
           ))}
         </tbody>

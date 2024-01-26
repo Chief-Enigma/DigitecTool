@@ -14,7 +14,7 @@ nav.NavBarMain {
   }
   
   .NavBarMain li .NavElement{
-    display: block;
+    display: flex;
     color: white;
     text-align: center;
     padding: 20px 30px;
@@ -23,10 +23,10 @@ nav.NavBarMain {
     font-weight: bold;
   }
   
-  @media only screen and (max-width: 600px) {
-    .NavBarMain li {
-      font-size: 14px;
-      padding: 7px 7px;
+  @media (max-width: 400px) {
+    .NavBarMain li .NavElement {
+      font-size: 0.9rem;
+      padding: 0.9rem;
     }
   }
   
