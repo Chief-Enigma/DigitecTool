@@ -1,9 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-export const TicketRow = ({ ticket, expanded, toggleRow }) => {
-  //const ticketStates = ["open", "to plan", "planed", "closed"];
-
+export const TicketRow = ({
+  ticket,
+  expanded,
+  toggleRow,
+  ticketNumberToEdit,
+}) => {
   const formatCreationDate = () => {
     const creationDate = new Date(ticket.creationDate);
     const formattedDate = creationDate.toLocaleDateString();
@@ -34,15 +37,28 @@ export const TicketRow = ({ ticket, expanded, toggleRow }) => {
     }
   };
 
+  const generatePdf = (ticketnumber) => {
+    console.log("PDF Button on Ticket: ", ticketnumber);
+  };
+
+  const editTicket = (ticketnumber) => {
+    console.log("Edit Button on Ticket: ", ticketnumber);
+    ticketNumberToEdit(ticketnumber);
+  };
+
+  const deleteTicket = (ticketnumber) => {
+    console.log("Delete Button on Ticket: ", ticketnumber);
+  };
+
   return (
     <>
-      <tr className={`EmployeeRow ${expanded ? "open" : ""}`}>
+      <tr className={`TicketRow ${expanded ? "open" : ""}`}>
         <td>{ticket.ticketNumber}</td>
         <td>{formatCreationDate()}</td>
-        <td>{ticket.ticketTitle}</td>
-        <td>{formatLocation()}</td>
-        <td>{ticket.akz}</td>
-        <td>{ticket.createdBy}</td>
+        <td className="ticket-title">{ticket.ticketTitle}</td>
+        <td className="non-mobile">{formatLocation()}</td>
+        <td className="non-mobile">{ticket.akz}</td>
+        <td className="non-mobile">{ticket.createdBy}</td>
         <td>
           <label
             className="RoleLabel"
@@ -70,10 +86,37 @@ export const TicketRow = ({ ticket, expanded, toggleRow }) => {
         </td>
       </tr>
       {expanded && (
-        <tr className="ExpandedRow">
-          <td colSpan="6">
-            <div className={`TicketDataContainer ${expanded ? "open" : ""}`}>
-              <textarea readOnly value={ticket.ticketText} />
+        <tr>
+          <td colSpan="8" className="ExpandedRow">
+            <div className="TicketExpandedContent">
+              <div className="TicketDataContainer">
+                <textarea readOnly value={ticket.ticketText} />
+              </div>
+              <div className="TicketButtonsContainer">
+                <button
+                  className="TicketButton save"
+                  onClick={() => generatePdf(ticket.ticketNumber)}
+                >
+                  <span className="material-symbols-outlined">
+                    picture_as_pdf
+                  </span>
+                  <span className="TicketButtonText">PDF erstellen</span>
+                </button>
+                <button
+                  className="TicketButton cancel"
+                  onClick={() => editTicket(ticket.ticketNumber)}
+                >
+                  <span className="material-symbols-outlined">edit</span>
+                  <span className="TicketButtonText">Bearbeiten</span>
+                </button>
+                <button
+                  className="TicketButton delete"
+                  onClick={() => deleteTicket(ticket.ticketNumber)}
+                >
+                  <span className="material-symbols-outlined">delete</span>
+                  <span className="TicketButtonText">Ticket Löschen</span>
+                </button>
+              </div>
             </div>
           </td>
         </tr>

@@ -3,10 +3,10 @@ import React, { useState, useEffect } from "react";
 import Post from "../../../../Functions/Api/Requests/Post";
 import Put from "../../../../Functions/Api/Requests/Put";
 
-export const TicketEditorMain = ({ onCloseTicketEditor }) => {
+export const TicketEditorMain = ({ onCloseTicketEditor, ticketNumber }) => {
   const ticketLayOut = {
     id: {},
-    ticketNumber: "",
+    ticketNumber: "newTicket",
     ticketState: "",
     creationDate: "",
     ticketTitle: "",
@@ -19,6 +19,21 @@ export const TicketEditorMain = ({ onCloseTicketEditor }) => {
   const [serverResponse, setServerResponse] = useState("");
   const locations = ["A", "A-TS", "A-AKL", "A-WE", "B", "SR"];
   const ticketStates = ["open", "to plan", "planed", "closed"];
+
+  const getStateColor = (state) => {
+    switch (state) {
+      case "open":
+        return "10, 207, 3";
+      case "to plan":
+        return "250, 174, 10";
+      case "closed":
+        return "250, 38, 10";
+      case "planed":
+        return "10, 76, 250";
+      default:
+        return "";
+    }
+  };
 
   useEffect(() => {
     const storedTicket = localStorage.getItem("ticketInput");
@@ -61,8 +76,6 @@ export const TicketEditorMain = ({ onCloseTicketEditor }) => {
 
   const handleLocationChange = (e) => {
     const selectedLocation = e.target.value;
-
-    // Füge den ausgewählten Standort direkt zum Array hinzu, wenn er nicht schon existiert
     if (
       selectedLocation &&
       !ticket.ticketLocations.includes(selectedLocation)
@@ -91,14 +104,35 @@ export const TicketEditorMain = ({ onCloseTicketEditor }) => {
       console.error("Fehler beim Speichern:", error);
     }
   };
+  const saveTicket = async (ticketnumber) => {
+    console.log("PDF Button on Ticket: ", ticketnumber);
+  };
+
+  const cancelTicket = async (ticketnumber) => {
+    console.log("Edit Button on Ticket: ", ticketnumber);
+  };
+
+  const deleteTicket = async (ticketnumber) => {
+    console.log("Delete Button on Ticket: ", ticketnumber);
+    localStorage.removeItem("ticketInput");
+    onCloseTicketEditor(false);
+  };
 
   return (
     <div className="TicketEditor">
-      <h2>Ticket Editor</h2>
+      <div className="TicketEditorHeader">
+        <h2>Ticket Editor</h2>
+        <button
+          className="TicketButton back"
+          onClick={() => onCloseTicketEditor(false)}
+        >
+          <span className="material-symbols-outlined">arrow_back</span>
+        </button>
+      </div>
       <div className="row">
         <div className="col-100">
           <div className="TicketContainer">
-            <form>
+            <div>
               <div className="row">
                 <div className="col-40">
                   <label className="TicketLabel" htmlFor="TicketNumber">
@@ -108,7 +142,11 @@ export const TicketEditorMain = ({ onCloseTicketEditor }) => {
                     readOnly
                     id="TicketNumber"
                     name="ticketNumber"
-                    value={ticket.ticketNumber}
+                    value={
+                      ticket.ticketNumber === "newTicket"
+                        ? "- - -"
+                        : ticket.ticketNumber
+                    }
                   />
                 </div>
                 <div className="col-40">
@@ -131,12 +169,28 @@ export const TicketEditorMain = ({ onCloseTicketEditor }) => {
                     name="ticketState"
                     value={ticket.ticketState}
                     onChange={handleInputChange}
+                    style={{
+                      backgroundColor: `rgba(${getStateColor(
+                        ticket.ticketState
+                      )}, 0.3)`,
+                      borderColor: `rgba(${getStateColor(
+                        ticket.ticketState
+                      )}, 1)`,
+                    }}
                   >
-                    <option value="" disabled>
-                      Bitte wählen..
+                    <option
+                      value=""
+                      disabled
+                      style={{ backgroundColor: "#333" }}
+                    >
+                      Status wählen..
                     </option>
                     {ticketStates.map((ticketState) => (
-                      <option key={ticketState} value={ticketState}>
+                      <option
+                        key={ticketState}
+                        value={ticketState}
+                        style={{ backgroundColor: "#333" }}
+                      >
                         {ticketState}
                       </option>
                     ))}
@@ -151,13 +205,14 @@ export const TicketEditorMain = ({ onCloseTicketEditor }) => {
                   <input
                     id="AKZ"
                     name="AKZ"
-                    value={ticket.AKZ}
+                    value={ticketNumber}
+                    // value={ticket.AKZ}
                     onChange={handleInputChange}
                   />
                 </div>
                 <div className="col-25">
                   <label className="TicketLabel" htmlFor="TicketLocation">
-                    Standort
+                    Bereich
                   </label>
                   <select
                     id="TicketLocation"
@@ -166,7 +221,7 @@ export const TicketEditorMain = ({ onCloseTicketEditor }) => {
                     onChange={handleLocationChange}
                   >
                     <option value="" disabled>
-                      Standort wählen...
+                      Bereich wählen...
                     </option>
                     {locations.map((location) => (
                       <option key={location} value={location}>
@@ -175,20 +230,18 @@ export const TicketEditorMain = ({ onCloseTicketEditor }) => {
                     ))}
                   </select>
                 </div>
-                <div className="col-50">
-                  
-                    {ticket.ticketLocations.map((location) => (
-                      <label key={location} className="TicketLocationLabel">
-                        <span className="TicketLocationText">{location}</span>
-                        <span
-                          className="material-symbols-outlined"
-                          onClick={() => handleRemoveLocation(location)}
-                        >
-                          close
-                        </span>
-                      </label>
-                    ))}
-                  
+                <div className="col-50 LocationContainer">
+                  {ticket.ticketLocations.map((location) => (
+                    <label key={location} className="TicketLocationLabel">
+                      <span className="TicketLocationText">{location}</span>
+                      <span
+                        className="material-symbols-outlined"
+                        onClick={() => handleRemoveLocation(location)}
+                      >
+                        close
+                      </span>
+                    </label>
+                  ))}
                 </div>
               </div>
               <label className="TicketLabel" htmlFor="TicketTitle">
@@ -211,20 +264,29 @@ export const TicketEditorMain = ({ onCloseTicketEditor }) => {
                 onKeyDown={handleKeyDown}
               />
               <div className="row TicketButtonContainer">
-                <button className="TicketButton save">
+                <button
+                  className="TicketButton save"
+                  onClick={() => saveTicket(ticket.ticketNumber)}
+                >
                   <span className="material-symbols-outlined">save</span>
-                  Ticket Speichern
+                  <span className="TicketButtonText">Ticket Speichern</span>
                 </button>
-                <button className="TicketButton cancel">
+                <button
+                  className="TicketButton cancel"
+                  onClick={() => cancelTicket(ticket.ticketNumber)}
+                >
                   <span className="material-symbols-outlined">close</span>
-                  Abbrechen
+                  <span className="TicketButtonText">Abbrechen</span>
                 </button>
-                <button className="TicketButton delete">
+                <button
+                  className="TicketButton delete"
+                  onClick={() => deleteTicket(ticket.ticketNumber)}
+                >
                   <span className="material-symbols-outlined">delete</span>
-                  Ticket Löschen
+                  <span className="TicketButtonText">Ticket Löschen</span>
                 </button>
               </div>
-            </form>
+            </div>
           </div>
         </div>
       </div>

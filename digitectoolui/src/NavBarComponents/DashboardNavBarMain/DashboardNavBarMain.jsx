@@ -32,14 +32,15 @@ export const DashboardNavBarMain = () => {
             activeclassame="active"
             className="DashboardNavElement"
           >
-            <span className="material-symbols-outlined">event</span>Today
+            <span className="material-symbols-outlined">event</span>
+            <span className="DashboardNavBarText">Today</span>
           </NavLink>
         </li>
         {userRole === "sysadmin" || permissions.includes("changeshift") ? (
           <li>
             <NavLink to="changeshift" className="DashboardNavElement">
               <span className="material-symbols-outlined">swap_horiz</span>
-              Diensttausch
+              <span className="DashboardNavBarText">Diensttausch</span>
             </NavLink>
           </li>
         ) : null}
@@ -47,7 +48,7 @@ export const DashboardNavBarMain = () => {
           <li>
             <NavLink to="reportsick" className="DashboardNavElement">
               <span className="material-symbols-outlined">coronavirus</span>
-              Krankmelden
+              <span className="DashboardNavBarText">Krankmelden</span>
             </NavLink>
           </li>
         ) : null}
@@ -56,7 +57,10 @@ export const DashboardNavBarMain = () => {
           <li>
             <NavLink to="requestholliday" className="DashboardNavElement">
               <span className="material-symbols-outlined">beach_access</span>
-              Abwesenheit beantragen
+
+              <span className="DashboardNavBarText">
+                Abwesenheit beantragen
+              </span>
             </NavLink>
           </li>
         ) : null}
@@ -69,14 +73,16 @@ export const DashboardNavBarMain = () => {
             </NavLink>
           </li>
         ) : null} */}
-{(userRole === "sysadmin" || permissions.includes("editplan")) ? (
-  <li>
-    <NavLink to="editplan" className="DashboardNavElement">
-      <span className="material-symbols-outlined">edit_calendar</span>
-      Schichtplan bearbeiten
-    </NavLink>
-  </li>
-) : null}
+        {userRole === "sysadmin" || permissions.includes("editplan") ? (
+          <li>
+            <NavLink to="editplan" className="DashboardNavElement">
+              <span className="material-symbols-outlined">edit_calendar</span>
+              <span className="DashboardNavBarText">
+                Schichtplan bearbeiten
+              </span>
+            </NavLink>
+          </li>
+        ) : null}
 
         {userRole === "sysadmin" ||
         permissions.includes("employees") ||
@@ -84,7 +90,7 @@ export const DashboardNavBarMain = () => {
           <li>
             <NavLink to="employees" className="DashboardNavElement">
               <span className="material-symbols-outlined">groups</span>
-              Mitarbeiter
+              <span className="DashboardNavBarText">Mitarbeiter</span>
             </NavLink>
           </li>
         ) : null}
@@ -93,7 +99,7 @@ export const DashboardNavBarMain = () => {
           <li>
             <NavLink to="tickets" className="DashboardNavElement">
               <span className="material-symbols-outlined">receipt_long</span>
-              Tickets
+              <span className="DashboardNavBarText">Tickets</span>
             </NavLink>
           </li>
         ) : null}
@@ -103,7 +109,7 @@ export const DashboardNavBarMain = () => {
               <span className="material-symbols-outlined">
                 home_repair_service
               </span>
-              Wartung
+              <span className="DashboardNavBarText">Wartung</span>
             </NavLink>
           </li>
         ) : null}
@@ -111,13 +117,13 @@ export const DashboardNavBarMain = () => {
         <li>
           <NavLink to="settings" className="DashboardNavElement">
             <span className="material-symbols-outlined">settings</span>
-            Einstellungen
+            <span className="DashboardNavBarText">Einstellungen</span>
           </NavLink>
         </li>
         <li>
           <NavLink to="help" className="DashboardNavElement">
             <span className="material-symbols-outlined">lightbulb</span>
-            Hilfe
+            <span className="DashboardNavBarText">Hilfe</span>
           </NavLink>
         </li>
       </ul>
