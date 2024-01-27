@@ -7,15 +7,24 @@ namespace DigitecToolAPI
   {
     public static IMongoCollection<Ticket> Ticket_DB = Mongo.db.GetCollection<Ticket>("Tickets");
 
-    public static async Task<Ticket> AddTicketAsync(Ticket newTicket)
+    public static async Task<Ticket?> AddTicketAsync(Ticket newTicket)
     {
-      int nextTicketNumber = await GetNextTicketNumberAsync();
-      newTicket.TicketNumber = nextTicketNumber;
-      //newTicket.CreationDate = DateTime.Now;
-
-      await Ticket_DB.InsertOneAsync(newTicket);
-
-      return newTicket;
+      Console.WriteLine("Got here1");
+      try
+      {
+        int nextTicketNumber = await GetNextTicketNumberAsync();
+        newTicket.TicketNumber = nextTicketNumber;
+        //newTicket.CreationDate = DateTime.Now;
+        Console.WriteLine("Got here2");
+        await Ticket_DB.InsertOneAsync(newTicket);
+        Console.WriteLine("Got here3");
+        return newTicket;
+      }
+      catch (Exception ex)
+      {
+        Console.WriteLine($"Error at AddTicketAsync: {ex.Message}");
+        return null;
+      }
     }
 
     private static async Task<int> GetNextTicketNumberAsync()
@@ -44,7 +53,7 @@ namespace DigitecToolAPI
         {
           existingTicket.TicketState = updatedTicket.TicketState;
           existingTicket.TicketTitle = updatedTicket.TicketTitle;
-          existingTicket.Location = updatedTicket.Location;
+          existingTicket.TicketLocations = updatedTicket.TicketLocations;
           existingTicket.AKZ = updatedTicket.AKZ;
           existingTicket.TicketText = updatedTicket.TicketText;
 
@@ -60,6 +69,25 @@ namespace DigitecToolAPI
       {
         Console.WriteLine($"Error at UpdateTicketAsync: {ex.Message}");
         return null;
+      }
+    }
+
+    public static async Task<bool> DeletTicketAsync(int TicketNumber)
+    {
+      var filter = Builders<Ticket>.Filter.Eq(ticket => ticket.TicketNumber, TicketNumber);
+      try
+      {
+        await Ticket_DB.DeleteOneAsync(filter);
+        if (!await Ticket_DB.Find(filter).AnyAsync())
+        {
+          return true;
+        }
+        return false;
+      }
+      catch (Exception ex)
+      {
+        Console.WriteLine("Error at DeletTicketAsync: " + ex.Message);
+        return false;
       }
     }
   }

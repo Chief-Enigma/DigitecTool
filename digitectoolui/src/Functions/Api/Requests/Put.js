@@ -30,6 +30,16 @@ class Put {
       console.log("Error at SaveShiftDay: " + error);
     }
   }
+
+  // Get Tickettext by Ticketnumber
+  async UpdateTicket(data) {
+    const url = ApiRequest.baseURL + "Ticket/update";
+    try {
+      return await ApiRequest.request(url, "PUT", data);
+    } catch (error) {
+      console.log("Error at UpdateTicket: " + error);
+    }
+  }
 }
 
 const PutRequest = new Put();

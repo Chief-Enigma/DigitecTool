@@ -1,21 +1,23 @@
 import React, { useState, useEffect } from "react";
 
+import Get from "../../../../Functions/Api/Requests/Get";
 import Post from "../../../../Functions/Api/Requests/Post";
 import Put from "../../../../Functions/Api/Requests/Put";
+import Delete from "../../../../Functions/Api/Requests/Delete";
 
 export const TicketEditorMain = ({ onCloseTicketEditor, ticketNumber }) => {
   const ticketLayOut = {
     id: {},
-    ticketNumber: "newTicket",
+    ticketNumber: 0,
     ticketState: "",
-    creationDate: "",
+    creationDate: new Date().toLocaleDateString("en-CA"),
     ticketTitle: "",
     ticketLocations: [],
-    AKZ: "",
+    akz: "",
     createdBy: "",
     ticketText: "",
   };
-  const [ticket, setTicket] = useState();
+  const [ticket, setTicket] = useState(ticketLayOut);
   const [serverResponse, setServerResponse] = useState("");
   const locations = ["A", "A-TS", "A-AKL", "A-WE", "B", "SR"];
   const ticketStates = ["open", "to plan", "planed", "closed"];
@@ -35,12 +37,40 @@ export const TicketEditorMain = ({ onCloseTicketEditor, ticketNumber }) => {
     }
   };
 
+  const getTicket = async (ticket) => {
+    const existingTicket = await Get.GetTicket(ticket);
+    console.log(existingTicket);
+    setServerResponse(existingTicket);
+    setTicket(existingTicket);
+  };
+
+  const saveTicket = async () => {
+    console.log("Saving ticket...", ticket);
+    const response = await Post.SaveTicket(ticket);
+    console.log("TicketSaved", response);
+    if (response) {
+      //onCloseTicketEditor(false);
+    }
+  };
+
+  const updateTicket = async () => {
+    const response = await Put.UpdateTicket(ticket);
+    console.log("TicketUpdated", response);
+    if (response) {
+      //onCloseTicketEditor(false);
+    }
+  };
+
+  const deleteTicket = async (ticket) => {
+    const response = await Delete.DeleteTicket(ticket);
+  };
+
   useEffect(() => {
-    if(ticketNumber){
-      
+    if (ticketNumber) {
+      getTicket(ticketNumber);
+      return;
     }
 
-    
     const storedTicket = localStorage.getItem("ticketInput");
     if (storedTicket) {
       setTicket(JSON.parse(storedTicket));
@@ -53,6 +83,7 @@ export const TicketEditorMain = ({ onCloseTicketEditor, ticketNumber }) => {
     localStorage.setItem("ticketInput", JSON.stringify(ticket));
   }, [ticket]);
 
+  //* Handle TextEdit Actions *//
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setTicket((prevData) => ({
@@ -79,6 +110,7 @@ export const TicketEditorMain = ({ onCloseTicketEditor, ticketNumber }) => {
     }
   };
 
+  //* HandleLocation Actions *//
   const handleLocationChange = (e) => {
     const selectedLocation = e.target.value;
     if (
@@ -101,24 +133,27 @@ export const TicketEditorMain = ({ onCloseTicketEditor, ticketNumber }) => {
     }));
   };
 
-  const handleSaveButtonClick = async (e) => {
-    e.preventDefault();
-    try {
-      console.log("Saved Ticket", ticket);
-    } catch (error) {
-      console.error("Fehler beim Speichern:", error);
+  //* TicketButton Actions *//
+  const ButtonSaveTicket = async (ticketnumber) => {
+    console.log("Save Button on Ticket: ", ticketnumber);
+    if (ticket.ticketNumber === 0) {
+      saveTicket();
+      localStorage.removeItem("ticketInput");
+    } else {
+      updateTicket();
+      localStorage.removeItem("ticketInput");
     }
   };
-  const saveTicket = async (ticketnumber) => {
-    console.log("PDF Button on Ticket: ", ticketnumber);
-  };
 
-  const cancelTicket = async (ticketnumber) => {
+  const ButtonCancelTicket = async (ticketnumber) => {
     console.log("Edit Button on Ticket: ", ticketnumber);
+    localStorage.removeItem("ticketInput");
+    onCloseTicketEditor(false);
   };
 
-  const deleteTicket = async (ticketnumber) => {
+  const ButtonDeleteTicket = async (ticketnumber) => {
     console.log("Delete Button on Ticket: ", ticketnumber);
+    deleteTicket(ticketNumber);
     localStorage.removeItem("ticketInput");
     onCloseTicketEditor(false);
   };
@@ -148,9 +183,7 @@ export const TicketEditorMain = ({ onCloseTicketEditor, ticketNumber }) => {
                     id="TicketNumber"
                     name="ticketNumber"
                     value={
-                      ticket.ticketNumber === "newTicket"
-                        ? "- - -"
-                        : ticket.ticketNumber
+                      ticket.ticketNumber === 0 ? "- - -" : ticket.ticketNumber
                     }
                   />
                 </div>
@@ -209,9 +242,8 @@ export const TicketEditorMain = ({ onCloseTicketEditor, ticketNumber }) => {
                   </label>
                   <input
                     id="AKZ"
-                    name="AKZ"
-                    value={ticketNumber}
-                    // value={ticket.AKZ}
+                    name="akz"
+                    value={ticket.akz}
                     onChange={handleInputChange}
                   />
                 </div>
@@ -271,21 +303,21 @@ export const TicketEditorMain = ({ onCloseTicketEditor, ticketNumber }) => {
               <div className="row TicketButtonContainer">
                 <button
                   className="TicketButton save"
-                  onClick={() => saveTicket(ticket.ticketNumber)}
+                  onClick={() => ButtonSaveTicket(ticket.ticketNumber)}
                 >
                   <span className="material-symbols-outlined">save</span>
                   <span className="TicketButtonText">Ticket Speichern</span>
                 </button>
                 <button
                   className="TicketButton cancel"
-                  onClick={() => cancelTicket(ticket.ticketNumber)}
+                  onClick={() => ButtonCancelTicket(ticket.ticketNumber)}
                 >
                   <span className="material-symbols-outlined">close</span>
                   <span className="TicketButtonText">Abbrechen</span>
                 </button>
                 <button
                   className="TicketButton delete"
-                  onClick={() => deleteTicket(ticket.ticketNumber)}
+                  onClick={() => ButtonDeleteTicket(ticket.ticketNumber)}
                 >
                   <span className="material-symbols-outlined">delete</span>
                   <span className="TicketButtonText">Ticket Löschen</span>
