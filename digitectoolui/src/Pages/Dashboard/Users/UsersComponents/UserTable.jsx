@@ -21,7 +21,7 @@ export const UserTable = ({ searchInput }) => {
   }, []);
 
   users.forEach((user) => {
-    userRows.push(<UserRow key={user.personalNumber} user={user} />);
+    userRows.push(<UserRow key={user.email} user={user} />);
   });
 
   return (
@@ -32,7 +32,7 @@ export const UserTable = ({ searchInput }) => {
             <td>Personal Nr.</td>
             <td>Email</td>
             <td>Benutzertyp</td>
-            <td>Comming soon</td>
+            <td className="non-mobile">Comming soon</td>
           </tr>
           {userRows}
         </tbody>

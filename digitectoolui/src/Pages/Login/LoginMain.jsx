@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Post from "../../Functions/Api/Requests/Post";
 import { useNavigate } from "react-router-dom";
-import "./LoginComponents/LoginMain.css"
+import "./LoginComponents/LoginMain.css";
 
 export const LoginMain = () => {
   const [email, setEmail] = useState("");
@@ -39,6 +39,7 @@ export const LoginMain = () => {
           JSON.stringify({
             personalnumber:
               AuthenticationResult.returnCredentials.personalNumber,
+            email: AuthenticationResult.returnCredentials.email,
             userrole: AuthenticationResult.returnCredentials.userRole,
             permissions: AuthenticationResult.returnCredentials.permissions,
           })

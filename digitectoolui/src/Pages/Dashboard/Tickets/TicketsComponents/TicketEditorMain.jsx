@@ -1,26 +1,32 @@
 import React, { useState, useEffect } from "react";
+import { format } from "date-fns";
 
 import Get from "../../../../Functions/Api/Requests/Get";
 import Post from "../../../../Functions/Api/Requests/Post";
 import Put from "../../../../Functions/Api/Requests/Put";
 import Delete from "../../../../Functions/Api/Requests/Delete";
 
-export const TicketEditorMain = ({ onCloseTicketEditor, ticketNumber }) => {
+export const TicketEditorMain = ({
+  onCloseTicketEditor,
+  ticketNumber,
+  user,
+}) => {
   const ticketLayOut = {
     id: {},
     ticketNumber: 0,
     ticketState: "",
-    creationDate: new Date().toLocaleDateString("en-CA"),
+    creationDate: format(new Date(), "yyyy-MM-dd"),
     ticketTitle: "",
     ticketLocations: [],
     akz: "",
-    createdBy: "",
+    createdBy: user.personalnumber,
     ticketText: "",
   };
   const [ticket, setTicket] = useState(ticketLayOut);
   const [serverResponse, setServerResponse] = useState("");
   const locations = ["A", "A-TS", "A-AKL", "A-WE", "B", "SR"];
   const ticketStates = ["open", "to plan", "planed", "closed"];
+  const [employeeDetails, setEmployeeDetails] = useState(null);
 
   const getStateColor = (state) => {
     switch (state) {
@@ -44,34 +50,15 @@ export const TicketEditorMain = ({ onCloseTicketEditor, ticketNumber }) => {
     setTicket(existingTicket);
   };
 
-  const saveTicket = async () => {
-    console.log("Saving ticket...", ticket);
-    const response = await Post.SaveTicket(ticket);
-    console.log("TicketSaved", response);
-    if (response) {
-      //onCloseTicketEditor(false);
-    }
-  };
-
-  const updateTicket = async () => {
-    const response = await Put.UpdateTicket(ticket);
-    console.log("TicketUpdated", response);
-    if (response) {
-      //onCloseTicketEditor(false);
-    }
-  };
-
-  const deleteTicket = async (ticket) => {
-    const response = await Delete.DeleteTicket(ticket);
-  };
-
   useEffect(() => {
     if (ticketNumber) {
       getTicket(ticketNumber);
       return;
     }
 
-    const storedTicket = localStorage.getItem("ticketInput");
+    const storedTicket = localStorage.getItem(
+      `ticketInput_${user.personalnumber}`
+    );
     if (storedTicket) {
       setTicket(JSON.parse(storedTicket));
     } else {
@@ -80,8 +67,20 @@ export const TicketEditorMain = ({ onCloseTicketEditor, ticketNumber }) => {
   }, []);
 
   useEffect(() => {
-    localStorage.setItem("ticketInput", JSON.stringify(ticket));
+    localStorage.setItem(
+      `ticketInput_${user.personalnumber}`,
+      JSON.stringify(ticket)
+    );
   }, [ticket]);
+
+  useEffect(() => {
+    const getEmployeeData = async () => {
+      const response = await Get.GetEmployeeByPersonalNumber(ticket.createdBy);
+      setEmployeeDetails(response);
+    };
+    getEmployeeData();
+    console.log("Geting Emplyee");
+  }, [ticket.createdBy]);
 
   //* Handle TextEdit Actions *//
   const handleInputChange = (e) => {
@@ -135,26 +134,33 @@ export const TicketEditorMain = ({ onCloseTicketEditor, ticketNumber }) => {
 
   //* TicketButton Actions *//
   const ButtonSaveTicket = async (ticketnumber) => {
-    console.log("Save Button on Ticket: ", ticketnumber);
     if (ticket.ticketNumber === 0) {
-      saveTicket();
-      localStorage.removeItem("ticketInput");
+      const response = await Post.SaveTicket(ticket);
+      if (response) {
+        onCloseTicketEditor(false);
+        localStorage.removeItem(`ticketInput_${user.personalnumber}`);
+      }
     } else {
-      updateTicket();
-      localStorage.removeItem("ticketInput");
+      const response = await Put.UpdateTicket(ticket);
+      if (response) {
+        onCloseTicketEditor(false);
+        localStorage.removeItem(`ticketInput_${user.personalnumber}`);
+      }
     }
   };
 
   const ButtonCancelTicket = async (ticketnumber) => {
     console.log("Edit Button on Ticket: ", ticketnumber);
-    localStorage.removeItem("ticketInput");
+    localStorage.removeItem(`ticketInput_${user.personalnumber}`);
     onCloseTicketEditor(false);
   };
 
   const ButtonDeleteTicket = async (ticketnumber) => {
     console.log("Delete Button on Ticket: ", ticketnumber);
-    deleteTicket(ticketNumber);
-    localStorage.removeItem("ticketInput");
+    if (ticketNumber == !0) {
+      await Delete.DeleteTicket(ticketNumber);
+    }
+    localStorage.removeItem(`ticketInput_${user.personalnumber}`);
     onCloseTicketEditor(false);
   };
 
@@ -174,7 +180,7 @@ export const TicketEditorMain = ({ onCloseTicketEditor, ticketNumber }) => {
           <div className="TicketContainer">
             <div>
               <div className="row">
-                <div className="col-40">
+                <div className="col-20">
                   <label className="TicketLabel" htmlFor="TicketNumber">
                     Ticket-Nummer
                   </label>
@@ -187,7 +193,7 @@ export const TicketEditorMain = ({ onCloseTicketEditor, ticketNumber }) => {
                     }
                   />
                 </div>
-                <div className="col-40">
+                <div className="col-20">
                   <label className="TicketLabel" htmlFor="CreationDate">
                     Erstellungs Datum
                   </label>
@@ -195,7 +201,22 @@ export const TicketEditorMain = ({ onCloseTicketEditor, ticketNumber }) => {
                     readOnly
                     id="CreationDate"
                     name="creationDate"
-                    value={ticket.creationDate}
+                    value={format(ticket.creationDate, "dd.MM.yyyy")}
+                  />
+                </div>
+                <div className="col-20">
+                  <label className="TicketLabel" htmlFor="CreatedBy">
+                    Erstellt von
+                  </label>
+                  <input
+                    readOnly
+                    id="CreatedBy"
+                    name="createdBy"
+                    value={
+                      employeeDetails
+                        ? `${employeeDetails.firstName} ${employeeDetails.lastName}`
+                        : ticket.createdBy
+                    }
                   />
                 </div>
                 <div className="col-20">
@@ -247,7 +268,7 @@ export const TicketEditorMain = ({ onCloseTicketEditor, ticketNumber }) => {
                     onChange={handleInputChange}
                   />
                 </div>
-                <div className="col-25">
+                <div className="col-20">
                   <label className="TicketLabel" htmlFor="TicketLocation">
                     Bereich
                   </label>

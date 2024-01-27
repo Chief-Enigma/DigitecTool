@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Get from "../../../../Functions/Api/Requests/Get";
+import Delete from "../../../../Functions/Api/Requests/Delete";
 import { TicketRow } from "./TicketRow";
 
 export const TicketTable = ({ searchInput, ticketNumberToEdit }) => {
@@ -36,6 +37,14 @@ export const TicketTable = ({ searchInput, ticketNumberToEdit }) => {
       .catch((e) => {
         console.log("Fehler beim TicketText holen: ", e);
       });
+  };
+
+  const handleDeleteTicket = (e) => {
+    const updatedTickets = tickets.filter(
+      (ticket) => ticket.ticketNumber !== e
+    );
+    setTickets(updatedTickets);
+    Delete.DeleteTicket(e);
   };
 
   useEffect(() => {
@@ -116,6 +125,7 @@ export const TicketTable = ({ searchInput, ticketNumberToEdit }) => {
               expanded={expandedRows.includes(ticket.ticketNumber)}
               toggleRow={toggleRow}
               ticketNumberToEdit={ticketNumberToEdit}
+              onDeleteButton={handleDeleteTicket}
             />
           ))}
         </tbody>

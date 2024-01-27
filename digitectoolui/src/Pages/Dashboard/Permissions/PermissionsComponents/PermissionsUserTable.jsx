@@ -8,12 +8,8 @@ export const PermissionsUserTable = ({ searchInput }) => {
   const [selectedPermission, setSelectedPermission] = useState(null);
   const avaliblePermissions = [
     "changeshift",
-    "reportsick",
-    "requestholliday",
-    "createplan",
     "editplan",
-    "employees",
-    "editemployees",
+    "manageemployees",
     "tickets",
     "maintenance",
     "managetickets",
@@ -101,13 +97,13 @@ export const PermissionsUserTable = ({ searchInput }) => {
         <tbody>
           <tr className="EmployeeRow EmployeeTitleRow">
             <td>Personal Nr.</td>
-            <td>Email</td>
+            <td className="non-mobile">Email</td>
             <td>Benutzertyp</td>
             <td>Berechtigungen</td>
           </tr>
           {userSearchResults.map((user) => (
             <PermissionsUserRow
-              key={user.personalNumber}
+              key={user.email}
               user={user}
               selectedPermission={selectedPermission}
               setSelectedPermission={setSelectedPermission}

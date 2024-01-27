@@ -16,18 +16,9 @@
   max-height: 1000px;
 }
 
-.AddEmployeeForm {
-}
 
 .DataContainer {
   margin: 1rem;
-}
-
-.DataContainer input,
-.DataContainer select {
-}
-
-.AddLabel {
 }
 
 /* Employee Row */
@@ -73,7 +64,6 @@
 }
 
 /* Employee Detaildata */
-
 .EmployeeDataContainer {
   display: flex;
   flex-direction: column;
@@ -83,9 +73,6 @@
   border: 2px solid #333;
   border-radius: 10px;
 }
-
-
-
 
 .EmployeeRow .toggleicon {
   transform: rotate(90deg);

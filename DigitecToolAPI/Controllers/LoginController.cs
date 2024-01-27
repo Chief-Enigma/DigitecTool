@@ -34,11 +34,11 @@ namespace DigitecToolAPI.Controllers
         }
 
         // PUT - Edit LoginCredentials Ex. Email or Password
-        [HttpPut("{PersonalNumber}")]
-        public async Task<IActionResult> PutAsync(int PersonalNumber, [FromBody] ChangeCredentials updateloginCredentials)
+        [HttpPut("{Email}")]
+        public async Task<IActionResult> PutAsync(string Email, [FromBody] ChangeCredentials updateloginCredentials)
         {
             Console.WriteLine("gotsomething");
-            if (await SetLoginCredentials.EditLoginCredentialsAsync(PersonalNumber, updateloginCredentials) && updateloginCredentials.Payload != null)
+            if (await SetLoginCredentials.EditLoginCredentialsAsync(Email, updateloginCredentials) && updateloginCredentials.Payload != null)
             {
                 return Ok();
             }

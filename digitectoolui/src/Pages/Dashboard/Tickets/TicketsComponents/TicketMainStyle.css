@@ -21,6 +21,15 @@
   rotate: 180deg;
 }
 
+.TicketStateLabel {
+  display: inline-flex;
+  align-items: center;
+  margin: 0.2rem;
+  padding: 0.2rem 0.5rem;
+  border: 1px solid;
+  border-radius: 10px;
+}
+
 .row {
   display: -ms-flexbox;
   display: flex;
@@ -78,7 +87,7 @@
   height: 25rem;
 }
 
-.TicketEditor select{
+.TicketEditor select {
   padding: 0.4rem;
   background-color: #333;
   color: #fefefe;
@@ -165,13 +174,12 @@
   margin-right: 4px;
 }
 
-.material-symbols-outlined {
-  cursor: pointer;
+.TicketLocationLabel + .TicketLocationLabel {
   margin-left: 4px;
 }
 
-.TicketLocationLabel + .TicketLocationLabel {
-  margin-left: 4px;
+.TicketLocationLabel .material-symbols-outlined {
+  cursor: pointer;
 }
 
 /* MediaScreen Styles */
@@ -198,15 +206,21 @@
     flex-direction: row;
   }
 
-  .TicketTable{
-    font-size: 0.9rem;
+  .TicketTable,
+  .EmployeeTable {
+    font-size: 0.8rem;
   }
 
-  .ticket-title{
+  .ticket-title,
+  .users-email {
     max-width: 10ch; /* Begrenze die Breite auf 10 Zeichen */
     white-space: nowrap; /* Verhindere Zeilenumbrüche */
     overflow: hidden; /* Verstecke den überschüssigen Text */
     text-overflow: ellipsis; /* Füge Auslassungspunkte hinzu */
+  }
+
+  .TicketStateLabel {
+    margin-right: -0.8rem;
   }
 }
 

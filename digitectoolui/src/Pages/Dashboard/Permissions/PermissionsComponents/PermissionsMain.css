@@ -38,3 +38,9 @@
 .UserEmail{
   cursor: pointer;
 }
+
+.PermissionUserContainer{
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}

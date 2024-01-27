@@ -54,9 +54,9 @@ namespace DigitecToolAPI
             }
         }
 
-        public static async Task<bool> EditLoginCredentialsAsync(int PersonalNumber, ChangeCredentials updateloginCredentials)
+        public static async Task<bool> EditLoginCredentialsAsync(string Email, ChangeCredentials updateloginCredentials)
         {
-            var filter = Builders<LoginCredentials>.Filter.Eq(lc => lc.PersonalNumber, PersonalNumber);
+            var filter = Builders<LoginCredentials>.Filter.Eq(lc => lc.Email, Email);
             UpdateDefinition<LoginCredentials> update;
 
             Console.WriteLine("Got into function");

@@ -11,7 +11,7 @@ namespace DigitecToolAPI.Packages
     public string? TicketTitle { get; set; }
     public List<string>? TicketLocations { get; set; }
     public string? AKZ { get; set; }
-    public string? CreatedBy { get; set; }
+    public int CreatedBy { get; set; }
     public string? TicketText { get; set; }
   }
 }
