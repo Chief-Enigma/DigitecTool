@@ -299,7 +299,7 @@
 }
 
 .TicketExpandedContent .TicketButton {
-  width: fill;
+  width: stretch;
   margin-bottom: 0.4rem;
 }
 

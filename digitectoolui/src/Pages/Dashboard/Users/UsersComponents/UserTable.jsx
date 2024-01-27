@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Get from "../../../../Functions/Api/Requests/Get";
-import { AdminUserRow } from "./AdminUserRow";
+import { UserRow } from "./UserRow";
 
 export const UserTable = ({ searchInput }) => {
   const [users, setUsers] = useState([]);
@@ -21,7 +21,7 @@ export const UserTable = ({ searchInput }) => {
   }, []);
 
   users.forEach((user) => {
-    userRows.push(<AdminUserRow key={user.personalNumber} user={user} />);
+    userRows.push(<UserRow key={user.personalNumber} user={user} />);
   });
 
   return (

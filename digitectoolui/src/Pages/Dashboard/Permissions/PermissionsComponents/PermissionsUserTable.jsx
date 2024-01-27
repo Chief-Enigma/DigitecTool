@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Get from "../../../../Functions/Api/Requests/Get";
-import { AdminPermissionsUserRow } from "./AdminPermissionsUserRow";
+import { PermissionsUserRow } from "./PermissionsUserRow";
 
-export const AdminPermissionsUserTable = ({ searchInput }) => {
+export const PermissionsUserTable = ({ searchInput }) => {
   const [users, setUsers] = useState([]);
   const [userSearchResults, setUserSearchResults] = useState([]);
   const [selectedPermission, setSelectedPermission] = useState(null);
@@ -106,7 +106,7 @@ export const AdminPermissionsUserTable = ({ searchInput }) => {
             <td>Berechtigungen</td>
           </tr>
           {userSearchResults.map((user) => (
-            <AdminPermissionsUserRow
+            <PermissionsUserRow
               key={user.personalNumber}
               user={user}
               selectedPermission={selectedPermission}

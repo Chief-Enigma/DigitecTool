@@ -20,7 +20,7 @@ export const TicketTable = ({ searchInput, ticketNumberToEdit }) => {
   }, []);
 
   const getTicketText = async (ticketNumber) => {
-    await Get.GetTicketText(ticketNumber)
+    await Get.GetTicket(ticketNumber)
       .then((res) => {
         const updatedTickets = [...tickets];
         const updatedTicketIndex = updatedTickets.findIndex(

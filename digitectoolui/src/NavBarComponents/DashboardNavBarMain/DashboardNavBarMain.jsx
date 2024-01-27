@@ -17,7 +17,7 @@ export const DashboardNavBarMain = () => {
   }, []);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <div></div>;
   }
 
   const permissions = user ? user.permissions : [];
@@ -36,43 +36,29 @@ export const DashboardNavBarMain = () => {
             <span className="DashboardNavBarText">Today</span>
           </NavLink>
         </li>
-        {userRole === "sysadmin" || permissions.includes("changeshift") ? (
-          <li>
-            <NavLink to="changeshift" className="DashboardNavElement">
-              <span className="material-symbols-outlined">swap_horiz</span>
-              <span className="DashboardNavBarText">Diensttausch</span>
-            </NavLink>
-          </li>
-        ) : null}
-        {userRole === "sysadmin" || permissions.includes("reportsick") ? (
-          <li>
-            <NavLink to="reportsick" className="DashboardNavElement">
-              <span className="material-symbols-outlined">coronavirus</span>
-              <span className="DashboardNavBarText">Krankmelden</span>
-            </NavLink>
-          </li>
-        ) : null}
 
-        {userRole === "sysadmin" || permissions.includes("requestholliday") ? (
-          <li>
-            <NavLink to="requestholliday" className="DashboardNavElement">
-              <span className="material-symbols-outlined">beach_access</span>
+        <li>
+          <NavLink to="changeshift" className="DashboardNavElement">
+            <span className="material-symbols-outlined">swap_horiz</span>
+            <span className="DashboardNavBarText">Diensttausch</span>
+          </NavLink>
+        </li>
 
-              <span className="DashboardNavBarText">
-                Abwesenheit beantragen
-              </span>
-            </NavLink>
-          </li>
-        ) : null}
+        <li>
+          <NavLink to="reportsick" className="DashboardNavElement">
+            <span className="material-symbols-outlined">coronavirus</span>
+            <span className="DashboardNavBarText">Krankmelden</span>
+          </NavLink>
+        </li>
 
-        {/* {userRole === "sysadmin" || permissions.includes("createplan") ? (
-          <li>
-            <NavLink to="createplan" className="DashboardNavElement">
-              <span className="material-symbols-outlined">calendar_add_on</span>
-              Schichtplan erstellen
-            </NavLink>
-          </li>
-        ) : null} */}
+        <li>
+          <NavLink to="requestholliday" className="DashboardNavElement">
+            <span className="material-symbols-outlined">beach_access</span>
+
+            <span className="DashboardNavBarText">Abwesenheit beantragen</span>
+          </NavLink>
+        </li>
+
         {userRole === "sysadmin" || permissions.includes("editplan") ? (
           <li>
             <NavLink to="editplan" className="DashboardNavElement">
@@ -84,16 +70,12 @@ export const DashboardNavBarMain = () => {
           </li>
         ) : null}
 
-        {userRole === "sysadmin" ||
-        permissions.includes("employees") ||
-        permissions.includes("editemployees") ? (
-          <li>
-            <NavLink to="employees" className="DashboardNavElement">
-              <span className="material-symbols-outlined">groups</span>
-              <span className="DashboardNavBarText">Mitarbeiter</span>
-            </NavLink>
-          </li>
-        ) : null}
+        <li>
+          <NavLink to="employees" className="DashboardNavElement">
+            <span className="material-symbols-outlined">groups</span>
+            <span className="DashboardNavBarText">Mitarbeiter</span>
+          </NavLink>
+        </li>
 
         {userRole === "sysadmin" || permissions.includes("tickets") ? (
           <li>
@@ -114,12 +96,37 @@ export const DashboardNavBarMain = () => {
           </li>
         ) : null}
 
+        {userRole === "sysadmin" ||
+        userRole === "admin" ||
+        permissions.includes("users") ? (
+          <li>
+            <NavLink to="users" className="DashboardNavElement">
+              <span className="material-symbols-outlined">group</span>
+              <span className="DashboardNavBarText">Benutzer</span>
+            </NavLink>
+          </li>
+        ) : null}
+
+        {userRole === "sysadmin" ||
+        userRole === "admin" ||
+        permissions.includes("permissions") ? (
+          <li>
+            <NavLink to="permissions" className="DashboardNavElement">
+              <span className="material-symbols-outlined">
+                admin_panel_settings
+              </span>
+              <span className="DashboardNavBarText">Berechtigungen</span>
+            </NavLink>
+          </li>
+        ) : null}
+
         <li>
           <NavLink to="settings" className="DashboardNavElement">
             <span className="material-symbols-outlined">settings</span>
             <span className="DashboardNavBarText">Einstellungen</span>
           </NavLink>
         </li>
+
         <li>
           <NavLink to="help" className="DashboardNavElement">
             <span className="material-symbols-outlined">lightbulb</span>

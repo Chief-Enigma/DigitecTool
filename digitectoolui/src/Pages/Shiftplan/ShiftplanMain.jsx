@@ -1,13 +1,6 @@
 import React, { useEffect, useState } from "react";
-
-// export const ShiftplanMain = () => {
-//   return <h1>Hello</h1>;
-// };
-
 import Get from "../../Functions/Api/Requests/Get";
-
 import { ShiftDayTable } from "./ShiftplanComponents/ShiftDayTable";
-
 import "./ShiftplanComponents/ShiftplanStyle.css";
 
 const ShiftLayouts = [
@@ -53,7 +46,6 @@ function generateShiftDayTables(workerShifts) {
         Shifts.push(Shift);
       }
     });
-    console.log("Shifts!" + Shifts);
     DayTables.push(
       <ShiftDayTable
         shiftheaders={ShiftLayouts}
@@ -73,7 +65,6 @@ export const ShiftplanMain = () => {
   const getShifts = async (month) => {
     try {
       const response = await Get.GetShiftPlanForMonth(month);
-      console.log(response);
       return response;
     } catch (error) {
       console.error("Error fetching shifts:", error);
@@ -81,21 +72,20 @@ export const ShiftplanMain = () => {
     }
   };
 
-  const generateTables = async () => {
-    try {
-      const shifts = await getShifts("Januar");
-      if (shifts && shifts.length > 0) {
-        const tables = generateShiftDayTables(shifts);
-        setDayTables(tables);
-      } else {
-        setDayTables([]);
-      }
-    } finally {
-      setLoading(false); // Setze den Ladezustand auf false, unabhängig vom Ergebnis
-    }
-  };
-
   useEffect(() => {
+    const generateTables = async () => {
+      try {
+        const shifts = await getShifts("Januar");
+        if (shifts && shifts.length > 0) {
+          const tables = generateShiftDayTables(shifts);
+          setDayTables(tables);
+        } else {
+          setDayTables([]);
+        }
+      } finally {
+        setLoading(false);
+      }
+    };
     generateTables();
   }, []);
 
