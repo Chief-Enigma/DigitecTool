@@ -42,9 +42,10 @@ namespace DigitecToolAPI.Controllers
     }
 
     // POST - Save new Ticket
-    [HttpPost("create")]
+    [HttpPost]
     public async Task<ActionResult> CreateTicketAsync([FromBody] Ticket newTicket)
     {
+      Console.WriteLine("Got here0");
       var addedTicket = await SetTickets.AddTicketAsync(newTicket);
 
       if (addedTicket != null)
@@ -75,8 +76,16 @@ namespace DigitecToolAPI.Controllers
 
     // DELETE - Delete Ticket
     [HttpDelete("delete/{ticketNumber}")]
-    public async Task DeleteTicketAsync(int ticketNumber)
+    public async Task<IActionResult> DeleteTicketAsync(int ticketNumber)
     {
+      if (await SetTickets.DeletTicketAsync(ticketNumber))
+      {
+        return Ok();
+      }
+      else
+      {
+        return NotFound();
+      }
     }
   }
 }

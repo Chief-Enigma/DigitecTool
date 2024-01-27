@@ -42,7 +42,7 @@ class Post {
   }
 
   async SaveTicket(data) {
-    const url = ApiRequest.baseURL + "Ticket/create";
+    const url = ApiRequest.baseURL + "Ticket";
     try {
       return await ApiRequest.request(url, "POST", data);
     } catch (error) {

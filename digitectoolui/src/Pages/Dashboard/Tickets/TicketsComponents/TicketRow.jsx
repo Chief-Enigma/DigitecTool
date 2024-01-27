@@ -14,7 +14,7 @@ export const TicketRow = ({
   };
 
   const formatLocation = () => {
-    const locationString = ticket.location.map((location) => (
+    const locationString = ticket.ticketLocations.map((location) => (
       <span key={location} className="Locations">
         {location}
       </span>
