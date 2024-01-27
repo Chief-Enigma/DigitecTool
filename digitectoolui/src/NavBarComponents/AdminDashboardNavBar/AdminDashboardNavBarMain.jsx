@@ -27,7 +27,9 @@ export const AdminDashboardNavBarMain = () => {
         </li>
         <li>
           <NavLink to="permissions" className="DashboardNavElement">
-            <span className="material-symbols-outlined">admin_panel_settings</span>
+            <span className="material-symbols-outlined">
+              admin_panel_settings
+            </span>
             Berechtigungen
           </NavLink>
         </li>

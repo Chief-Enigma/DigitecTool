@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Put from "../../../../Functions/Api/Requests/Put";
 
-export const AdminPermissionsUserRow = ({ user, selectedPermission, setSelectedPermission }) => {
+export const PermissionsUserRow = ({ user, selectedPermission, setSelectedPermission }) => {
   const [permissions, setPermissions] = useState(user.permissions);
 
   const removePermission = (permissionToRemove) => {

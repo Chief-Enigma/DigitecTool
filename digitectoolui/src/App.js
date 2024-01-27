@@ -21,20 +21,14 @@ import { ShiftChangeMain } from "./Pages/Dashboard/ShiftChange/ShiftChangeMain";
 import { ReportSickMain } from "./Pages/Dashboard/ReportSick/ReportSickMain";
 import { RequestHollidaysMain } from "./Pages/Dashboard/RequestHolliday/RequestHollidaysMain";
 import { CreateShiftplanMain } from "./Pages/Dashboard/CreateShiftplan/CreateShiftplanMain";
-//import { EditShiftplanMain } from "./Pages/Dashboard/EditShiftplan/EditShiftplanMain";
 import { EmployeesMain } from "./Pages/Dashboard/Employees/EmployeesMain";
 import { TicketsMain } from "./Pages/Dashboard/Tickets/TicketsMain";
 import { MaintenanceMain } from "./Pages/Dashboard/Maintenance/MaintenanceMain";
 import { SettingsMain } from "./Pages/Dashboard/Settings/SettingsMain";
 import { HelpMain } from "./Pages/Dashboard/Help/HelpMain";
+import { UsersMain } from "./Pages/AdminDashboard/Users/UsersMain";
+import { PermissionsMain } from "./Pages/AdminDashboard/Permissions/PermissionsMain";
 
-// Import MainAdminDashboardPages
-import { AdminTodayMain } from "./Pages/AdminDashboard/Today/AdminTodayMain";
-import { AdminEmployeesMain } from "./Pages/AdminDashboard/Employees/AdminEmployeesMain";
-import { AdminUsersMain } from "./Pages/AdminDashboard/Users/AdminUsersMain";
-import { AdminPermissionsMain } from "./Pages/AdminDashboard/Permissions/AdminPermissionsMain";
-import { AdminSettingsMain } from "./Pages/AdminDashboard/Settings/AdminSettingsMain";
-import { AdminHelpMain } from "./Pages/AdminDashboard/Help/AdminHelpMain";
 
 const ProtectedRoute = ({ element, requiredPermissions, requiredUserrole }) => {
   const [user, setUser] = useState(null);
@@ -74,9 +68,6 @@ const ProtectedRoute = ({ element, requiredPermissions, requiredUserrole }) => {
           return true; // Grant access for sysadmin to everything
         }
         const hasPermission = user.permissions.includes(permission);
-        // console.log(
-        //   `Permission: ${permission}, Has Permission: ${hasPermission}`
-        // );
         return hasPermission;
       })
     : true;
@@ -84,7 +75,6 @@ const ProtectedRoute = ({ element, requiredPermissions, requiredUserrole }) => {
   const hasUserRole = requiredUserrole
     ? requiredUserrole.some((role) => {
         const hasUserRole = user.userrole === role;
-        //console.log(`Role: ${role}, Has Role: ${hasUserRole}`);
         return hasUserRole;
       })
     : true;
@@ -152,17 +142,6 @@ const App = () => {
               }
             />
 
-            {/* <Route
-              path="createplan"
-              element={
-                <ProtectedRoute
-                  element={<CreateShiftplanMain />}
-                  requiredPermissions={["createplan"]}
-                  requiredUserrole={["user", "manager", "admin", "sysadmin"]}
-                />
-              }
-            /> */}
-
             <Route
               path="editplan"
               element={
@@ -204,33 +183,11 @@ const App = () => {
                 />
               }
             />
-            <Route path="settings" element={<SettingsMain />} />
-            <Route path="help" element={<HelpMain />} />
-          </Route>
-          <Route
-            path="admindashboard"
-            element={
-              <ProtectedRoute
-                element={<AdminDashboardLayoutMain />}
-                requiredUserrole={["admin", "sysadmin"]}
-              />
-            }
-          >
-            <Route path="today" element={<AdminTodayMain />} />
-            <Route
-              path="employees"
-              element={
-                <ProtectedRoute
-                  element={<AdminEmployeesMain />}
-                  requiredUserrole={["admin", "sysadmin"]}
-                />
-              }
-            />
             <Route
               path="users"
               element={
                 <ProtectedRoute
-                  element={<AdminUsersMain />}
+                  element={<UsersMain />}
                   requiredUserrole={["admin", "sysadmin"]}
                 />
               }
@@ -239,13 +196,13 @@ const App = () => {
               path="permissions"
               element={
                 <ProtectedRoute
-                  element={<AdminPermissionsMain />}
+                  element={<PermissionsMain />}
                   requiredUserrole={["admin", "sysadmin"]}
                 />
               }
             />
-            <Route path="settings" element={<AdminSettingsMain />} />
-            <Route path="help" element={<AdminHelpMain />} />
+            <Route path="settings" element={<SettingsMain />} />
+            <Route path="help" element={<HelpMain />} />
           </Route>
           <Route
             path="account"

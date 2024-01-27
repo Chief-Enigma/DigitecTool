@@ -1,6 +1,6 @@
 import React from "react";
 
-export const AdminPermissionsHeader = ({ onSearchChange }) => {
+export const PermissionsHeader = ({ onSearchChange }) => {
   const handleSearchInputChange = (event) => {
     const inputValue = event.target.value;
     onSearchChange(inputValue);

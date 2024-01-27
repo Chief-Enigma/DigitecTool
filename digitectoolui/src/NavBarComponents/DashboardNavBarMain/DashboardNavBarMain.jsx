@@ -65,14 +65,6 @@ export const DashboardNavBarMain = () => {
           </li>
         ) : null}
 
-        {/* {userRole === "sysadmin" || permissions.includes("createplan") ? (
-          <li>
-            <NavLink to="createplan" className="DashboardNavElement">
-              <span className="material-symbols-outlined">calendar_add_on</span>
-              Schichtplan erstellen
-            </NavLink>
-          </li>
-        ) : null} */}
         {userRole === "sysadmin" || permissions.includes("editplan") ? (
           <li>
             <NavLink to="editplan" className="DashboardNavElement">
@@ -110,6 +102,30 @@ export const DashboardNavBarMain = () => {
                 home_repair_service
               </span>
               <span className="DashboardNavBarText">Wartung</span>
+            </NavLink>
+          </li>
+        ) : null}
+
+        {userRole === "sysadmin" ||
+        userRole === "admin" ||
+        permissions.includes("users") ? (
+          <li>
+            <NavLink to="users" className="DashboardNavElement">
+              <span className="material-symbols-outlined">group</span>
+              <span className="DashboardNavBarText">Benutzer</span>
+            </NavLink>
+          </li>
+        ) : null}
+
+        {userRole === "sysadmin" ||
+        userRole === "admin" ||
+        permissions.includes("permissions") ? (
+          <li>
+            <NavLink to="permissions" className="DashboardNavElement">
+              <span className="material-symbols-outlined">
+                admin_panel_settings
+              </span>
+              <span className="DashboardNavBarText">Berechtigungen</span>
             </NavLink>
           </li>
         ) : null}
