@@ -70,14 +70,9 @@ export const DashboardNavBarMain = () => {
           </li>
         ) : null}
 
-        <li>
-          <NavLink to="employees" className="DashboardNavElement">
-            <span className="material-symbols-outlined">groups</span>
-            <span className="DashboardNavBarText">Mitarbeiter</span>
-          </NavLink>
-        </li>
-
-        {userRole === "sysadmin" || permissions.includes("tickets") ? (
+        {userRole === "sysadmin" ||
+        permissions.includes("tickets") ||
+        permissions.includes("managetickets") ? (
           <li>
             <NavLink to="tickets" className="DashboardNavElement">
               <span className="material-symbols-outlined">receipt_long</span>
@@ -85,6 +80,7 @@ export const DashboardNavBarMain = () => {
             </NavLink>
           </li>
         ) : null}
+
         {userRole === "sysadmin" || permissions.includes("maintenance") ? (
           <li>
             <NavLink to="maintenance" className="DashboardNavElement">
@@ -95,6 +91,13 @@ export const DashboardNavBarMain = () => {
             </NavLink>
           </li>
         ) : null}
+
+        <li>
+          <NavLink to="employees" className="DashboardNavElement">
+            <span className="material-symbols-outlined">groups</span>
+            <span className="DashboardNavBarText">Mitarbeiter</span>
+          </NavLink>
+        </li>
 
         {userRole === "sysadmin" ||
         userRole === "admin" ||
@@ -120,7 +123,7 @@ export const DashboardNavBarMain = () => {
           </li>
         ) : null}
 
-        <li>
+        <li style={{display: 'none'}}>
           <NavLink to="settings" className="DashboardNavElement">
             <span className="material-symbols-outlined">settings</span>
             <span className="DashboardNavBarText">Einstellungen</span>

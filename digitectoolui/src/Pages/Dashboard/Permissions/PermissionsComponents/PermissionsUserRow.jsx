@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import Put from "../../../../Functions/Api/Requests/Put";
 
-export const PermissionsUserRow = ({ user, selectedPermission, setSelectedPermission }) => {
+export const PermissionsUserRow = ({
+  user,
+  selectedPermission,
+  setSelectedPermission,
+}) => {
   const [permissions, setPermissions] = useState(user.permissions);
 
   const removePermission = (permissionToRemove) => {
@@ -15,21 +19,21 @@ export const PermissionsUserRow = ({ user, selectedPermission, setSelectedPermis
       Payload: JSON.stringify(updatedPermissions),
     };
     const personalnumber = user.personalNumber;
-    Put.EditLoginCredentials(data, personalnumber);
+    Put.EditLoginCredentials(data, user.email);
   };
 
   const addPermission = () => {
     if (selectedPermission && !permissions.includes(selectedPermission)) {
       const updatedPermissions = [...permissions, selectedPermission];
       setPermissions(updatedPermissions);
-      setSelectedPermission(null)
+      setSelectedPermission(null);
 
       const data = {
         Type: "Permissions",
         Payload: JSON.stringify(updatedPermissions),
       };
       const personalnumber = user.personalNumber;
-      Put.EditLoginCredentials(data, personalnumber);
+      Put.EditLoginCredentials(data, user.email);
     }
   };
 
@@ -63,7 +67,9 @@ export const PermissionsUserRow = ({ user, selectedPermission, setSelectedPermis
   return (
     <tr className="EmployeeRow" onClick={addPermission}>
       <td>{user.personalNumber}</td>
-      <td ><span className="UserEmail">{user.email}</span></td>
+      <td className="non-mobile">
+        <span className="UserEmail">{user.email}</span>
+      </td>
       <td>
         <label
           className="RoleLabel"
@@ -75,7 +81,9 @@ export const PermissionsUserRow = ({ user, selectedPermission, setSelectedPermis
           <span>{user.userRole}</span>
         </label>
       </td>
-      <td>{permissionObject}</td>
+      <td>
+        <div className="PermissionUserContainer">{permissionObject}</div>
+      </td>
     </tr>
   );
 };

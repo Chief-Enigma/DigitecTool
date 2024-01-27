@@ -59,7 +59,7 @@ namespace DigitecToolAPI.Controllers
     }
 
     // PUT - Save updated Ticket
-    [HttpPut("updateticket")]
+    [HttpPut]
     public async Task<ActionResult> UpdateTicketAsync([FromBody] Ticket updatedTicket)
     {
       var ticket = await SetTickets.UpdateTicketAsync(updatedTicket);

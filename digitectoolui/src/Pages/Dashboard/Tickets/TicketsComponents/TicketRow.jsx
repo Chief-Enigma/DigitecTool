@@ -1,11 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+import Delete from "../../../../Functions/Api/Requests/Delete";
+
 export const TicketRow = ({
   ticket,
   expanded,
   toggleRow,
   ticketNumberToEdit,
+  onDeleteButton
 }) => {
   const formatCreationDate = () => {
     const creationDate = new Date(ticket.creationDate);
@@ -48,6 +51,7 @@ export const TicketRow = ({
 
   const deleteTicket = (ticketnumber) => {
     console.log("Delete Button on Ticket: ", ticketnumber);
+    onDeleteButton(ticketnumber)
   };
 
   return (
@@ -61,7 +65,7 @@ export const TicketRow = ({
         <td className="non-mobile">{ticket.createdBy}</td>
         <td>
           <label
-            className="RoleLabel"
+            className="TicketStateLabel"
             style={{
               backgroundColor: `rgba(${getStateColor(
                 ticket.ticketState

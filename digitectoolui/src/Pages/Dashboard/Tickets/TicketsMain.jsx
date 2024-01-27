@@ -34,6 +34,7 @@ export const TicketsMain = ({ user }) => {
       <TicketEditorMain
         onCloseTicketEditor={setTicketEditor}
         ticketNumber={ticketNumber}
+        user={user}
       />
     </div>
   ) : (

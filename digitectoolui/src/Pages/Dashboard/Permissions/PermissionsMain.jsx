@@ -6,7 +6,6 @@ import { PermissionsUserTable } from "./PermissionsComponents/PermissionsUserTab
 
 export const PermissionsMain = ({ user }) => {
   const [searchInput, setSearchInput] = useState("");
-  console.log(user);
 
   const handleSearchChange = (value) => {
     setSearchInput(value);

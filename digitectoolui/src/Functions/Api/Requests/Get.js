@@ -70,6 +70,16 @@ class Get {
       console.error("Error at GetTicketText: ", error);
     }
   }
+
+  // Get LoginCreds
+  async GetLoginCredentials(email) {
+    const url = ApiRequest.baseURL + "Authentication/LoginCredentials/" + email;
+    try {
+      return await ApiRequest.request(url, "GET", undefined);
+    } catch (error) {
+      console.error("Error at GetLoginCredentials: ", error);
+    }
+  }
 }
 
 const GetRequest = new Get();

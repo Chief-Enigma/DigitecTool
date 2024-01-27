@@ -2,8 +2,8 @@ import ApiRequest from "../Request";
 
 class Put {
   // Put updated Login Credentials
-  async EditLoginCredentials(data, personalnumber) {
-    const url = ApiRequest.baseURL + "Login/" + personalnumber;
+  async EditLoginCredentials(data, email) {
+    const url = ApiRequest.baseURL + "Login/" + email;
     try {
       return await ApiRequest.request(url, "PUT", data);
     } catch (error) {
@@ -33,7 +33,7 @@ class Put {
 
   // Get Tickettext by Ticketnumber
   async UpdateTicket(data) {
-    const url = ApiRequest.baseURL + "Ticket/update";
+    const url = ApiRequest.baseURL + "Ticket";
     try {
       return await ApiRequest.request(url, "PUT", data);
     } catch (error) {

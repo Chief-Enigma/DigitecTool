@@ -1,6 +1,7 @@
 // Import React dependencis
 import React, { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import Get from "./Functions/Api/Requests/Get";
 
 // Import Layouts
 import { LayoutMain } from "./LayoutComponents/MainLayout/LayoutMain";
@@ -38,7 +39,21 @@ const ProtectedRoute = ({ element, requiredPermissions, requiredUserrole }) => {
         const storedUser = localStorage.getItem("user");
 
         if (storedUser) {
-          const parsedUser = JSON.parse(storedUser);
+          var parsedUser = JSON.parse(storedUser);
+          const AuthenticationResult = await Get.GetLoginCredentials(
+            parsedUser.email
+          );
+          localStorage.setItem(
+            "user",
+            JSON.stringify({
+              personalnumber:
+                AuthenticationResult.returnCredentials.personalNumber,
+              email: AuthenticationResult.returnCredentials.email,
+              userrole: AuthenticationResult.returnCredentials.userRole,
+              permissions: AuthenticationResult.returnCredentials.permissions,
+            })
+          );
+          parsedUser = JSON.parse(storedUser);
           setUser(parsedUser);
         }
       } catch (error) {
@@ -128,7 +143,7 @@ const App = () => {
               element={
                 <ProtectedRoute
                   element={<TicketsMain />}
-                  requiredPermissions={["tickets"]}
+                  requiredPermissions={["tickets", "managetickets"]}
                   requiredUserrole={["user", "manager", "admin", "sysadmin"]}
                 />
               }
