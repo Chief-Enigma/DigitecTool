@@ -1,6 +1,6 @@
 import React from "react";
 
-export const AdminUserRow = ({ user }) => {
+export const UserRow = ({ user }) => {
   return (
     <tr className="EmployeeRow">
       <td>{user.personalNumber}</td>

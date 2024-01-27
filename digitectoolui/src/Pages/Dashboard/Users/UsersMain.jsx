@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import "./AdminUsersComponents/AdminUserMain.css";
+import "./UsersComponents/UserMain.css";
 
-import { UserHeader } from "./AdminUsersComponents/AdminUserHeader";
-import { UserTable } from "./AdminUsersComponents/AdminUserTable";
+import { UserHeader } from "./UsersComponents/UserHeader";
+import { UserTable } from "./UsersComponents/UserTable";
 
-export const AdminUsersMain = () => {
+export const UsersMain = () => {
   const [searchInput, setSearchInput] = useState("");
   const handleSearchChange = (value) => {
     setSearchInput(value);

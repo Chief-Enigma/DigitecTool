@@ -5,7 +5,6 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 // Import Layouts
 import { LayoutMain } from "./LayoutComponents/MainLayout/LayoutMain";
 import { DashboardLayoutMain } from "./LayoutComponents/DashboardLayout/DashboardLayoutMain";
-import { AdminDashboardLayoutMain } from "./LayoutComponents/DashboardLayout/AdminDashboardLayoutMain";
 
 // Import MainPages
 import { HomeMain } from "./Pages/Home/HomeMain";
@@ -26,9 +25,8 @@ import { TicketsMain } from "./Pages/Dashboard/Tickets/TicketsMain";
 import { MaintenanceMain } from "./Pages/Dashboard/Maintenance/MaintenanceMain";
 import { SettingsMain } from "./Pages/Dashboard/Settings/SettingsMain";
 import { HelpMain } from "./Pages/Dashboard/Help/HelpMain";
-import { UsersMain } from "./Pages/AdminDashboard/Users/UsersMain";
-import { PermissionsMain } from "./Pages/AdminDashboard/Permissions/PermissionsMain";
-
+import { UsersMain } from "./Pages/Dashboard/Users/UsersMain";
+import { PermissionsMain } from "./Pages/Dashboard/Permissions/PermissionsMain";
 
 const ProtectedRoute = ({ element, requiredPermissions, requiredUserrole }) => {
   const [user, setUser] = useState(null);
@@ -109,38 +107,9 @@ const App = () => {
             element={<ProtectedRoute element={<DashboardLayoutMain />} />}
           >
             <Route path="today" element={<TodayMain />} />
-            <Route
-              path="changeshift"
-              element={
-                <ProtectedRoute
-                  element={<ShiftChangeMain />}
-                  requiredPermissions={["changeshift"]}
-                  requiredUserrole={["user", "manager", "admin", "sysadmin"]}
-                />
-              }
-            />
-
-            <Route
-              path="reportsick"
-              element={
-                <ProtectedRoute
-                  element={<ReportSickMain />}
-                  requiredPermissions={["reportsick"]}
-                  requiredUserrole={["user", "manager", "admin", "sysadmin"]}
-                />
-              }
-            />
-
-            <Route
-              path="requestholliday"
-              element={
-                <ProtectedRoute
-                  element={<RequestHollidaysMain />}
-                  requiredPermissions={["requestholliday"]}
-                  requiredUserrole={["user", "manager", "admin", "sysadmin"]}
-                />
-              }
-            />
+            <Route path="changeshift" element={<ShiftChangeMain />} />
+            <Route path="reportsick" element={<ReportSickMain />} />
+            <Route path="requestholliday" element={<RequestHollidaysMain />} />
 
             <Route
               path="editplan"
@@ -153,16 +122,7 @@ const App = () => {
               }
             />
 
-            <Route
-              path="employees"
-              element={
-                <ProtectedRoute
-                  element={<EmployeesMain user={ProtectedRoute.user} />}
-                  requiredPermissions={["employees", "editemployees"]}
-                  requiredUserrole={["user", "manager", "admin", "sysadmin"]}
-                />
-              }
-            />
+            <Route path="employees" element={<EmployeesMain />} />
             <Route
               path="tickets"
               element={

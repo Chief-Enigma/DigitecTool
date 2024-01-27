@@ -62,8 +62,8 @@ class Get {
   }
 
   // Get Tickettext by Ticketnumber
-  async GetTicketText(ticketNumber) {
-    const url = ApiRequest.baseURL + "Ticket/tickettext/" + ticketNumber;
+  async GetTicket(ticketNumber) {
+    const url = ApiRequest.baseURL + "Ticket/ticket/" + ticketNumber;
     try {
       return await ApiRequest.request(url, "GET", undefined);
     } catch (error) {

@@ -26,7 +26,7 @@ namespace DigitecToolAPI.Controllers
     }
 
     // GET - Get Ticket Text from Ticketnumber
-    [HttpGet("tickettext/{ticketNumber}")]
+    [HttpGet("ticket/{ticketNumber}")]
     public async Task<ActionResult> GetTicketTextByNumberAsync(int ticketNumber)
     {
       var ticket = await GetTickets.GetTicketByNumberAsync(ticketNumber);

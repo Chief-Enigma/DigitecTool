@@ -4,9 +4,8 @@ import "./EmployeesComponents/EmployeesMain.css";
 import { EmployeeHeader } from "./EmployeesComponents/EmployeeHeader";
 import { EmployeeTable } from "./EmployeesComponents/EmployeeTable";
 
-export const EmployeesMain = ({ user }) => {
+export const EmployeesMain = () => {
   const [searchInput, setSearchInput] = useState("");
-  console.log("User:", user.permissions);
 
   const handleSearchChange = (value) => {
     setSearchInput(value);

@@ -15,7 +15,7 @@ export const TicketEditorMain = ({ onCloseTicketEditor, ticketNumber }) => {
     createdBy: "",
     ticketText: "",
   };
-  const [ticket, setTicket] = useState(ticketLayOut);
+  const [ticket, setTicket] = useState();
   const [serverResponse, setServerResponse] = useState("");
   const locations = ["A", "A-TS", "A-AKL", "A-WE", "B", "SR"];
   const ticketStates = ["open", "to plan", "planed", "closed"];
@@ -36,6 +36,11 @@ export const TicketEditorMain = ({ onCloseTicketEditor, ticketNumber }) => {
   };
 
   useEffect(() => {
+    if(ticketNumber){
+      
+    }
+
+    
     const storedTicket = localStorage.getItem("ticketInput");
     if (storedTicket) {
       setTicket(JSON.parse(storedTicket));
