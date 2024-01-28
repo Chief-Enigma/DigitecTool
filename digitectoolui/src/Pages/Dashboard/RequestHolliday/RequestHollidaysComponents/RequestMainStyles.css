@@ -1,3 +1,4 @@
+/** RequestForm Styles **/
 .RequestForm * {
   box-sizing: border-box;
 }
@@ -62,6 +63,7 @@
 
 ::-webkit-calendar-picker-indicator {
   filter: invert(1);
+  font-style: bold;
 }
 
 .RequestForm .RequestTextInpu {
@@ -149,13 +151,23 @@
     justify-content: center; /* Zentriere horizontal */
   }
 
-  .RequestIcon {
-    rotate: 90deg;
+  .RequestIcon, .RequestCol-20 {
+    display: none;
   }
 
   .RequestButtonContainer {
     flex-direction: row;
     margin-bottom: -14px;
+  }
+
+  .RequestCol-40 input {
+    width: stretch;
+    margin-bottom: 15px;
+    color: #fefefe;
+    background-color: #1a1a1a;
+    padding: 0.7rem;
+    border: 2px solid #333;
+    border-radius: 10px;
   }
 
   .TicketTable,
@@ -175,3 +187,5 @@
     margin-right: -0.8rem;
   }
 }
+
+/** AproveRequest Styles **/
