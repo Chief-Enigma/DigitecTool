@@ -1,5 +1,16 @@
 import React from "react";
+import { RequestForm } from "./RequestHollidaysComponents/RequestForm/RequestFormMain";
+import { ApproveRequestForm } from "./RequestHollidaysComponents/ApproveRequestForm/ApproveRequestForm";
+
+import "./RequestHollidaysComponents/RequestMainStyles.css"
 
 export const RequestHollidaysMain = () => {
-  return <h1>This is RequestHollidaysMain</h1>;
+  const user = JSON.parse(localStorage.getItem("user"));
+  return (
+    <>
+      <RequestForm />
+      {(user.permissions.includes("approverequests") ||
+        user.userrole.includes("sysadmin")) && <ApproveRequestForm />}
+    </>
+  );
 };

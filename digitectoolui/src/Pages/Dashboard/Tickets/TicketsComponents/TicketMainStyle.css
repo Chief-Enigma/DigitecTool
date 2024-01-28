@@ -30,7 +30,7 @@
   border-radius: 10px;
 }
 
-.row {
+.TicketEditorRow {
   display: -ms-flexbox;
   display: flex;
   -ms-flex-wrap: wrap;
@@ -38,36 +38,36 @@
   margin: 0 -16px;
 }
 
-.col-20 {
+.TicketEditorCol-20 {
   -ms-flex: 20%;
   flex: 20%;
 }
 
-.col-25 {
+.TicketEditorCol-25 {
   -ms-flex: 25%;
   flex: 25%;
 }
 
-.col-40 {
+.TicketEditorCol-40 {
   -ms-flex: 40%;
   flex: 40%;
 }
 
-.col-50 {
+.TicketEditorCol-50 {
   -ms-flex: 50%;
   flex: 50%;
 }
 
-.col-100 {
+.TicketEditorCol-100 {
   -ms-flex: 100%;
   flex: 100%;
 }
 
-.col-20,
-.col-25,
-.col-40,
-.col-50,
-.col-100 {
+.TicketEditorCol-20,
+.TicketEditorCol-25,
+.TicketEditorCol-40,
+.TicketEditorCol-50,
+.TicketEditorCol-100 {
   padding: 0 16px;
 }
 
@@ -79,7 +79,7 @@
   color: #fefefe;
   background-color: #1a1a1a;
   padding: 0.7rem;
-  border: 1px solid #9e9e9e;
+  border: 2px solid #333;
   border-radius: 10px;
 }
 
@@ -184,7 +184,7 @@
 
 /* MediaScreen Styles */
 @media (max-width: 900px) {
-  .row {
+  .TicketEditorRow {
     flex-direction: column;
   }
 
@@ -192,10 +192,10 @@
     margin-bottom: 5px;
   }
 
-  .col-20,
-  .col-25,
-  .col-40,
-  .col-50 {
+  .TicketEditorCol-20,
+  .TicketEditorCol-25,
+  .TicketEditorCol-40,
+  .TicketEditorCol-50 {
     margin-bottom: 20px;
   }
 

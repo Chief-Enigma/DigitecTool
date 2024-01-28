@@ -12,6 +12,7 @@ export const PermissionsUserTable = ({ searchInput }) => {
     "tickets",
     "managetickets",
     "maintenance",
+    "approverequests"
   ];
 
   const handlePermissionTypeClick = (permission) => {
