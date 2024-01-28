@@ -8,8 +8,7 @@ export const PermissionsHeader = ({ onSearchChange }) => {
 
   return (
     <div>
-      <h2>Benutzerverzeichniss</h2>
-      <p>Some text here</p>
+      <h2>Berechtigungen</h2>
       <div className="SearchbarContainer">
         <input
           className="Searchbar"

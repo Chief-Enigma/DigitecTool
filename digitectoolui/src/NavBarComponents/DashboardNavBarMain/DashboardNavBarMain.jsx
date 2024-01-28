@@ -37,7 +37,7 @@ export const DashboardNavBarMain = () => {
           </NavLink>
         </li>
 
-        <li>
+        <li style={{display: 'none'}}>
           <NavLink to="changeshift" className="DashboardNavElement">
             <span className="material-symbols-outlined">swap_horiz</span>
             <span className="DashboardNavBarText">Diensttausch</span>
@@ -82,7 +82,7 @@ export const DashboardNavBarMain = () => {
         ) : null}
 
         {userRole === "sysadmin" || permissions.includes("maintenance") ? (
-          <li>
+          <li style={{display: 'none'}}>
             <NavLink to="maintenance" className="DashboardNavElement">
               <span className="material-symbols-outlined">
                 home_repair_service

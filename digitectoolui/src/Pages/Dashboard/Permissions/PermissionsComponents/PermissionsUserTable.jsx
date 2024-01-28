@@ -7,12 +7,12 @@ export const PermissionsUserTable = ({ searchInput }) => {
   const [userSearchResults, setUserSearchResults] = useState([]);
   const [selectedPermission, setSelectedPermission] = useState(null);
   const avaliblePermissions = [
-    "changeshift",
     "editplan",
     "manageemployees",
     "tickets",
-    "maintenance",
     "managetickets",
+    "maintenance",
+    "approverequests"
   ];
 
   const handlePermissionTypeClick = (permission) => {

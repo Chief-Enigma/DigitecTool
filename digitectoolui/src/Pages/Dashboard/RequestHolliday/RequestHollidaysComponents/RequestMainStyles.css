@@ -1,0 +1,191 @@
+/** RequestForm Styles **/
+.RequestForm * {
+  box-sizing: border-box;
+}
+
+.RequestHeader {
+  display: flex;
+  flex-direction: row;
+}
+
+.RequestHeader h2 {
+  align-self: flex-start; /* Damit der Titel links ausgerichtet ist */
+}
+
+.RequestButton.help {
+  margin-left: auto; /* Der Button wird ganz rechts platziert */
+  border-color: #333;
+}
+
+.RequestRow {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  margin: 0 -16px;
+}
+
+.RequestCol-20 + .RequestRow {
+  display: flex;
+  align-items: center;
+}
+
+.RequestCol-20 {
+  display: flex;
+  align-items: center;
+}
+
+.RequestCol-40 {
+  -ms-flex: 40%;
+  flex: 40%;
+}
+
+.RequestCol-100 {
+  -ms-flex: 100%;
+  flex: 100%;
+}
+
+.RequestCol-20,
+.RequestCol-40,
+.RequestCol-100 {
+  padding: 0 16px;
+}
+
+.RequestForm input {
+  width: 100%;
+  margin-bottom: 15px;
+  color: #fefefe;
+  background-color: #1a1a1a;
+  padding: 0.7rem;
+  border: 2px solid #333;
+  border-radius: 10px;
+}
+
+::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+  font-style: bold;
+}
+
+.RequestForm .RequestTextInpu {
+  width: stretch;
+  margin-bottom: 15px;
+  color: #fefefe;
+  background-color: #1a1a1a;
+  padding: 0.7rem;
+  border: 2px solid #333;
+  border-radius: 10px;
+}
+
+.RequestLabel {
+  margin-bottom: 10px;
+  display: block;
+}
+
+.RequestIcon {
+  transform: rotate(180deg);
+  display: flex;
+  margin-top: 10px;
+  align-items: center;
+  color: #9e9e9e;
+}
+
+.RequestButtonContainer {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 0px;
+  margin-left: -10px;
+  margin-top: -6px;
+}
+
+.RequestButton {
+  transition: 250ms;
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+  border-radius: 10px;
+  padding: 0.4rem;
+  border: 2px solid #9e9e9e;
+  color: #9e9e9e;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.RequestButton.send:hover {
+  transition: 250ms;
+  color: #fefefe;
+  background-color: #28a745;
+}
+
+.RequestButton.cancel:hover {
+  transition: 150ms;
+  color: #fefefe;
+  background-color: #dc3545;
+}
+
+.RequestButtonText {
+  margin-left: 10px;
+}
+
+@media (max-width: 900px) {
+  .RequestRow {
+    flex-direction: column;
+  }
+
+  .RequestButton {
+    margin-bottom: 5px;
+  }
+
+  .RequestCol-20,
+  .RequestCol-40,
+  .RequestCol-100 {
+    margin-bottom: 10px;
+  }
+
+  .RequestButtonText {
+    display: none;
+  }
+
+  .RequestCol-20 {
+    display: flex;
+    align-items: center; /* Zentriere vertikal */
+    justify-content: center; /* Zentriere horizontal */
+  }
+
+  .RequestIcon, .RequestCol-20 {
+    display: none;
+  }
+
+  .RequestButtonContainer {
+    flex-direction: row;
+    margin-bottom: -14px;
+  }
+
+  .RequestCol-40 input {
+    width: stretch;
+    margin-bottom: 15px;
+    color: #fefefe;
+    background-color: #1a1a1a;
+    padding: 0.7rem;
+    border: 2px solid #333;
+    border-radius: 10px;
+  }
+
+  .TicketTable,
+  .EmployeeTable {
+    font-size: 0.8rem;
+  }
+
+  .ticket-title,
+  .users-email {
+    max-width: 10ch; /* Begrenze die Breite auf 10 Zeichen */
+    white-space: nowrap; /* Verhindere Zeilenumbrüche */
+    overflow: hidden; /* Verstecke den überschüssigen Text */
+    text-overflow: ellipsis; /* Füge Auslassungspunkte hinzu */
+  }
+
+  .TicketStateLabel {
+    margin-right: -0.8rem;
+  }
+}
+
+/** AproveRequest Styles **/

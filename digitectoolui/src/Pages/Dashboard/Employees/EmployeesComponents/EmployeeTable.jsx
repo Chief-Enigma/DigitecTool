@@ -85,7 +85,7 @@ export const EmployeeTable = ({ searchInput }) => {
             <td>Name</td>
             <td className="non-mobile">Funktion</td>
             <td className="non-mobile">Team</td>
-            <td>Personalnummer</td>
+            <td>Personal Nr.</td>
             <td></td>
           </tr>
           {employeeSearchResults.map((employee) => (
