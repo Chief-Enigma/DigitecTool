@@ -43,16 +43,12 @@ const ProtectedRoute = ({ element, requiredPermissions, requiredUserrole }) => {
           const AuthenticationResult = await Get.GetLoginCredentials(
             parsedUser.email
           );
-          localStorage.setItem(
-            "user",
-            JSON.stringify({
-              personalnumber:
-                AuthenticationResult.returnCredentials.personalNumber,
-              email: AuthenticationResult.returnCredentials.email,
-              userrole: AuthenticationResult.returnCredentials.userRole,
-              permissions: AuthenticationResult.returnCredentials.permissions,
-            })
-          );
+
+          console.log(parsedUser);
+          parsedUser.userrole = AuthenticationResult.returnCredentials.userRole;
+          parsedUser.permissions =
+            AuthenticationResult.returnCredentials.permissions;
+          localStorage.setItem("user", JSON.stringify(parsedUser));
           parsedUser = JSON.parse(storedUser);
           setUser(parsedUser);
         }
