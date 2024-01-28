@@ -96,7 +96,8 @@ export const PermissionsUserTable = ({ searchInput }) => {
       <table className="EmployeeTable">
         <tbody>
           <tr className="EmployeeRow EmployeeTitleRow">
-            <td>Personal Nr.</td>
+            <td className="non-mobile">Personal Nr.</td>
+            <td className="on-mobile">Nr.</td>
             <td className="non-mobile">Email</td>
             <td>Benutzertyp</td>
             <td>Berechtigungen</td>

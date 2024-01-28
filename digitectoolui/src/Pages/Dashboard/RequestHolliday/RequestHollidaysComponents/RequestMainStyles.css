@@ -61,6 +61,13 @@
   border-radius: 10px;
 }
 
+.RequestDateInput{
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+
+
 ::-webkit-calendar-picker-indicator {
   filter: invert(1);
   font-style: bold;
@@ -135,56 +142,26 @@
     margin-bottom: 5px;
   }
 
-  .RequestCol-20,
   .RequestCol-40,
   .RequestCol-100 {
     margin-bottom: 10px;
+    width: 100%;
+    -ms-flex: 100%;
+    flex: 100%;
   }
 
   .RequestButtonText {
     display: none;
   }
 
+  .RequestIcon,
   .RequestCol-20 {
-    display: flex;
-    align-items: center; /* Zentriere vertikal */
-    justify-content: center; /* Zentriere horizontal */
-  }
-
-  .RequestIcon, .RequestCol-20 {
     display: none;
   }
 
   .RequestButtonContainer {
     flex-direction: row;
     margin-bottom: -14px;
-  }
-
-  .RequestCol-40 input {
-    width: stretch;
-    margin-bottom: 15px;
-    color: #fefefe;
-    background-color: #1a1a1a;
-    padding: 0.7rem;
-    border: 2px solid #333;
-    border-radius: 10px;
-  }
-
-  .TicketTable,
-  .EmployeeTable {
-    font-size: 0.8rem;
-  }
-
-  .ticket-title,
-  .users-email {
-    max-width: 10ch; /* Begrenze die Breite auf 10 Zeichen */
-    white-space: nowrap; /* Verhindere Zeilenumbrüche */
-    overflow: hidden; /* Verstecke den überschüssigen Text */
-    text-overflow: ellipsis; /* Füge Auslassungspunkte hinzu */
-  }
-
-  .TicketStateLabel {
-    margin-right: -0.8rem;
   }
 }
 

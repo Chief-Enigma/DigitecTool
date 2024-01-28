@@ -83,7 +83,7 @@
   transform: rotate(0deg);
 }
 
-@media (max-width: 400px) {
+@media (max-width: 900px) {
   .non-mobile {
     display: none;
   }

@@ -39,3 +39,12 @@
   color: #fefefe;
   margin-left: 1rem; /* Adjust the margin as needed */
 }
+
+@media (max-width: 400px) {
+
+  .DashboardContendBox {
+    margin: 5px;
+    padding: 10px;
+    
+  }
+}

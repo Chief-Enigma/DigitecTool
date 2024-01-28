@@ -1,6 +1,47 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { format } from "date-fns";
 
 export const RequestForm = () => {
+  const user = JSON.parse(localStorage.getItem("user"));
+  const requestLayOut = {
+    id: {},
+    requestNumber: 0,
+    requestType: "ReportSick",
+    requestState: "open",
+    creationDate: format(new Date(), "yyyy-MM-dd"),
+    requestFrom: user.personalnumber,
+    dateFrom: format(Date(), "yyyy-MM-dd"),
+    dateTo: format(Date(), "yyyy-MM-dd"),
+    note: "",
+  };
+  const [request, setRequest] = useState(requestLayOut);
+
+  //* Handle TextEdit Actions *//
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    const selectedDate = new Date(value);
+    const today = new Date();
+
+    if (name === "dateFrom" || name === "dateTo") {
+      if (selectedDate < today) {
+        setRequest((prevData) => ({
+          ...prevData,
+          [name]: format(today, "yyyy-MM-dd"),
+        }));
+      } else {
+        setRequest((prevData) => ({
+          ...prevData,
+          [name]: value,
+        }));
+      }
+    } else {
+      setRequest((prevData) => ({
+        ...prevData,
+        [name]: value,
+      }));
+    }
+  };
+
   return (
     <div className="DashboardContendBox">
       <div className="RequestForm">
@@ -23,7 +64,10 @@ export const RequestForm = () => {
                 <input
                   className="RequestDateInput"
                   type="date"
-                  id="RequestHollydayFrom"
+                  id="ReportSickFrom"
+                  name="dateFrom"
+                  value={request.dateFrom}
+                  onChange={handleInputChange}
                 />
               </div>
               <div className="RequestCol-20">
@@ -38,7 +82,10 @@ export const RequestForm = () => {
                 <input
                   className="RequestDateInput"
                   type="date"
-                  id="RequestHollydayTo"
+                  id="ReportSickTo"
+                  name="dateTo"
+                  value={request.dateTo}
+                  onChange={handleInputChange}
                 />
               </div>
             </div>
@@ -48,6 +95,9 @@ export const RequestForm = () => {
                   className="RequestTextInput"
                   type="text"
                   placeholder="Bemerkung..."
+                  name="note"
+                  value={request.note}
+                  onChange={handleInputChange}
                 />
               </div>
             </div>
