@@ -54,14 +54,13 @@ export const DashboardNavBarMain = () => {
         <li>
           <NavLink to="requestholliday" className="DashboardNavElement">
             <span className="material-symbols-outlined">beach_access</span>
-
             <span className="DashboardNavBarText">Abwesenheit beantragen</span>
           </NavLink>
         </li>
 
         {userRole === "sysadmin" || permissions.includes("editplan") ? (
           <li>
-            <NavLink to="editplan" className="DashboardNavElement">
+            <NavLink to="editplan" className="non-mobile DashboardNavElement">
               <span className="material-symbols-outlined">edit_calendar</span>
               <span className="DashboardNavBarText">
                 Schichtplan bearbeiten

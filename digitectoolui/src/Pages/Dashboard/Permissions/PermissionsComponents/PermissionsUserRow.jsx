@@ -41,7 +41,7 @@ export const PermissionsUserRow = ({
     <label key={permission} className="PermissionBox">
       <span className="PermissionText">{permission}</span>
       <span
-        className="material-symbols-outlined"
+        className="permission_icon material-symbols-outlined"
         onClick={() => removePermission(permission)}
       >
         close

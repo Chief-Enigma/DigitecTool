@@ -19,26 +19,28 @@ export const RequestForm = () => {
   //* Handle TextEdit Actions *//
   const handleInputChange = (e) => {
     const { name, value } = e.target;
+    const selectedDate = new Date(value);
+    const today = new Date();
 
-    // Setze dateTo auf das gleiche Datum wie dateFrom, wenn dateFrom geändert wird
-    if (name === "dateFrom") {
-      setRequest((prevData) => ({
-        ...prevData,
-        dateFrom: value,
-        dateTo: value, // Setze dateTo auf das gleiche Datum wie dateFrom
-      }));
+    if (name === "dateFrom" || name === "dateTo") {
+      if (selectedDate < today) {
+        setRequest((prevData) => ({
+          ...prevData,
+          [name]: format(today, "yyyy-MM-dd"),
+        }));
+      } else {
+        setRequest((prevData) => ({
+          ...prevData,
+          [name]: value,
+        }));
+      }
     } else {
-      // Wenn ein anderes Feld als dateFrom geändert wird, aktualisiere nur dieses Feld
       setRequest((prevData) => ({
         ...prevData,
         [name]: value,
       }));
     }
   };
-
-  useEffect(() => {
-    console.log(request);
-  }, [request]);
 
   return (
     <div className="DashboardContendBox">

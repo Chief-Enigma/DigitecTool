@@ -35,12 +35,28 @@
   margin-right: 4px;
 }
 
-.UserEmail{
+.UserEmail {
   cursor: pointer;
 }
 
-.PermissionUserContainer{
+.PermissionUserContainer {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
+}
+
+.on-mobile {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .on-mobile {
+    display: flex;
+  }
+
+  .permission_icon {
+    font-size: 1rem;
+    margin-left: 6px;
+    margin-right: 2px;
+  }
 }
