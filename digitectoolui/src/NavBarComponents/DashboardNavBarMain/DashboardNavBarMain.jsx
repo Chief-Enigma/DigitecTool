@@ -37,7 +37,7 @@ export const DashboardNavBarMain = () => {
           </NavLink>
         </li>
 
-        <li style={{display: 'none'}}>
+        <li style={{ display: 'none' }}>
           <NavLink to="changeshift" className="DashboardNavElement">
             <span className="material-symbols-outlined">swap_horiz</span>
             <span className="DashboardNavBarText">Diensttausch</span>
@@ -70,8 +70,8 @@ export const DashboardNavBarMain = () => {
         ) : null}
 
         {userRole === "sysadmin" ||
-        permissions.includes("tickets") ||
-        permissions.includes("managetickets") ? (
+          permissions.includes("tickets") ||
+          permissions.includes("managetickets") ? (
           <li>
             <NavLink to="tickets" className="DashboardNavElement">
               <span className="material-symbols-outlined">receipt_long</span>
@@ -81,12 +81,23 @@ export const DashboardNavBarMain = () => {
         ) : null}
 
         {userRole === "sysadmin" || permissions.includes("maintenance") ? (
-          <li style={{display: 'none'}}>
+          <li>
             <NavLink to="maintenance" className="DashboardNavElement">
               <span className="material-symbols-outlined">
                 home_repair_service
               </span>
               <span className="DashboardNavBarText">Wartung</span>
+            </NavLink>
+          </li>
+        ) : null}
+
+        {userRole === "sysadmin" || permissions.includes("shuttle") ? (
+          <li>
+            <NavLink to="shuttle" className="DashboardNavElement">
+              <span className="material-symbols-outlined">
+                conveyor_belt
+              </span>
+              <span className="DashboardNavBarText">Shuttle</span>
             </NavLink>
           </li>
         ) : null}
@@ -99,8 +110,8 @@ export const DashboardNavBarMain = () => {
         </li>
 
         {userRole === "sysadmin" ||
-        userRole === "admin" ||
-        permissions.includes("users") ? (
+          userRole === "admin" ||
+          permissions.includes("users") ? (
           <li>
             <NavLink to="users" className="DashboardNavElement">
               <span className="material-symbols-outlined">group</span>
@@ -110,8 +121,8 @@ export const DashboardNavBarMain = () => {
         ) : null}
 
         {userRole === "sysadmin" ||
-        userRole === "admin" ||
-        permissions.includes("permissions") ? (
+          userRole === "admin" ||
+          permissions.includes("permissions") ? (
           <li>
             <NavLink to="permissions" className="DashboardNavElement">
               <span className="material-symbols-outlined">
@@ -122,7 +133,7 @@ export const DashboardNavBarMain = () => {
           </li>
         ) : null}
 
-        <li style={{display: 'none'}}>
+        <li>
           <NavLink to="settings" className="DashboardNavElement">
             <span className="material-symbols-outlined">settings</span>
             <span className="DashboardNavBarText">Einstellungen</span>

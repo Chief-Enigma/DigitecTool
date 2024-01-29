@@ -12,7 +12,8 @@ export const PermissionsUserTable = ({ searchInput }) => {
     "tickets",
     "managetickets",
     "maintenance",
-    "approverequests"
+    "approverequests",
+    "shuttle"
   ];
 
   const handlePermissionTypeClick = (permission) => {
@@ -84,9 +85,8 @@ export const PermissionsUserTable = ({ searchInput }) => {
         {avaliblePermissions.map((permission) => (
           <label
             key={permission}
-            className={`PermissionBox ${
-              selectedPermission === permission ? "SelectedPermissionBox" : ""
-            }`}
+            className={`PermissionBox ${selectedPermission === permission ? "SelectedPermissionBox" : ""
+              }`}
             onClick={() => handlePermissionTypeClick(permission)}
           >
             <span className="PermissionText">{permission}</span>
