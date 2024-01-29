@@ -28,6 +28,7 @@ import { SettingsMain } from "./Pages/Dashboard/Settings/SettingsMain";
 import { HelpMain } from "./Pages/Dashboard/Help/HelpMain";
 import { UsersMain } from "./Pages/Dashboard/Users/UsersMain";
 import { PermissionsMain } from "./Pages/Dashboard/Permissions/PermissionsMain";
+import { ShuttleMain } from "./Pages/Dashboard/Shuttle/ShuttleMain";
 
 const ProtectedRoute = ({ element, requiredPermissions, requiredUserrole }) => {
   const [user, setUser] = useState(null);
@@ -73,19 +74,19 @@ const ProtectedRoute = ({ element, requiredPermissions, requiredUserrole }) => {
 
   const hasPermission = requiredPermissions
     ? requiredPermissions.some((permission) => {
-        if (user.userrole === "sysadmin") {
-          return true; // Grant access for sysadmin to everything
-        }
-        const hasPermission = user.permissions.includes(permission);
-        return hasPermission;
-      })
+      if (user.userrole === "sysadmin") {
+        return true; // Grant access for sysadmin to everything
+      }
+      const hasPermission = user.permissions.includes(permission);
+      return hasPermission;
+    })
     : true;
 
   const hasUserRole = requiredUserrole
     ? requiredUserrole.some((role) => {
-        const hasUserRole = user.userrole === role;
-        return hasUserRole;
-      })
+      const hasUserRole = user.userrole === role;
+      return hasUserRole;
+    })
     : true;
 
   if (!hasPermission || !hasUserRole) {
@@ -150,6 +151,16 @@ const App = () => {
                 <ProtectedRoute
                   element={<MaintenanceMain />}
                   requiredPermissions={["maintenance"]}
+                  requiredUserrole={["user", "manager", "admin", "sysadmin"]}
+                />
+              }
+            />
+            <Route
+              path="shuttle"
+              element={
+                <ProtectedRoute
+                  element={<ShuttleMain />}
+                  requiredPermissions={["shuttle"]}
                   requiredUserrole={["user", "manager", "admin", "sysadmin"]}
                 />
               }

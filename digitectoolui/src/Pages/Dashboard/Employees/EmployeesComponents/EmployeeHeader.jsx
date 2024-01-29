@@ -16,7 +16,6 @@ export const EmployeeHeader = ({ onSearchChange }) => {
   return (
     <div>
       <h2>Mitarbeiterverzeichniss</h2>
-      <p>Some text here</p>
       <div className="SearchbarContainer">
         <input
           className="Searchbar"

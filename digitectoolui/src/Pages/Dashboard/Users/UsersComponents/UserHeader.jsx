@@ -9,7 +9,6 @@ export const UserHeader = ({ onSearchChange }) => {
   return (
     <div>
       <h2>Benutzerverzeichniss</h2>
-      <p>Some text here</p>
       <div className="SearchbarContainer">
         <input
           className="Searchbar"
