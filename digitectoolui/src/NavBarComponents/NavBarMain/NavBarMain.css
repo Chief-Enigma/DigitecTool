@@ -23,7 +23,7 @@ nav.NavBarMain {
     font-weight: bold;
   }
   
-  @media (max-width: 400px) {
+  @media (max-width: 900px) {
     .NavBarMain li .NavElement {
       font-size: 0.9rem;
       padding: 0.9rem;
