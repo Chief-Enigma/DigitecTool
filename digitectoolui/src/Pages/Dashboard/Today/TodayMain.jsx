@@ -3,7 +3,7 @@ import React from "react";
 export const TodayMain = () => {
   return (
     <div className="DashboardContendBox">
-      <h1>TodayPage</h1>
+      <h2>TodayPage</h2>
     </div>
   );
 };
