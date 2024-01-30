@@ -65,7 +65,8 @@ export const LoginMain = () => {
         position: 'absolute',
         width: '100%',
         filter: 'brightness(0.5)',
-        backgroundAttachment: 'fixed' // Dieses Attribut fügt das Hintergrundbild an
+        backgroundAttachment: 'fixed', // Dieses Attribut fügt das Hintergrundbild an
+        zIndex: -1 // Hintergrundbild unter anderen Elementen platzieren
       }}></div>
       <div className="LoginContainer">
         <div className="InputContainer">
@@ -76,10 +77,8 @@ export const LoginMain = () => {
             required
             value={email}
             onChange={handleEmailChange}
+            placeholder="E-Mail Adresse"
           />
-          <label className="label" htmlFor="email">
-            E-Mail Adresse
-          </label>
           <label className="errorLabel">{emailError}</label>
         </div>
         <br />
@@ -96,10 +95,9 @@ export const LoginMain = () => {
                 handleLogin();
               }
             }}
+            placeholder="Passwort"
           />
-          <label className="label" htmlFor="password">
-            Passwort
-          </label>
+
           <label className="errorLabel">{passwordError}</label>
         </div>
         <br />
