@@ -4,6 +4,18 @@ import { NavLink } from "react-router-dom";
 import "./NavBarMain.css";
 
 export const NavBarMain = () => {
+  const [stickyClass, setStickyClass] = useState("");
+
+  useEffect(() => {
+    window.addEventListener("scroll", stickNavbar);
+    return () => window.removeEventListener("scroll", stickNavbar);
+  }, []);
+
+  const stickNavbar = () => {
+    if (window !== undefined) {
+      setStickyClass("sticky-nav");
+    }
+  };
 
   return (
     <nav className="NavBarMain">
@@ -23,7 +35,7 @@ export const NavBarMain = () => {
             Dashboard
           </NavLink>
         </li>
-        <li style={{ float: "right" }}>
+        <li className="Account" style={{ float: "right" }}>
           <NavLink to="account" className="NavElement">
             Account
           </NavLink>
