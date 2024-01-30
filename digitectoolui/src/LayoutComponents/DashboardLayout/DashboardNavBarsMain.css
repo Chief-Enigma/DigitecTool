@@ -15,6 +15,7 @@ nav.DashboardNavBar {
 
 .DashboardNavBar li {
   text-decoration: none;
+  
 }
 
 .DashboardNavElement {
@@ -26,6 +27,7 @@ nav.DashboardNavBar {
   text-decoration: none;
   border: 2px solid #333; /* Light gray border */
   border-radius: 10px;
+  background-color: #1a1a1a;
 }
 
 .DashboardNavElement {
