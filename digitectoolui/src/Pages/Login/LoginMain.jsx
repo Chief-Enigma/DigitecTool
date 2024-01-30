@@ -57,14 +57,15 @@ export const LoginMain = () => {
   };
 
   return (
-    <div className="middlediv" style={{ backgroundImage: `url(${background})`, backgroundSize: 'cover', height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+    <div className="middlediv" style={{ position: 'relative', height: '100vh', overflow: 'hidden' }}>
       <div style={{
         backgroundImage: `url(${background})`,
         backgroundSize: 'cover',
         height: '100%',
         position: 'absolute',
         width: '100%',
-        filter: 'brightness(0.5)'
+        filter: 'brightness(0.5)',
+        backgroundAttachment: 'fixed' // Dieses Attribut fügt das Hintergrundbild an
       }}></div>
       <div className="LoginContainer">
         <div className="InputContainer">
