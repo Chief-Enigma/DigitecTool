@@ -26,7 +26,7 @@ export const TicketEditorMain = ({
   const [serverResponse, setServerResponse] = useState("");
   const [employeeDetails, setEmployeeDetails] = useState(null);
   const locations = ["A", "A-TS", "A-AKL", "A-WE", "B", "SR"];
-  const ticketStates = ["open", "to plan", "planed", "closed"];
+  const ticketStates = ["open", "to plan", "planed", "observe", "closed"];
 
   const getStateColor = (state) => {
     switch (state) {
@@ -38,6 +38,8 @@ export const TicketEditorMain = ({
         return "250, 38, 10";
       case "planed":
         return "10, 76, 250";
+      case "observe":
+        return "250, 10, 174"
       default:
         return "";
     }
