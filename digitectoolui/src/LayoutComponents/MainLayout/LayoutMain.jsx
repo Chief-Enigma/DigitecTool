@@ -9,7 +9,7 @@ export const LayoutMain = ({ children }) => {
   return (
     <>
       <NavBarMain />
-      <div style={{ overflow: 'scroll' }}>
+      <div style={{ overflow: 'hidden' }}>
         <div
           style={{
             position: 'fixed',
