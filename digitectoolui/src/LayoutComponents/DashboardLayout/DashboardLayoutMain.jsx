@@ -5,10 +5,10 @@ import { DashboardNavBarMain } from "../../NavBarComponents/DashboardNavBarMain/
 export const DashboardLayoutMain = () => {
   return (
     <div className="dashboard-container">
-      <div className="nav-container">
+      <div className="dashboard-navbar">
         <DashboardNavBarMain />
       </div>
-      <div className="main-content">
+      <div className="dashboard-content">
         <Outlet />
       </div>
     </div>

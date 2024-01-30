@@ -1,13 +1,10 @@
 .dashboard-container {
   display: flex;
 }
-/* .nav-container{
 
-  } */
-
-.main-content {
+.dashboard-content {
   flex-grow: 1;
-  overflow: scroll;
+  overflow-y: auto;
 }
 
 /* Dashboard header incl. Searchbar */
