@@ -33,7 +33,7 @@ export const TicketsMain = ({ user }) => {
     <div className="DashboardContendBox">
       <TicketEditorMain
         onCloseTicketEditor={setTicketEditor}
-        ticketNumber={ticketNumber}
+        ticketNumberEditor={ticketNumber}
         user={user}
       />
     </div>

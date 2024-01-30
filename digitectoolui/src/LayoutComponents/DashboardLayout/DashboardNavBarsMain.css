@@ -18,10 +18,10 @@ nav.DashboardNavBar {
   list-style-type: none;
   display: flex;
   align-items: center;
-  margin-bottom: 10px; /* Adjust as needed */
+  margin-bottom: 10px;
   padding: 10px;
   text-decoration: none;
-  border: 2px solid #333; /* Light gray border */ 
+  border: 2px solid #333;
   border-radius: 10px;
   background-color: #1a1a1a;
 }
