@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Post from "../../Functions/Api/Requests/Post";
 import { useNavigate } from "react-router-dom";
 import "./LoginComponents/LoginMain.css";
+import background from "../../Pictures/DigitecWallpaper.jpg"
 
 export const LoginMain = () => {
   const [email, setEmail] = useState("");
@@ -56,7 +57,15 @@ export const LoginMain = () => {
   };
 
   return (
-    <div className="middlediv">
+    <div className="middlediv" style={{ backgroundImage: `url(${background})`, backgroundSize: 'cover', height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+      <div style={{
+        backgroundImage: `url(${background})`,
+        backgroundSize: 'cover',
+        height: '100%',
+        position: 'absolute',
+        width: '100%',
+        filter: 'brightness(0.5)'
+      }}></div>
       <div className="LoginContainer">
         <div className="InputContainer">
           <input

@@ -35,6 +35,8 @@ export const TicketRow = ({
         return "250, 38, 10";
       case "planed":
         return "10, 76, 250";
+      case "observe":
+        return "250, 10, 174"
       default:
         return "255, 255, 255";
     }
