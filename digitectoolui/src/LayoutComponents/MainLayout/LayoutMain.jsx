@@ -9,7 +9,7 @@ export const LayoutMain = ({ children }) => {
   return (
     <>
       <NavBarMain />
-      <div style={{ position: 'relative', height: '100vh', overflow: 'hidden' }}>
+      <div style={{ position: 'relative', minHeight: '100vh', overflow: 'hidden' }}>
 
         <div style={{
           backgroundImage: `url(${background})`,
