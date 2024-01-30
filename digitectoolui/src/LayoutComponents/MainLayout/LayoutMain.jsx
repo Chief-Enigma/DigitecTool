@@ -9,19 +9,23 @@ export const LayoutMain = ({ children }) => {
   return (
     <>
       <NavBarMain />
-      <div style={{ position: 'relative', minHeight: '100vh', overflow: 'hidden' }}>
-
-        <div style={{
-          backgroundImage: `url(${background})`,
-          backgroundSize: 'cover',
-          height: '100%',
-          position: 'absolute',
-          width: '100%',
-          filter: 'brightness(0.5)',
-          backgroundAttachment: 'fixed', // Dieses Attribut fügt das Hintergrundbild an
-          zIndex: -1 // Hintergrundbild unter anderen Elementen platzieren
-        }}></div>
-        <Outlet />
+      <div style={{ overflow: 'scroll' }}>
+        <div
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            zIndex: -1,
+            backgroundImage: `url(${background})`,
+            backgroundSize: 'cover',
+            filter: 'brightness(0.5)',
+          }}
+        ></div>
+        <div style={{ marginLeft: 'auto', marginRight: 'auto'}}>
+          <Outlet/>
+        </div>
       </div>
     </>
   );
