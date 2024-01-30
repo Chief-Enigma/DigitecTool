@@ -7,6 +7,7 @@
 
 .main-content {
   flex-grow: 1;
+  overflow: scroll;
 }
 
 /* Dashboard header incl. Searchbar */
@@ -41,7 +42,7 @@
   margin-left: 1rem; /* Adjust the margin as needed */
 }
 
-@media (max-width: 400px) {
+@media (max-width: 600px) {
 
   .DashboardContendBox {
     margin: 5px;
