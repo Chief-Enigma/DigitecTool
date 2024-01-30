@@ -23,8 +23,8 @@ export const LayoutMain = ({ children }) => {
             filter: 'brightness(0.5)',
           }}
         ></div>
-        <div style={{ marginLeft: 'auto', marginRight: 'auto'}}>
-          <Outlet/>
+        <div style={{ marginLeft: 'auto', marginRight: 'auto' }}>
+          <Outlet />
         </div>
       </div>
     </>

@@ -1,5 +1,9 @@
 import React from "react";
 
 export const MaintenanceMain = () => {
-  return <h1>This is MaintenanceMain</h1>;
+  return (
+    <div className="DashboardContendBox">
+      <h2>MaintenancePage</h2>
+    </div>
+  );
 };

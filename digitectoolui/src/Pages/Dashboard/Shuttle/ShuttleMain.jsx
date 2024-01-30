@@ -1,5 +1,9 @@
 import React from "react";
 
 export const ShuttleMain = () => {
-  return <h1>This is ShuttleMain</h1>;
+  return (
+    <div className="DashboardContendBox">
+      <h2>ShuttlesPage</h2>
+    </div>
+  );
 };

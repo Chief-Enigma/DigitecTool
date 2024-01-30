@@ -1,5 +1,9 @@
 import React from "react";
 
 export const HelpMain = () => {
-  return <h1>This is HelpMain</h1>;
+  return (
+    <div className="DashboardContendBox">
+      <h2>HelpPage</h2>
+    </div>
+  );
 };

@@ -1,5 +1,9 @@
 import React from "react";
 
 export const SettingsMain = () => {
-  return <h1>This is SettingsMain</h1>;
+  return (
+    <div className="DashboardContendBox">
+      <h2>SettingsPage</h2>
+    </div>
+  );
 };
