@@ -1,42 +1,58 @@
-nav.NavBarMain {
-    background-color: #00559d;
-  }
-  
-  .NavBarMain ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-  }
-  
-  .NavBarMain li .NavElement{
-    float: left;
-  }
-  
-  .NavBarMain li .NavElement{
-    display: flex;
-    color: white;
-    text-align: center;
-    padding: 20px 30px;
-    text-decoration: none;
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: bold;
-  }
-  
-  @media (max-width: 900px) {
-    .NavBarMain li .NavElement {
-      font-size: 0.9rem;
-      padding: 0.9rem;
-    }
-  }
-  
-  .NavBarMain li .NavElement:hover{
-    background-color: #054b88;
-  }
-  
-  .NavBarMain li.Login {
-    float: right;
-  }
-  
+.NavBarMain {
+  background-color: #00559d;
+  position: fixed;
+  z-index: 999;
+  height: 60px;
+  width: 100%;
+  top: 0;
+  left: 0;
+}
 
-  /* Do rework here!!!!!!!!!!! */
+.NavBarMain ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  height: stretch;
+  display: flex;
+  align-items: center;
+}
+
+.NavBarMain li .NavElement {
+  color: white;
+  text-decoration: none;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  font-size: 20px;
+  padding: 0px 35px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+}
+
+.NavBarMain li.Account {
+  margin-left: auto;
+}
+
+.NavBarMain li:hover {
+  background-color: #054b88;
+}
+
+.NavBarMain li.Login {
+  margin-left: 10px; /* Falls du einen Abstand zwischen Login und Account möchtest */
+}
+
+@media (max-width: 900px) {
+  .NavBarMain {
+    height: 40px;
+  }
+
+  .NavBarMain ul {
+  }
+
+  .NavBarMain li .NavElement {
+    font-size: 13px;
+    padding: 0px 15px;
+    height: 40px;
+  }
+}
