@@ -1,0 +1,14 @@
+.HomeElementsContainer {
+    display: flex;
+    flex-direction: row;
+    margin: 5px;
+}
+
+.HomeElement {
+    border: 2px solid #333;
+    border-radius: 10px;
+    background-color: #1a1a1a;
+    margin: 5px;
+    padding: 10px;
+    min-width: 150px;
+}

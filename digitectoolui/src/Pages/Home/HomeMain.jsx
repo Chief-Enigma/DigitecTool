@@ -1,10 +1,49 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+
+import "./HomeComponents/HomeMainStyles.css";
+
+import Get from "../../Functions/Api/Requests/Get"
 
 export const HomeMain = ({ user }) => {
-  console.log(user);
+  const [employee, setEmployee] = useState({})
+
+  useEffect(() => {
+    const getEmployeeData = async () => {
+      const response = await Get.GetEmployeeByPersonalNumber(user.personalnumber);
+      console.log(response)
+      setEmployee(response);
+    };
+    getEmployeeData();
+    console.log("Geting Emplyee");
+  }, []);
+
   return (
-    <h1>
-      This is HomeMain. Ur user: {user.personalnumber} {user.userrole}
-    </h1>
+    <div className="HomeElementsContainer">
+      <div className="HomeElement GoodMorning">
+        <h2>Guten Morgen {employee.firstName}</h2>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores sunt sit dolor, repudiandae labore architecto deleniti ducimus suscipit obcaecati perspiciatis?</p>
+      </div>
+      <div className="HomeElement GoodMorning">
+        <h2>Guten Morgen {employee.firstName}</h2>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores sunt sit dolor, repudiandae labore architecto deleniti ducimus suscipit obcaecati perspiciatis?</p>
+      </div>
+      <div className="HomeElement GoodMorning">
+        <h2>Guten Morgen {employee.firstName}</h2>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores sunt sit dolor, repudiandae labore architecto deleniti ducimus suscipit obcaecati perspiciatis?</p>
+      </div>
+      <div className="HomeElement GoodMorning">
+        <h2>Guten Morgen {employee.firstName}</h2>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores sunt sit dolor, repudiandae labore architecto deleniti ducimus suscipit obcaecati perspiciatis?</p>
+      </div>
+      <div className="HomeElement GoodMorning">
+        <h2>Guten Morgen {employee.firstName}</h2>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores sunt sit dolor, repudiandae labore architecto deleniti ducimus suscipit obcaecati perspiciatis?</p>
+      </div>
+      <div className="HomeElement GoodMorning">
+        <h2>Guten Morgen {employee.firstName}</h2>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores sunt sit dolor, repudiandae labore architecto deleniti ducimus suscipit obcaecati perspiciatis?</p>
+      </div>
+      
+    </div>
   );
 };
