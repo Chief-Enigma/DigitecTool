@@ -46,7 +46,7 @@ export const RequestForm = () => {
     <div className="DashboardContendBox">
       <div className="RequestForm">
         <div className="RequestHeader">
-          <h2>Abwesenheit beantragen</h2>
+          <h2>Ferien beantragen</h2>
           <button
             className="RequestButton help"
             onClick={() => console.log("HelpButton pressed")}
