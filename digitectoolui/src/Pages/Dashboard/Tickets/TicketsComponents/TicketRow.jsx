@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-
+import Get from "../../../../Functions/Api/Requests/Get";
 import Delete from "../../../../Functions/Api/Requests/Delete";
 
 export const TicketRow = ({
@@ -10,6 +10,7 @@ export const TicketRow = ({
   ticketNumberToEdit,
   onDeleteButton
 }) => {
+  const [employeeDetails, setEmployeeDetails] = useState(null);
   const formatCreationDate = () => {
     const creationDate = new Date(ticket.creationDate);
     const formattedDate = creationDate.toLocaleDateString();
@@ -42,6 +43,15 @@ export const TicketRow = ({
     }
   };
 
+  useEffect(() => {
+    const getEmployeeData = async () => {
+      const response = await Get.GetEmployeeByPersonalNumber(ticket.createdBy);
+      setEmployeeDetails(response);
+    };
+    getEmployeeData();
+    console.log("Geting Emplyee");
+  }, [ticket.createdBy]);
+
   const generatePdf = (ticketnumber) => {
     console.log("PDF Button on Ticket: ", ticketnumber);
   };
@@ -64,7 +74,11 @@ export const TicketRow = ({
         <td className="ticket-title">{ticket.ticketTitle}</td>
         <td className="non-mobile">{formatLocation()}</td>
         <td className="non-mobile">{ticket.akz}</td>
-        <td className="non-mobile">{ticket.createdBy}</td>
+        <td className="non-mobile">{
+          employeeDetails
+            ? `${employeeDetails.firstName} ${employeeDetails.lastName}`
+            : ticket.createdBy
+        }</td>
         <td>
           <label
             className="TicketStateLabel"
