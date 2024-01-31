@@ -15,14 +15,14 @@ export const TicketsMain = ({ user }) => {
     setSearchInput(value);
   };
 
-  useEffect(() => {
+  useEffect((ticketEditor) => {
     if (ticketNumber && !ticketEditor) {
       setTicketEditor(true);
       console.log("TicketEditor set to true");
     }
   }, [ticketNumber]);
 
-  useEffect(() => {
+  useEffect((ticketNumber) => {
     if (!ticketEditor && ticketNumber) {
       setTicketNumber("");
       console.log("TicketNumber reseted");

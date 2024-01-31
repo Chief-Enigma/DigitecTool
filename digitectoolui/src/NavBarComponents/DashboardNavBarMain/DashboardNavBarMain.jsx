@@ -6,7 +6,6 @@ export const DashboardNavBarMain = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Assuming the user data is stored in localStorage
     const storedUser = localStorage.getItem("user");
 
     if (storedUser) {
@@ -37,7 +36,7 @@ export const DashboardNavBarMain = () => {
           </NavLink>
         </li>
 
-        <li style={{ display: 'none' }}>
+        <li style={{ display: "none" }}>
           <NavLink to="changeshift" className="DashboardNavElement">
             <span className="material-symbols-outlined">swap_horiz</span>
             <span className="DashboardNavBarText">Diensttausch</span>
@@ -70,8 +69,8 @@ export const DashboardNavBarMain = () => {
         ) : null}
 
         {userRole === "sysadmin" ||
-          permissions.includes("tickets") ||
-          permissions.includes("managetickets") ? (
+        permissions.includes("tickets") ||
+        permissions.includes("managetickets") ? (
           <li>
             <NavLink to="tickets" className="DashboardNavElement">
               <span className="material-symbols-outlined">receipt_long</span>
@@ -94,9 +93,7 @@ export const DashboardNavBarMain = () => {
         {userRole === "sysadmin" || permissions.includes("shuttle") ? (
           <li>
             <NavLink to="shuttle" className="DashboardNavElement">
-              <span className="material-symbols-outlined">
-                conveyor_belt
-              </span>
+              <span className="material-symbols-outlined">conveyor_belt</span>
               <span className="DashboardNavBarText">Shuttle</span>
             </NavLink>
           </li>
@@ -110,8 +107,8 @@ export const DashboardNavBarMain = () => {
         </li>
 
         {userRole === "sysadmin" ||
-          userRole === "admin" ||
-          permissions.includes("users") ? (
+        userRole === "admin" ||
+        permissions.includes("users") ? (
           <li>
             <NavLink to="users" className="DashboardNavElement">
               <span className="material-symbols-outlined">group</span>
@@ -121,8 +118,8 @@ export const DashboardNavBarMain = () => {
         ) : null}
 
         {userRole === "sysadmin" ||
-          userRole === "admin" ||
-          permissions.includes("permissions") ? (
+        userRole === "admin" ||
+        permissions.includes("permissions") ? (
           <li>
             <NavLink to="permissions" className="DashboardNavElement">
               <span className="material-symbols-outlined">

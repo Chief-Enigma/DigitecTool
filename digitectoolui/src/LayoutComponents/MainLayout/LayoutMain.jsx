@@ -11,7 +11,6 @@ export const LayoutMain = ({ children }) => {
       <NavBarMain />
       <div className="LayOutContent">
         <div className="LayOutBackGround"
-
         ></div>
         <div className="LayOutOutlet">
           <Outlet />
