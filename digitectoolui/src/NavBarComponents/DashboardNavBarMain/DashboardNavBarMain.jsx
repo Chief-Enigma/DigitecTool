@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 
+import "./DashboardNavBarMain.css"
+
 export const DashboardNavBarMain = () => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -53,7 +55,7 @@ export const DashboardNavBarMain = () => {
         <li>
           <NavLink to="requestholliday" className="DashboardNavElement">
             <span className="material-symbols-outlined">beach_access</span>
-            <span className="DashboardNavBarText">Abwesenheit beantragen</span>
+            <span className="DashboardNavBarText">Ferien beantragen</span>
           </NavLink>
         </li>
 
@@ -68,9 +70,16 @@ export const DashboardNavBarMain = () => {
           </li>
         ) : null}
 
+        <li>
+          <NavLink to="todo" className="DashboardNavElement">
+            <span className="material-symbols-outlined">checklist</span>
+            <span className="DashboardNavBarText">ToDo</span>
+          </NavLink>
+        </li>
+
         {userRole === "sysadmin" ||
-        permissions.includes("tickets") ||
-        permissions.includes("managetickets") ? (
+          permissions.includes("tickets") ||
+          permissions.includes("managetickets") ? (
           <li>
             <NavLink to="tickets" className="DashboardNavElement">
               <span className="material-symbols-outlined">receipt_long</span>
@@ -107,8 +116,8 @@ export const DashboardNavBarMain = () => {
         </li>
 
         {userRole === "sysadmin" ||
-        userRole === "admin" ||
-        permissions.includes("users") ? (
+          userRole === "admin" ||
+          permissions.includes("users") ? (
           <li>
             <NavLink to="users" className="DashboardNavElement">
               <span className="material-symbols-outlined">group</span>
@@ -118,8 +127,8 @@ export const DashboardNavBarMain = () => {
         ) : null}
 
         {userRole === "sysadmin" ||
-        userRole === "admin" ||
-        permissions.includes("permissions") ? (
+          userRole === "admin" ||
+          permissions.includes("permissions") ? (
           <li>
             <NavLink to="permissions" className="DashboardNavElement">
               <span className="material-symbols-outlined">
