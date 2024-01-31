@@ -1,0 +1,53 @@
+.HomeElementsContainer {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 5px;
+}
+
+.HomeElement {
+    border: 2px solid #333;
+    border-radius: 10px;
+    background-color: #1a1a1a;
+    margin: 5px;
+    padding: 10px;
+    box-sizing: border-box;
+    flex: 1 0 calc(33.33% - 20px);
+    /* Berechne 33.33% der Breite abzüglich der Ränder */
+    /* Ändere die Anzahl der Komponenten pro Zeile (hier 3) und die Ränder (hier 20px) nach Bedarf */
+}
+
+.GoodMorning {
+    min-width: 200px;
+}
+
+.GoodMorning2 {
+    color: green;
+    min-width: 300px;
+}
+
+.GoodMorning3 {
+    color: red;
+    min-width: 400px;
+}
+
+.GoodMorning4 {
+    color: blue;
+    min-width: 200px;
+}
+
+.GoodMorning5 {
+    color: yellow;
+    min-width: 200px;
+}
+
+.GoodMorning6 {
+    color: violet;
+    min-width: 200px;
+}
+
+@media (max-width: 900px) {
+    .HomeElement {
+        max-width: 100%;
+        min-width: stretch;
+    }
+}
