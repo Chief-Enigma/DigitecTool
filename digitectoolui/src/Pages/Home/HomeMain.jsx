@@ -23,27 +23,26 @@ export const HomeMain = ({ user }) => {
         <h2>Guten Morgen {employee.firstName}</h2>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores sunt sit dolor, repudiandae labore architecto deleniti ducimus suscipit obcaecati perspiciatis?</p>
       </div>
-      <div className="HomeElement GoodMorning">
+      <div className="HomeElement GoodMorning2">
         <h2>Guten Morgen {employee.firstName}</h2>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores sunt sit dolor, repudiandae labore architecto deleniti ducimus suscipit obcaecati perspiciatis?</p>
       </div>
-      <div className="HomeElement GoodMorning">
+      <div className="HomeElement GoodMorning3">
         <h2>Guten Morgen {employee.firstName}</h2>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores sunt sit dolor, repudiandae labore architecto deleniti ducimus suscipit obcaecati perspiciatis?</p>
       </div>
-      <div className="HomeElement GoodMorning">
+      <div className="HomeElement GoodMorning4">
         <h2>Guten Morgen {employee.firstName}</h2>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores sunt sit dolor, repudiandae labore architecto deleniti ducimus suscipit obcaecati perspiciatis?</p>
       </div>
-      <div className="HomeElement GoodMorning">
+      <div className="HomeElement GoodMorning5">
         <h2>Guten Morgen {employee.firstName}</h2>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores sunt sit dolor, repudiandae labore architecto deleniti ducimus suscipit obcaecati perspiciatis?</p>
       </div>
-      <div className="HomeElement GoodMorning">
+      <div className="HomeElement GoodMorning6">
         <h2>Guten Morgen {employee.firstName}</h2>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores sunt sit dolor, repudiandae labore architecto deleniti ducimus suscipit obcaecati perspiciatis?</p>
       </div>
-      
     </div>
   );
 };
