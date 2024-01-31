@@ -8,7 +8,7 @@ import Delete from "../../../../Functions/Api/Requests/Delete";
 
 export const TicketEditorMain = ({
   onCloseTicketEditor,
-  ticketNumberEditor,
+  ticketNumber,
   user,
 }) => {
   const ticketLayOut = {
@@ -39,7 +39,7 @@ export const TicketEditorMain = ({
       case "planed":
         return "10, 76, 250";
       case "observe":
-        return "250, 10, 174";
+        return "250, 10, 174"
       default:
         return "";
     }
@@ -53,23 +53,13 @@ export const TicketEditorMain = ({
   };
 
   useEffect(() => {
-    if (ticketNumberEditor) {
-      const storedTicket = localStorage.getItem(
-        `editticketInput_${user.personalnumber}`
-      );
-      if (storedTicket) {
-        const storedTicketParsed = JSON.parse(storedTicket);
-        if (storedTicketParsed.ticketNumber === ticketNumberEditor) {
-          setTicket(JSON.parse(storedTicket));
-          return;
-        }
-      }
-      getTicket(ticketNumberEditor);
+    if (ticketNumber) {
+      getTicket(ticketNumber);
       return;
     }
 
     const storedTicket = localStorage.getItem(
-      `newticketInput_${user.personalnumber}`
+      `ticketInput_${user.personalnumber}`
     );
     if (storedTicket) {
       setTicket(JSON.parse(storedTicket));
@@ -79,19 +69,10 @@ export const TicketEditorMain = ({
   }, []);
 
   useEffect(() => {
-    if (ticket.ticketNumber === 0) {
-      localStorage.setItem(
-        `newticketInput_${user.personalnumber}`,
-        JSON.stringify(ticket)
-      );
-      console.log("88", ticket.ticketNumber);
-    } else if (ticket.ticketNumber !== 0) {
-      localStorage.setItem(
-        `editticketInput_${user.personalnumber}`,
-        JSON.stringify(ticket)
-      );
-      console.log("94", ticket.ticketNumber);
-    }
+    localStorage.setItem(
+      `ticketInput_${user.personalnumber}`,
+      JSON.stringify(ticket)
+    );
   }, [ticket]);
 
   useEffect(() => {
@@ -159,33 +140,29 @@ export const TicketEditorMain = ({
       const response = await Post.SaveTicket(ticket);
       if (response) {
         onCloseTicketEditor(false);
-        localStorage.removeItem(`newticketInput_${user.personalnumber}`);
-        localStorage.removeItem(`editticketInput_${user.personalnumber}`);
+        localStorage.removeItem(`ticketInput_${user.personalnumber}`);
       }
     } else {
       const response = await Put.UpdateTicket(ticket);
       if (response) {
         onCloseTicketEditor(false);
-        localStorage.removeItem(`newticketInput_${user.personalnumber}`);
-        localStorage.removeItem(`editticketInput_${user.personalnumber}`);
+        localStorage.removeItem(`ticketInput_${user.personalnumber}`);
       }
     }
   };
 
   const ButtonCancelTicket = async (ticketnumber) => {
     console.log("Edit Button on Ticket: ", ticketnumber);
-    localStorage.removeItem(`newticketInput_${user.personalnumber}`);
-    localStorage.removeItem(`editticketInput_${user.personalnumber}`);
+    localStorage.removeItem(`ticketInput_${user.personalnumber}`);
     onCloseTicketEditor(false);
   };
 
   const ButtonDeleteTicket = async (ticketnumber) => {
     console.log("Delete Button on Ticket: ", ticketnumber);
-    if (ticketNumberEditor == !0) {
-      await Delete.DeleteTicket(ticketNumberEditor);
+    if (ticketNumber == !0) {
+      await Delete.DeleteTicket(ticketNumber);
     }
-    localStorage.removeItem(`newticketInput_${user.personalnumber}`);
-    localStorage.removeItem(`editticketInput_${user.personalnumber}`);
+    localStorage.removeItem(`ticketInput_${user.personalnumber}`);
     onCloseTicketEditor(false);
   };
 
