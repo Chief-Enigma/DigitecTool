@@ -41,6 +41,16 @@ class Get {
     }
   }
 
+  // Get all Users
+  async GetShiftForUser(personalnumber) {
+    const url = ApiRequest.baseURL + "Shift/getshift/" + personalnumber;
+    try {
+      return await ApiRequest.request(url, "GET", undefined);
+    } catch (error) {
+      console.error("Error at GetShiftForUser: ", error);
+    }
+  }
+
   // Get MonthPlan
   async GetShiftPlanForMonth(month) {
     const url = ApiRequest.baseURL + "Shift/getplan/" + month;
