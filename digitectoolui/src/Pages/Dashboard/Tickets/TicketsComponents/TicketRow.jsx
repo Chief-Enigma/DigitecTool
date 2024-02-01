@@ -8,7 +8,8 @@ export const TicketRow = ({
   expanded,
   toggleRow,
   ticketNumberToEdit,
-  onDeleteButton
+  onDeleteButton,
+  user
 }) => {
   const [employeeDetails, setEmployeeDetails] = useState(null);
   const formatCreationDate = () => {
@@ -122,20 +123,26 @@ export const TicketRow = ({
                   </span>
                   <span className="TicketButtonText">PDF erstellen</span>
                 </button>
-                <button
-                  className="TicketButton cancel"
-                  onClick={() => editTicket(ticket.ticketNumber)}
-                >
-                  <span className="material-symbols-outlined">edit</span>
-                  <span className="TicketButtonText">Bearbeiten</span>
-                </button>
-                <button
-                  className="TicketButton delete"
-                  onClick={() => deleteTicket(ticket.ticketNumber)}
-                >
-                  <span className="material-symbols-outlined">delete</span>
-                  <span className="TicketButtonText">Ticket Löschen</span>
-                </button>
+                
+                {(user.permissions).includes("managetickets") ?
+                  <button
+                    className="TicketButton cancel"
+                    onClick={() => editTicket(ticket.ticketNumber)}
+                  >
+                    <span className="material-symbols-outlined">edit</span>
+                    <span className="TicketButtonText">Bearbeiten</span>
+                  </button>
+                  : null}
+
+                {(user.personalnumber) === ticket.createdBy && (user.permissions).includes("managetickets") ?
+                  <button
+                    className="TicketButton delete"
+                    onClick={() => deleteTicket(ticket.ticketNumber)}
+                  >
+                    <span className="material-symbols-outlined">delete</span>
+                    <span className="TicketButtonText">Ticket Löschen</span>
+                  </button>
+                  : null}
               </div>
             </div>
           </td>

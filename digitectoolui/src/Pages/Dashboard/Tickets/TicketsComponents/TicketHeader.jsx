@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-export const TickerHeader = ({ onSearchChange, onOpenTicketEditor }) => {
+export const TickerHeader = ({ onSearchChange, onOpenTicketEditor, user }) => {
   const handleSearchInputChange = (event) => {
     const inputValue = event.target.value;
     onSearchChange(inputValue);
@@ -20,9 +20,9 @@ export const TickerHeader = ({ onSearchChange, onOpenTicketEditor }) => {
           placeholder="Tickettitel oder Nummer eingeben..."
           onChange={handleSearchInputChange}
         />
-        <Link onClick={handleTicketEditor} className="SearchBarButtonEnd">
+        {(user.permissions).includes("managetickets") ? <Link onClick={handleTicketEditor} className="SearchBarButtonEnd">
           <span className="material-symbols-outlined">post_add</span>
-        </Link>
+        </Link> : null}
       </div>
     </div>
   );

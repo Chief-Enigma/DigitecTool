@@ -22,8 +22,8 @@ export const TicketsMain = ({ user }) => {
     }
   }, [ticketNumber]);
 
-  useEffect((ticketNumber) => {
-    if (!ticketEditor && ticketNumber) {
+  useEffect(() => {
+    if (!ticketEditor) {
       setTicketNumber("");
       console.log("TicketNumber reseted");
     }
@@ -42,10 +42,12 @@ export const TicketsMain = ({ user }) => {
       <TickerHeader
         onSearchChange={handleSearchChange}
         onOpenTicketEditor={setTicketEditor}
+        user={user}
       />
       <TicketTable
         searchInput={searchInput}
         ticketNumberToEdit={setTicketNumber}
+        user={user}
       />
     </div>
   );

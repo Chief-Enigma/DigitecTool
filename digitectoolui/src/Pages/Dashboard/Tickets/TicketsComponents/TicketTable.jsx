@@ -3,7 +3,7 @@ import Get from "../../../../Functions/Api/Requests/Get";
 import Delete from "../../../../Functions/Api/Requests/Delete";
 import { TicketRow } from "./TicketRow";
 
-export const TicketTable = ({ searchInput, ticketNumberToEdit }) => {
+export const TicketTable = ({ searchInput, ticketNumberToEdit, user }) => {
   const [tickets, setTickets] = useState([]);
   const [ticketsSearchResults, setTicketsSearchResults] = useState([]);
   const [expandedRows, setExpandedRows] = useState([]);
@@ -126,6 +126,7 @@ export const TicketTable = ({ searchInput, ticketNumberToEdit }) => {
               toggleRow={toggleRow}
               ticketNumberToEdit={ticketNumberToEdit}
               onDeleteButton={handleDeleteTicket}
+              user={user}
             />
           ))}
         </tbody>
