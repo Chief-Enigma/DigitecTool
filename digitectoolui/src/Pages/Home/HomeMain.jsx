@@ -10,7 +10,7 @@ export const HomeMain = ({ user }) => {
   const fullShiftName = {
     "FS": "Frühschicht",
     "SS": "Spätschicht",
-    "TD": "Tagdienst"
+    "TD": "Tagdienst und bist in der BÜÜÜROOOOKRAAATIIIIIE"
   }
 
   const fullJobText = {
@@ -57,7 +57,7 @@ export const HomeMain = ({ user }) => {
         <br />
         <p>Du hast heute {fullShiftName[shiftDay.shift]} und {fullJobText[shiftDay.job]}</p>
       </div>
-      <div className="HomeElement Reminder">
+      {employee.team === "Zeljko" ? <div className="HomeElement Reminder">
         <h2>Wichtig!!!</h2>
         <br />
         <p>
@@ -65,7 +65,7 @@ export const HomeMain = ({ user }) => {
           Heute haben wir das KickOff Meeting mit Andreas und Steve. Bitte kommt alle um 14:00 Uhr in die Werkstatt Halle A.<br />
           Ihr bleibt bitte an eurem Arbeitsplatz bis die Spätschicht da ist damit wir reibungslosen Wechsel haben.<br />
         </p>
-      </div>
+      </div> : null}
     </div>
   );
 };
