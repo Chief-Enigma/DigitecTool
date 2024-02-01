@@ -70,12 +70,16 @@ export const DashboardNavBarMain = () => {
           </li>
         ) : null}
 
-        <li>
-          <NavLink to="todo" className="DashboardNavElement">
-            <span className="material-symbols-outlined">checklist</span>
-            <span className="DashboardNavBarText">ToDo</span>
-          </NavLink>
-        </li>
+        {userRole === "sysadmin" || permissions.includes("editplan") ? (
+          <li>
+            <NavLink to="todo" className="DashboardNavElement">
+              <span className="material-symbols-outlined">checklist</span>
+              <span className="DashboardNavBarText">ToDo</span>
+            </NavLink>
+          </li>
+        ) : null}
+
+
 
         {userRole === "sysadmin" ||
           permissions.includes("tickets") ||
