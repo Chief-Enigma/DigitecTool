@@ -75,7 +75,7 @@ export const ShiftplanMain = () => {
   useEffect(() => {
     const generateTables = async () => {
       try {
-        const shifts = await getShifts("Januar");
+        const shifts = await getShifts("Februar");
         if (shifts && shifts.length > 0) {
           const tables = generateShiftDayTables(shifts);
           setDayTables(tables);
