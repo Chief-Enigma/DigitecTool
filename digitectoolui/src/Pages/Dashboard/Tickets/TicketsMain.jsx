@@ -22,8 +22,8 @@ export const TicketsMain = ({ user }) => {
     }
   }, [ticketNumber]);
 
-  useEffect((ticketNumber) => {
-    if (!ticketEditor && ticketNumber) {
+  useEffect(() => {
+    if (!ticketEditor) {
       setTicketNumber("");
       console.log("TicketNumber reseted");
     }

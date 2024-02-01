@@ -57,7 +57,6 @@ export const TicketEditorMain = ({
       getTicket(ticketNumber);
       return;
     }
-
     const storedTicket = localStorage.getItem(
       `ticketInput_${user.personalnumber}`
     );

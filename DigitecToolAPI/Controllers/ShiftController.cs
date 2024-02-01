@@ -17,6 +17,21 @@ namespace DigitecToolAPI.Controllers
         }
 
         // GET api/<ShiftController>/5
+        [HttpGet("getshift/{personalnumber}")]
+        public async Task<ActionResult> GetAsync(int personalnumber)
+        {
+            var workerShift = await GetRawShifts.GetRawShiftFromDatabase(personalnumber, DateOnly.FromDateTime(DateTime.Today));
+            if (workerShift != null)
+            {
+                return Ok(workerShift);
+            }
+            else
+            {
+                return NotFound();
+            }
+        }
+
+        // GET api/<ShiftController>/5
         [HttpGet("getplan/{month}")]
         public async Task<ActionResult> GetAsync(string month)
         {
