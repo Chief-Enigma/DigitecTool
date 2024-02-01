@@ -16,6 +16,18 @@
 
 .GoodMorning {
     min-width: 200px;
+    max-width: 50%;
+
+}
+
+.Reminder {
+    min-width: 200px;
+    max-width: 50%;
+
+    h2 {
+        color: rgba(255, 41, 41, 1);
+
+    }
 }
 
 @media (max-width: 767px) {
