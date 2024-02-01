@@ -8,8 +8,8 @@ export const HomeMain = ({ user }) => {
   const [greeting, setGreeting] = useState("Guten Morgen");
 
   const fullShiftName = {
-    "FS": "Frühschicht",
-    "SS": "Spätschicht",
+    "FS": "Frühschicht und",
+    "SS": "Spätschicht und",
     "TD": "Tagdienst und bist in der BÜÜÜROOOOKRAAATIIIIIE"
   }
 
@@ -55,7 +55,7 @@ export const HomeMain = ({ user }) => {
       <div className="HomeElement GoodMorning">
         <h2>{greeting} {employee.firstName}</h2>
         <br />
-        <p>Du hast heute {fullShiftName[shiftDay.shift]} und {fullJobText[shiftDay.job]}</p>
+        <p>Du hast heute {fullShiftName[shiftDay.shift]} {fullJobText[shiftDay.job]}</p>
       </div>
       {employee.team === "Zeljko" ? <div className="HomeElement Reminder">
         <h2>Wichtig!!!</h2>
