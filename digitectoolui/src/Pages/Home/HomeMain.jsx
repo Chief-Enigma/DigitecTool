@@ -10,7 +10,7 @@ export const HomeMain = ({ user }) => {
   const fullShiftName = {
     "FS": "Frühschicht",
     "SS": "Spätschicht",
-    "TD": "Tagdienst"
+    "TD": "Tagdienst und bist in der BÜÜÜROOOOKRAAATIIIIIE"
   }
 
   const fullJobText = {
