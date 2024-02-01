@@ -42,10 +42,12 @@ export const TicketsMain = ({ user }) => {
       <TickerHeader
         onSearchChange={handleSearchChange}
         onOpenTicketEditor={setTicketEditor}
+        user={user}
       />
       <TicketTable
         searchInput={searchInput}
         ticketNumberToEdit={setTicketNumber}
+        user={user}
       />
     </div>
   );

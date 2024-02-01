@@ -330,13 +330,17 @@ export const TicketEditorMain = ({
               <span className="material-symbols-outlined">close</span>
               <span className="TicketButtonText">Abbrechen</span>
             </button>
-            <button
-              className="TicketButton delete"
-              onClick={() => ButtonDeleteTicket(ticket.ticketNumber)}
-            >
-              <span className="material-symbols-outlined">delete</span>
-              <span className="TicketButtonText">Ticket Löschen</span>
-            </button>
+            {(user.personalnumber) === ticket.createdBy && (user.permissions).includes("managetickets") ?
+              <button
+                className="TicketButton delete"
+                onClick={() => ButtonDeleteTicket(ticket.ticketNumber)}
+              >
+                <span className="material-symbols-outlined">delete</span>
+                <span className="TicketButtonText">Ticket Löschen</span>
+              </button>
+              : null}
+
+
           </div>
         </div>
       </div>
