@@ -57,15 +57,6 @@ export const HomeMain = ({ user }) => {
         <br />
         <p>Du hast heute {fullShiftName[shiftDay.shift]} {fullJobText[shiftDay.job]}</p>
       </div>
-      {employee.team === "Zeljko" ? <div className="HomeElement Reminder">
-        <h2>Wichtig!!!</h2>
-        <br />
-        <p>
-          Jungs!<br />
-          Heute haben wir das KickOff Meeting mit Andreas und Steve. Bitte kommt alle um 14:00 Uhr in die Werkstatt Halle A.<br />
-          Ihr bleibt bitte an eurem Arbeitsplatz bis die Spätschicht da ist damit wir reibungslosen Wechsel haben.<br />
-        </p>
-      </div> : null}
     </div>
   );
 };
