@@ -43,9 +43,10 @@ export const EmployeeTable = ({ searchInput }) => {
 
   const sortAndSetEmployees = (employeeArray) => {
     const roleOrder = {
-      "Shift Manager": 0,
-      "Maintenance Technician": 1,
-      "Junior Maintenance Technician": 2,
+      "Technic Leader": 0,
+      "Shift Manager": 1,
+      "Maintenance Technician": 2,
+      "Junior Maintenance Technician": 3,
     };
 
     const sortedEmployees = employeeArray.sort((a, b) => {
