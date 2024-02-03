@@ -73,6 +73,7 @@ export const PlaningContainer = ({ shiftMonth, employeesTeam }) => {
     return roleOrder[a.workerRole] - roleOrder[b.workerRole];
   });
 
+  
   // Create a 3D Array with all Shifts for each Employee
   shiftMonth.forEach((shift) => {
     if (!employeeShiftsMap[shift.personalNumber]) {
