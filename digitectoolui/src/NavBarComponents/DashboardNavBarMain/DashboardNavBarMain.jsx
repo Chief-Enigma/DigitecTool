@@ -70,7 +70,7 @@ export const DashboardNavBarMain = () => {
           </li>
         ) : null}
 
-        {userRole === "sysadmin" || permissions.includes("editplan") ? (
+        {userRole === "sysadmin" || permissions.includes("managetodo") ? (
           <li>
             <NavLink to="todo" className="DashboardNavElement">
               <span className="material-symbols-outlined">checklist</span>
@@ -78,8 +78,6 @@ export const DashboardNavBarMain = () => {
             </NavLink>
           </li>
         ) : null}
-
-
 
         {userRole === "sysadmin" ||
           permissions.includes("tickets") ||
@@ -120,8 +118,7 @@ export const DashboardNavBarMain = () => {
         </li>
 
         {userRole === "sysadmin" ||
-          userRole === "admin" ||
-          permissions.includes("users") ? (
+          userRole === "admin" ? (
           <li>
             <NavLink to="users" className="DashboardNavElement">
               <span className="material-symbols-outlined">group</span>
@@ -131,8 +128,7 @@ export const DashboardNavBarMain = () => {
         ) : null}
 
         {userRole === "sysadmin" ||
-          userRole === "admin" ||
-          permissions.includes("permissions") ? (
+          userRole === "admin" ? (
           <li>
             <NavLink to="permissions" className="DashboardNavElement">
               <span className="material-symbols-outlined">

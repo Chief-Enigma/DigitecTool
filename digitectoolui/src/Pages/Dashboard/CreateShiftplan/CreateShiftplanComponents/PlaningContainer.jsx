@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Put from "../../../../Functions/Api/Requests/Put";
 import { GetShiftStyles } from "./GetShiftStyles";
 
@@ -15,6 +15,29 @@ export const PlaningContainer = ({ shiftMonth, employeesTeam }) => {
   const handleJobTypeClick = (jobType) => {
     setSelectedJobType(jobType);
   };
+
+  // Prevent default right click shit
+  useEffect(() => {
+    const handleContextmenu = e => {
+      e.preventDefault()
+    }
+    document.addEventListener('contextmenu', handleContextmenu)
+    return function cleanup() {
+      document.removeEventListener('contextmenu', handleContextmenu)
+    }
+  }, [])
+
+  // Edit ShiftDay Object
+  const EditShiftDays = async (e) => {
+    if (e.type === 'click') {
+      console.log('Left click');
+    } else if (e.type === 'contextmenu') {
+      console.log('Right click');
+    }
+    else{
+      console.log(e, "WTF")
+    }
+  }
 
   // Saving the updated Shift to DB
   const SaveShiftday = async (shiftDay, job) => {
@@ -76,7 +99,7 @@ export const PlaningContainer = ({ shiftMonth, employeesTeam }) => {
   return (
     <div>
       <PlanSettings onSelectJobType={handleJobTypeClick} />
-      <table className="CreateShiftTable" style={{ whiteSpace: "nowrap"}}>
+      <table className="CreateShiftTable" style={{ whiteSpace: "nowrap" }}>
         <tbody>
           <PlanHeader daysInMonth={daysInMonth} />
           {sortedEmployees.map((employee) => {
@@ -100,6 +123,7 @@ export const PlaningContainer = ({ shiftMonth, employeesTeam }) => {
                       onClick={() => {
                         if (selectedJobType) {
                           if (shiftDay) {
+                            EditShiftDays();
                             SaveShiftday(shiftDay, selectedJobType);
                           }
                         }
